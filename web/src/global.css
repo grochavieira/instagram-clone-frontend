@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 60%;
+  font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+input {
+  font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+input,
+button {
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
