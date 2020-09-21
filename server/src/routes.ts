@@ -5,7 +5,7 @@ const routes = Router();
 const userController = new UserController();
 
 routes.get("/user", userController.index);
-routes.get("/user/login", userController.login);
+routes.post("/user/login", userController.login);
 routes.post("/user", userController.store);
 
 export default routes;
