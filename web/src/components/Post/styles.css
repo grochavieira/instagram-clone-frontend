@@ -1,0 +1,98 @@
+div.post-container {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 60px;
+}
+
+div.post-container .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 5px;
+  border-bottom: 1px solid #eee;
+}
+
+div.post-container .header .user {
+  display: flex;
+  align-items: center;
+}
+
+div.post-container .header .user img {
+  width: 40px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+div.post-container .header .user p {
+  cursor: pointer;
+}
+
+div.post-container .header .options {
+  padding: 5px;
+  cursor: pointer;
+}
+
+div.post-container .header p {
+  font-size: 0.9rem;
+  color: rgb(38, 38, 38);
+  font-weight: 600;
+  margin-left: 10px;
+}
+
+div.post-container .content {
+  width: 100%;
+}
+
+div.post-container .content img {
+  width: 100%;
+}
+
+div.post-container .like-section {
+  padding: 10px 0px 5px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+div.post-container .like-section .main-icons span {
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+div.post-container .like-section .favorite-icon span {
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+div.post-container .visualizations-section p {
+  padding: 0px 15px;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  color: #333;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+div.post-container .add-comment-section {
+  padding: 20px;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+}
+
+div.post-container .add-comment-section input {
+  border: 0;
+  font-size: 0.9rem;
+}
+
+div.post-container .add-comment-section button {
+  cursor: pointer;
+  border: 0;
+  background-color: #fff;
+  font-weight: 600;
+  color: #0095f6;
+  font-size: 0.9rem;
+}

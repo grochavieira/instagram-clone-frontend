@@ -1,0 +1,9 @@
+div.home-container {
+  padding-top: 100px;
+  padding-left: 200px;
+  display: flex;
+}
+
+div.home-container .side-container {
+  position: fixed;
+}
