@@ -32,18 +32,18 @@ const Post: React.FC<PostProps> = ({ postImage, userImage, username }) => {
       <div className="like-section">
         <div className="main-icons">
           <span>
-            <BsHeart size={30} color="#333" />
+            <BsHeart size={28} color="#333" />
           </span>
           <span>
-            <AiOutlineMessage size={30} color="#333" />
+            <AiOutlineMessage size={28} color="#333" />
           </span>
           <span>
-            <RiNavigationLine size={30} color="#333" />
+            <RiNavigationLine size={28} color="#333" />
           </span>
         </div>
         <div className="favorite-icon">
           <span>
-            <BsBookmark size={30} color="#333" />
+            <BsBookmark size={28} color="#333" />
           </span>
         </div>
       </div>
