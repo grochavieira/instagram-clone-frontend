@@ -35,4 +35,12 @@ nav.header-container .navigation-bar ul li {
 
 nav.header-container .navigation-bar ul li img {
   width: 25px;
+  border-radius: 50%;
+  background-color: #ccc;
+}
+
+@media only screen and (max-width: 690px) {
+  nav.header-container .search-bar {
+    display: none;
+  }
 }

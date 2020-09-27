@@ -8,7 +8,7 @@ import Home from "./pages/Home";
 function Routes() {
   return (
     <BrowserRouter>
-      <Route exact path="/" component={Home} />
+      <Route exact path="/" component={Login} />
       <Route path="/register" component={Register} />
       <Route path="/home" component={Home} />
     </BrowserRouter>

@@ -27,6 +27,8 @@ const Login = () => {
 
       if (data !== null) {
         alert("Login efetuado com sucesso!");
+        delete data.password;
+        localStorage.setItem("user", JSON.stringify(data));
         history.push("/home");
       } else {
         alert("Não foi possível efetuar o login!");

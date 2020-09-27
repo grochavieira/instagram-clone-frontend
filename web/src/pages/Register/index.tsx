@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
+import ImageDropzone from "../../components/ImageDropzone";
 import { Link, useHistory } from "react-router-dom";
 import instagramLogo from "../../assets/instagram.png";
 import downloadAppIcon from "../../assets/download-app-store.png";
@@ -10,6 +11,7 @@ import api from "../../services/api";
 import "./styles.css";
 
 const Register = () => {
+  const [profileImage, setProfileImage] = useState<File>();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -19,12 +21,13 @@ const Register = () => {
 
   async function handleSubmit() {
     try {
-      const data = {
-        name,
-        email,
-        username,
-        password,
-      };
+      const data = new FormData();
+      data.append("name", name);
+      data.append("email", email);
+      data.append("username", username);
+      data.append("password", password);
+
+      if (profileImage) data.append("file", profileImage);
 
       const response = await api.post("/user", data);
 
@@ -47,6 +50,10 @@ const Register = () => {
           <p className="line">
             <span>OU</span>
           </p>
+        </div>
+        <div className="perfil-dropzone">
+          <p className="label">Escolha uma foto de perfil</p>
+          <ImageDropzone info="" onFileUploaded={setProfileImage} />
         </div>
         <Input
           type="email"

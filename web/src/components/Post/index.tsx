@@ -7,20 +7,27 @@ import defaultUser from "../../assets/defaultUser.png";
 import testImage from "../../assets/test-image.jpg";
 import "./styles.css";
 
-const Post = () => {
+interface PostProps {
+  postImage: string;
+  user_id: string;
+  userImage: string;
+  username: string;
+}
+
+const Post: React.FC<PostProps> = ({ postImage, userImage, username }) => {
   return (
     <div className="post-container">
       <div className="header">
         <div className="user">
-          <img src={defaultUser} alt="" />
-          <p>usuário</p>
+          <img src={userImage} alt="user profile image" />
+          <p>{username}</p>
         </div>
         <div className="options">
           <HiDotsHorizontal size={18} color="#333" />
         </div>
       </div>
       <div className="content">
-        <img src={testImage} alt="" />
+        <img src={postImage} alt="" />
       </div>
       <div className="like-section">
         <div className="main-icons">

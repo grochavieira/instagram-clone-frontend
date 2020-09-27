@@ -1,9 +1,85 @@
 div.home-container {
   padding-top: 100px;
-  padding-left: 200px;
   display: flex;
+  padding-left: 13%;
+}
+
+div.create-post-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  width: 100%;
+  max-width: 600px;
+  height: 300px;
+  margin-bottom: 20px;
+}
+
+div.create-post-container .post-button {
+  width: 100%;
+}
+
+div.create-post-container .post-button button {
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  border: 0;
+  background-color: #0095f6;
+  padding: 15px;
+  margin: auto 0px;
+  cursor: pointer;
+}
+
+div.create-post-container .post-button button:hover {
+  background-color: #056baf;
+}
+
+div.home-container .main-container .create-post-container .post-dropzone {
+  width: 100%;
+  height: 250px;
 }
 
 div.home-container .side-container {
+  margin-left: 30px;
+}
+
+div.home-container .side-container .user-profile {
   position: fixed;
+  display: flex;
+  align-items: center;
+}
+
+div.home-container .side-container .user-profile .photo img {
+  width: 60px;
+  border-radius: 50%;
+}
+
+div.home-container .side-container .user-profile .info {
+  margin-left: 15px;
+}
+
+div.home-container .side-container .user-profile .info p.username {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 2px;
+}
+
+div.home-container .side-container .user-profile .info p.name {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+@media only screen and (max-width: 1100px) {
+  div.home-container .side-container {
+    display: none;
+  }
+
+  div.home-container {
+    justify-content: center;
+    padding-left: 0px;
+  }
 }

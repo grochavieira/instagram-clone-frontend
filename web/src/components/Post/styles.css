@@ -22,6 +22,7 @@ div.post-container .header .user {
 
 div.post-container .header .user img {
   width: 40px;
+  border-radius: 50%;
   margin-left: 5px;
   cursor: pointer;
 }

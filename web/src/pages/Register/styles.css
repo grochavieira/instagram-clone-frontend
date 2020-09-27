@@ -18,3 +18,30 @@
   color: #888;
   font-weight: 600;
 }
+
+.container .instagram-block .perfil-dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.container .instagram-block .perfil-dropzone p.label {
+  margin-bottom: 10px;
+  color: #888;
+}
+
+.container .instagram-block .perfil-dropzone .dropzone {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 5px;
+}
+
+.container .instagram-block .perfil-dropzone .dropzone img {
+  border-radius: 50%;
+}
+
+.container .instagram-block .perfil-dropzone .dropzone p {
+  border: 0;
+}

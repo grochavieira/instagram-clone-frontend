@@ -17,7 +17,7 @@ const postController = new PostController();
 
 routes.get("/user", userController.index);
 routes.post("/user/login", userController.login);
-routes.post("/user", userController.store);
+routes.post("/user", multerMid.single("file"), userController.store);
 
 routes.get("/user/posts", postController.index);
 routes.get("/user/posts/:id", postController.show);

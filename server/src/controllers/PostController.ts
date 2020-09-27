@@ -47,7 +47,6 @@ class PostController {
     try {
       const myFile = request.file;
       const { id: user_id } = request.params;
-      const { description } = request.body;
 
       const imageUrl = await uploadImage(myFile);
 
@@ -56,14 +55,11 @@ class PostController {
 
       const post = await PostModel.create({
         user_id,
-        description,
         imageUrl,
       });
 
       response.status(200).json({
-        message: "Upload was successful",
         post,
-        imageUrl,
       });
     } catch (e) {
       response.status(404).json({ message: "Unable to upload" });

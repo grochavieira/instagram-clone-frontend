@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import UserModel from "../models/UserModel";
+import uploadImage from "../helpers/helpers";
 
 class UserController {
   async index(request: Request, response: Response) {
@@ -17,18 +18,28 @@ class UserController {
   }
 
   async store(request: Request, response: Response) {
-    const { name, email, username, password } = request.body;
+    try {
+      const myFile = request.file;
+      const { name, email, username, password } = request.body;
 
-    console.log(name);
+      const profilePhotoUrl = await uploadImage(myFile);
 
-    const dataResponse = await UserModel.create({
-      name,
-      email,
-      username,
-      password,
-    });
+      console.log(name);
 
-    response.json(dataResponse);
+      const dataResponse = await UserModel.create({
+        name,
+        email,
+        username,
+        password,
+        profilePhotoUrl,
+      });
+
+      response.json(dataResponse);
+    } catch (e) {
+      response.status(404).json({
+        message: "Unable to create user",
+      });
+    }
   }
 }
 
