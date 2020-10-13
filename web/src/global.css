@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap");
 
 * {
   padding: 0;
@@ -28,4 +28,10 @@ button {
 a {
   text-decoration: none;
   color: black;
+}
+
+@media only screen and (max-width: 800px) {
+  html {
+    font-size: 55%;
+  }
 }

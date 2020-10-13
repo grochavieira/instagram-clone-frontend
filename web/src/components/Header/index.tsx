@@ -1,14 +1,22 @@
 import React from "react";
-import { BsHeart } from "react-icons/bs";
-import { AiOutlineHome, AiFillHome, AiOutlineCompass } from "react-icons/ai";
-import { RiNavigationLine } from "react-icons/ri";
+import { BsHeart, BsHeartFill } from "react-icons/bs";
+import {
+  AiOutlineHome,
+  AiFillHome,
+  AiOutlineCamera,
+  AiFillCamera,
+} from "react-icons/ai";
+import { RiSendPlaneLine, RiSendPlaneFill } from "react-icons/ri";
+import { Link } from "react-router-dom";
+
 import "./styles.css";
 
 interface HeaderProps {
   profileImage: string;
+  currentPage: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ profileImage }) => {
+const Header: React.FC<HeaderProps> = ({ profileImage, currentPage }) => {
   return (
     <nav className="header-container">
       <div className="logo">
@@ -20,16 +28,30 @@ const Header: React.FC<HeaderProps> = ({ profileImage }) => {
       <div className="navigation-bar">
         <ul>
           <li>
-            <AiOutlineHome size={25} color="#333" />
+            <Link to="/home">
+              {currentPage === "home" ? <AiFillHome /> : <AiOutlineHome />}{" "}
+            </Link>
           </li>
           <li>
-            <RiNavigationLine size={25} color="#333" />
+            <Link to="/post-content">
+              {currentPage === "post-content" ? (
+                <AiFillCamera />
+              ) : (
+                <AiOutlineCamera />
+              )}
+            </Link>
           </li>
           <li>
-            <AiOutlineCompass size={25} color="#333" />
+            <Link to="/message">
+              {currentPage === "message" ? (
+                <RiSendPlaneFill />
+              ) : (
+                <RiSendPlaneLine />
+              )}
+            </Link>
           </li>
           <li>
-            <BsHeart size={25} color="#333" />
+            <BsHeart />
           </li>
           <li>
             <img src={profileImage} alt="user profile image" />

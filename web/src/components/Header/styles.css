@@ -37,6 +37,7 @@ nav.header-container .navigation-bar ul li{
 nav.header-container .navigation-bar ul li svg{
   width: 2.5rem;
   height: 2.5rem;
+  color: #333;
 }
 
 nav.header-container .navigation-bar ul li img {

@@ -1,0 +1,43 @@
+.post-content-container {
+  padding-top: 10rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.post-content-container .create-post-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  width: 60rem;
+  height: 30rem;
+  margin-bottom: 2rem;
+}
+
+.post-content-container .create-post-container .post-button {
+  width: 100%;
+}
+
+.post-content-container .create-post-container .post-button button {
+  width: 100%;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #fff;
+  border: 0;
+  background-color: #0095f6;
+  padding: 1.5rem;
+  margin: auto 0;
+  cursor: pointer;
+}
+
+.post-content-container .create-post-container .post-button button:hover {
+  background-color: #056baf;
+}
+
+.post-content-container .create-post-container .post-dropzone {
+  width: 100%;
+  height: 25rem;
+}

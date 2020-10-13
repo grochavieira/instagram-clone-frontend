@@ -4,41 +4,12 @@ div.home-container {
   padding-left: 13%;
 }
 
-div.create-post-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+div.home-container .main-container .online-friends-block {
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 3px;
-  width: 60rem;
-  height: 30rem;
-  margin-bottom: 2rem;
-}
-
-div.create-post-container .post-button {
-  width: 100%;
-}
-
-div.create-post-container .post-button button {
-  width: 100%;
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: #fff;
-  border: 0;
-  background-color: #0095f6;
-  padding: 1.5rem;
-  margin: auto 0;
-  cursor: pointer;
-}
-
-div.create-post-container .post-button button:hover {
-  background-color: #056baf;
-}
-
-div.home-container .main-container .create-post-container .post-dropzone {
-  width: 100%;
-  height: 25rem;
+  padding: 6rem 0;
+  margin-bottom: 3rem;
 }
 
 div.home-container .side-container {

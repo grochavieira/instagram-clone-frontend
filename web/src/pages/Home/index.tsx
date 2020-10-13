@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import Post from "../../components/Post";
 import ImageDropzone from "../../components/ImageDropzone";
+import User from "../../interfaces/User";
 import api from "../../services/api";
 import "./styles.css";
 
@@ -9,18 +10,6 @@ interface Post {
   _id: string;
   user_id: string;
   imageUrl: string;
-}
-
-interface User {
-  _id: string;
-  name: string;
-  email: string;
-  profilePhotoUrl: string;
-  username: string;
-}
-
-interface HomeProps {
-  user: User;
 }
 
 const Home = () => {
@@ -53,42 +42,12 @@ const Home = () => {
     }
   }, []);
 
-  async function handlePost() {
-    const data = new FormData();
-
-    if (selectedFile) {
-      data.append("file", selectedFile);
-    }
-
-    try {
-      if (user) {
-        const response = await api.post(`/user/post/${user._id}`, data);
-        loadPosts(user._id);
-        setSelectedFile(undefined);
-        alert("Post criado com sucesso!");
-      }
-    } catch (e) {
-      console.log(e);
-      alert("Não foi possível criar o post!");
-    }
-  }
-
   return (
     <>
-      <Header profileImage={user.profilePhotoUrl} />
+      <Header currentPage="home" profileImage={user.profilePhotoUrl} />
       <div className="home-container">
         <div className="main-container">
-          <div className="create-post-container">
-            <div className="post-dropzone">
-              <ImageDropzone
-                info="Clique para selecionar uma imagem..."
-                onFileUploaded={setSelectedFile}
-              />
-            </div>
-            <div className="post-button">
-              <button onClick={handlePost}>Postar</button>
-            </div>
-          </div>
+          <div className="online-friends-block"></div>
           {[...posts].reverse().map((post: Post) => (
             <Post
               key={post._id}

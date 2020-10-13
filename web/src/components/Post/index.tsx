@@ -1,6 +1,6 @@
 import React from "react";
 import { BsHeart, BsBookmark } from "react-icons/bs";
-import { RiNavigationLine } from "react-icons/ri";
+import { RiSendPlaneLine } from "react-icons/ri";
 import { AiOutlineMessage } from "react-icons/ai";
 import { HiDotsHorizontal } from "react-icons/hi";
 import defaultUser from "../../assets/defaultUser.png";
@@ -41,7 +41,7 @@ const Post: React.FC<PostProps> = ({ postImage, userImage, username }) => {
             <AiOutlineMessage />
           </span>
           <span>
-            <RiNavigationLine />
+            <RiSendPlaneLine />
           </span>
         </div>
         <div className="favorite-icon">
