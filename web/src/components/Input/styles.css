@@ -1,13 +1,13 @@
 .input-block {
   width: 75%;
-  margin-top: 6px;
+  margin-top: 0.6rem;
 }
 
 .input-block input {
   border-radius: 3px;
-  font-size: 0.8rem;
+  font-size: 1.1rem;
   width: 100%;
-  padding: 10px;
+  padding: 1rem;
   background-color: #fafafa;
   border: 1px solid #ddd;
 }

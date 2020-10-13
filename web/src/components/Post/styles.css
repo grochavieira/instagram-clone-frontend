@@ -3,15 +3,15 @@ div.post-container {
   border: 1px solid #ccc;
   border-radius: 3px;
   width: 100%;
-  max-width: 600px;
-  margin-bottom: 60px;
+  max-width: 60rem;
+  margin-bottom: 6rem;
 }
 
 div.post-container .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 7px 5px;
+  padding: 0.7rem 0.5rem;
   border-bottom: 1px solid #eee;
 }
 
@@ -21,9 +21,11 @@ div.post-container .header .user {
 }
 
 div.post-container .header .user img {
-  width: 40px;
+  width: 4rem;
+  height: 4rem;
+  background-color: #eee;
   border-radius: 50%;
-  margin-left: 5px;
+  margin-left: 0.5rem;
   cursor: pointer;
 }
 
@@ -31,16 +33,18 @@ div.post-container .header .user p {
   cursor: pointer;
 }
 
-div.post-container .header .options {
-  padding: 5px;
+div.post-container .header .options svg{
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.5rem;
   cursor: pointer;
 }
 
 div.post-container .header p {
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   color: rgb(38, 38, 38);
   font-weight: 600;
-  margin-left: 10px;
+  margin-left: 1rem;
 }
 
 div.post-container .content {
@@ -52,33 +56,39 @@ div.post-container .content img {
 }
 
 div.post-container .like-section {
-  padding: 10px 0px 5px 15px;
+  padding: 1rem 0 0.5rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-div.post-container .like-section .main-icons span {
-  margin-right: 15px;
+div.post-container .like-section .main-icons span svg {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #333;  
+  margin-right: 1.5rem;
   cursor: pointer;
 }
 
-div.post-container .like-section .favorite-icon span {
-  margin-right: 15px;
+div.post-container .like-section .favorite-icon span svg {
+  margin-right: 1.5rem;
+  width: 2.5rem;
+  height: 2.5rem; 
+  color: #333;
   cursor: pointer;
 }
 
 div.post-container .visualizations-section p {
-  padding: 0px 15px;
-  margin-bottom: 10px;
-  font-size: 0.9rem;
+  padding: 0 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
   color: #333;
   font-weight: 600;
   cursor: pointer;
 }
 
 div.post-container .add-comment-section {
-  padding: 20px;
+  padding: 2rem;
   border-top: 1px solid #eee;
   display: flex;
   justify-content: space-between;
@@ -86,7 +96,7 @@ div.post-container .add-comment-section {
 
 div.post-container .add-comment-section input {
   border: 0;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
 }
 
 div.post-container .add-comment-section button {
@@ -95,5 +105,5 @@ div.post-container .add-comment-section button {
   background-color: #fff;
   font-weight: 600;
   color: #0095f6;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
 }

@@ -19,11 +19,14 @@ const Post: React.FC<PostProps> = ({ postImage, userImage, username }) => {
     <div className="post-container">
       <div className="header">
         <div className="user">
-          <img src={userImage} alt="user profile image" />
+          <img
+            src={userImage ? userImage : defaultUser}
+            alt="user profile image"
+          />
           <p>{username}</p>
         </div>
         <div className="options">
-          <HiDotsHorizontal size={18} color="#333" />
+          <HiDotsHorizontal />
         </div>
       </div>
       <div className="content">
@@ -32,18 +35,18 @@ const Post: React.FC<PostProps> = ({ postImage, userImage, username }) => {
       <div className="like-section">
         <div className="main-icons">
           <span>
-            <BsHeart size={28} color="#333" />
+            <BsHeart />
           </span>
           <span>
-            <AiOutlineMessage size={28} color="#333" />
+            <AiOutlineMessage />
           </span>
           <span>
-            <RiNavigationLine size={28} color="#333" />
+            <RiNavigationLine />
           </span>
         </div>
         <div className="favorite-icon">
           <span>
-            <BsBookmark size={28} color="#333" />
+            <BsBookmark />
           </span>
         </div>
       </div>

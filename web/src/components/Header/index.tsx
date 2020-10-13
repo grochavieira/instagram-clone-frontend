@@ -2,9 +2,6 @@ import React from "react";
 import { BsHeart } from "react-icons/bs";
 import { AiOutlineHome, AiFillHome, AiOutlineCompass } from "react-icons/ai";
 import { RiNavigationLine } from "react-icons/ri";
-import { FaRegUserCircle } from "react-icons/fa";
-import defaultUser from "../../assets/defaultUser.png";
-import instagramLogo from "../../assets/instagram2.png";
 import "./styles.css";
 
 interface HeaderProps {
@@ -14,8 +11,8 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ profileImage }) => {
   return (
     <nav className="header-container">
-      <div className="image-logo">
-        <img src={instagramLogo} alt="Instagram Logo" />
+      <div className="logo">
+        <p className="text-logo">Instagram</p>
       </div>
       <div className="search-bar">
         <input type="text" placeholder="Pesquisar" />

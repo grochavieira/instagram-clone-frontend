@@ -41,7 +41,7 @@ const Login = () => {
   return (
     <div className="container">
       <div className="instagram-block">
-        <img src={instagramLogo} alt="instagram" />
+        <p className="text-logo">Instagram</p>
         <Input
           type="email"
           value={email}

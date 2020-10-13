@@ -1,5 +1,5 @@
 div.home-container {
-  padding-top: 100px;
+  padding-top: 10rem;
   display: flex;
   padding-left: 13%;
 }
@@ -11,9 +11,9 @@ div.create-post-container {
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 3px;
-  width: 600px;
-  height: 300px;
-  margin-bottom: 20px;
+  width: 60rem;
+  height: 30rem;
+  margin-bottom: 2rem;
 }
 
 div.create-post-container .post-button {
@@ -22,13 +22,13 @@ div.create-post-container .post-button {
 
 div.create-post-container .post-button button {
   width: 100%;
-  font-size: 1rem;
+  font-size: 1.6rem;
   font-weight: 600;
   color: #fff;
   border: 0;
   background-color: #0095f6;
-  padding: 15px;
-  margin: auto 0px;
+  padding: 1.5rem;
+  margin: auto 0;
   cursor: pointer;
 }
 
@@ -38,11 +38,11 @@ div.create-post-container .post-button button:hover {
 
 div.home-container .main-container .create-post-container .post-dropzone {
   width: 100%;
-  height: 250px;
+  height: 25rem;
 }
 
 div.home-container .side-container {
-  margin-left: 30px;
+  margin-left: 3rem;
 }
 
 div.home-container .side-container .user-profile {
@@ -52,23 +52,24 @@ div.home-container .side-container .user-profile {
 }
 
 div.home-container .side-container .user-profile .photo img {
-  width: 60px;
+  width: 6rem;
+  height: 6rem;
   border-radius: 50%;
 }
 
 div.home-container .side-container .user-profile .info {
-  margin-left: 15px;
+  margin-left: 1.5rem;
 }
 
 div.home-container .side-container .user-profile .info p.username {
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   font-weight: 600;
   color: #333;
-  margin-bottom: 2px;
+  margin-bottom: 0.2rem;
 }
 
 div.home-container .side-container .user-profile .info p.name {
-  font-size: 0.8rem;
+  font-size: 1rem;
   color: #888;
 }
 
@@ -91,6 +92,6 @@ div.home-container .side-container .user-profile .info p.name {
 
   div.create-post-container {
     width: 100%;
-    max-width: 600px;
+    max-width: 60rem;
   }
 }

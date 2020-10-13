@@ -6,13 +6,14 @@ nav.header-container {
   align-items: center;
   justify-content: space-around;
   background-color: #fff;
-  border: 1px solid #ccc;
-  padding-left: 50px;
-  padding-right: 50px;
+  border: 0.1rem solid #ccc;
+  padding-left: 5rem;
+  padding-right: 5rem;
 }
 
-nav.header-container .image-logo img {
-  margin-top: 5px;
+nav.header-container .logo .text-logo {
+  margin: 0;
+  font-size: 3rem;
   cursor: pointer;
 }
 
@@ -24,17 +25,23 @@ nav.header-container .navigation-bar ul {
 nav.header-container .search-bar input {
   background-color: #fafafa;
   border: 1px solid #ccc;
-  border-radius: 3px;
-  padding: 5px 20px;
+  border-radius: 0.3rem;
+  padding: 0.5rem 2rem;
 }
 
-nav.header-container .navigation-bar ul li {
-  margin: 12px 10px;
+nav.header-container .navigation-bar ul li{
+  margin: 1.2rem 1rem;
   cursor: pointer;
 }
 
+nav.header-container .navigation-bar ul li svg{
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
 nav.header-container .navigation-bar ul li img {
-  width: 25px;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 50%;
   background-color: #ccc;
 }

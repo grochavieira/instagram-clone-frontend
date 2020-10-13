@@ -41,7 +41,7 @@ const Register = () => {
   return (
     <div className="container">
       <div className="instagram-block">
-        <img src={instagramLogo} alt="instagram" />
+        <p className="text-logo">Instagram</p>
         <div className="instagram-text">
           <p>Cadastre-se para ver fotos e vídeos dos seus amigos.</p>
         </div>
