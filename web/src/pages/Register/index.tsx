@@ -8,7 +8,7 @@ import instagramLogo from "../../assets/instagram.png";
 import downloadAppIcon from "../../assets/download-app-store.png";
 import downloadGoogleIcon from "../../assets/download-google-play.png";
 import api from "../../services/api";
-import "./styles.css";
+import "./styles.scss";
 
 const Register = () => {
   const [profileImage, setProfileImage] = useState<File>();
@@ -39,20 +39,22 @@ const Register = () => {
   }
 
   return (
-    <div className="container">
-      <div className="instagram-block">
-        <p className="text-logo">Instagram</p>
-        <div className="instagram-text">
+    <div className="register">
+      <div className="register__container">
+        <p className="register__container__instagram-text">Instagram</p>
+        <div className="register__container__subtitle">
           <p>Cadastre-se para ver fotos e vídeos dos seus amigos.</p>
         </div>
         <Button onAction={() => {}} name="Entrar com o Facebook" />
         <div className="or-block">
-          <p className="line">
+          <p className="or-block__line">
             <span>OU</span>
           </p>
         </div>
-        <div className="perfil-dropzone">
-          <p className="label">Escolha uma foto de perfil</p>
+        <div className="register__container__perfil-dropzone">
+          <p className="register__container__perfil-dropzone__label">
+            Escolha uma foto de perfil
+          </p>
           <ImageDropzone info="" onFileUploaded={setProfileImage} />
         </div>
         <Input
@@ -75,7 +77,7 @@ const Register = () => {
         />
         <Button onAction={handleSubmit} name="Cadastre-se" />
 
-        <div className="terms-block">
+        <div className="register__container__terms">
           <p>
             Ao se cadastrar, você concorda com nossos <br />{" "}
             <span>Termos, Política de Dados</span> e{" "}
@@ -84,16 +86,16 @@ const Register = () => {
         </div>
       </div>
 
-      <div className="register-block">
+      <div className="register__login">
         <p>
           Tem uma conta?
           <Link to="/"> Conecte-se</Link>
         </p>
       </div>
 
-      <p className="app-text">Obtenha o aplicativo.</p>
+      <p className="register__app-text">Obtenha o aplicativo.</p>
 
-      <div className="download-stores-block">
+      <div className="register__download-stores">
         <img src={downloadAppIcon} alt="Download on app store" />
         <img src={downloadGoogleIcon} alt="Download on google store" />
       </div>

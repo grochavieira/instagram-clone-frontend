@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Routes from "./routes";
-import "./global.css";
+import ThemeSwitcher from "./components/ThemeSwitcher";
+
+import "./global.scss";
 
 function App() {
-  return <Routes />;
+  return (
+    <>
+      <ThemeSwitcher />
+      <Routes />
+    </>
+  );
 }
 
 export default App;

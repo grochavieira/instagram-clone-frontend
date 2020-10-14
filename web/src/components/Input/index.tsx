@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./styles.css";
+import "./styles.scss";
 
 interface InputProps {
   placeholder: string;
@@ -16,7 +16,7 @@ const Input: React.FC<InputProps> = ({
   setValue,
 }) => {
   return (
-    <div className="input-block">
+    <div className="input">
       <input
         value={value}
         onChange={(e) => setValue(e.target.value)}

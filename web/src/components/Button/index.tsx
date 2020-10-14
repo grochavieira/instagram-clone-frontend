@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./styles.css";
+import "./styles.scss";
 
 interface ButtonProps {
   name: string;
@@ -9,7 +9,7 @@ interface ButtonProps {
 
 const Button: React.FC<ButtonProps> = ({ name, onAction }) => {
   return (
-    <div className="button-block">
+    <div className="button">
       <button onClick={() => onAction()}>{name}</button>
     </div>
   );

@@ -4,7 +4,7 @@ import Post from "../../components/Post";
 import ImageDropzone from "../../components/ImageDropzone";
 import User from "../../interfaces/User";
 import api from "../../services/api";
-import "./styles.css";
+import "./styles.scss";
 
 interface Post {
   _id: string;

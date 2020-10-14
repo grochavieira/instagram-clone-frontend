@@ -9,7 +9,7 @@ import {
 import { RiSendPlaneLine, RiSendPlaneFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 
-import "./styles.css";
+import "./styles.scss";
 
 interface HeaderProps {
   profileImage: string;
@@ -18,14 +18,14 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ profileImage, currentPage }) => {
   return (
-    <nav className="header-container">
-      <div className="logo">
-        <p className="text-logo">Instagram</p>
+    <nav className="header">
+      <div className="header__logo">
+        <p className="header__logo__text">Instagram</p>
       </div>
-      <div className="search-bar">
+      <div className="header__search-bar">
         <input type="text" placeholder="Pesquisar" />
       </div>
-      <div className="navigation-bar">
+      <div className="header__navigation-bar">
         <ul>
           <li>
             <Link to="/home">

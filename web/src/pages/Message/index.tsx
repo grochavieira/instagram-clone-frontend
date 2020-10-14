@@ -4,7 +4,7 @@ import User from "../../interfaces/User";
 import { HiOutlinePencilAlt } from "react-icons/hi";
 import { RiSendPlaneFill } from "react-icons/ri";
 import Button from "../../components/Button";
-import "./styles.css";
+import "./styles.scss";
 
 const Message = () => {
   const [user, setUser] = useState<User>({

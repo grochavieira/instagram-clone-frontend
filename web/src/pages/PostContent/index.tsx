@@ -5,7 +5,7 @@ import ImageDropzone from "../../components/ImageDropzone";
 import { useHistory } from "react-router-dom";
 import api from "../../services/api";
 
-import "./styles.css";
+import "./styles.scss";
 
 const PostContent = () => {
   const [selectedFile, setSelectedFile] = useState<File>();
@@ -57,15 +57,15 @@ const PostContent = () => {
   return (
     <>
       <Header currentPage="post-content" profileImage={user.profilePhotoUrl} />
-      <div className="post-content-container">
-        <div className="create-post-container">
-          <div className="post-dropzone">
+      <div className="post-content">
+        <div className="post-content__create">
+          <div className="post-content__create__dropzone">
             <ImageDropzone
               info="Clique para selecionar uma imagem..."
               onFileUploaded={setSelectedFile}
             />
           </div>
-          <div className="post-button">
+          <div className="post-content__create__button">
             <button onClick={handlePost}>Postar</button>
           </div>
         </div>

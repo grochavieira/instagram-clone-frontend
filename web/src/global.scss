@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap");
+
+:root {
+  --color-primary: #fff;
+  --color-secondary: #fafafa;
+  --color-tertiary: rgb(0, 149, 247);
+  --color-tertiary-dark: rgb(6, 130, 212);
+  --color-tertiary-dark2: rgb(7, 75, 121);
+  --color-tertiary-light: rgba(3, 140, 231, 0.774);
+  --color-highlight: #333;
+  --color-text: #888;
+  --color-border: #ddd;
+  // --color-primary: #222;
+  // --color-secondary: #111;
+  // --color-tertiary: rgb(0, 149, 247);
+  // --color-tertiary-dark: rgb(6, 130, 212);
+  // --color-tertiary-light: rgba(3, 140, 231, 0.774);
+  // --color-highlight: #fff;
+  // --color-text: #fff;
+  // --color-border: #222;
+  // color: #fff;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Segoe UI", Roboto, sans-serif;
+  background-color: #fafafa;
+}
+
+input {
+  font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+input,
+button {
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+@media only screen and (max-width: 800px) {
+  html {
+    font-size: 55%;
+  }
+}

@@ -2,11 +2,12 @@ div.home-container {
   padding-top: 10rem;
   display: flex;
   padding-left: 13%;
+  background-color: var(--color-secondary);
 }
 
 div.home-container .main-container .online-friends-block {
-  background-color: #fff;
-  border: 1px solid #ccc;
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-border);
   border-radius: 3px;
   padding: 6rem 0;
   margin-bottom: 3rem;
@@ -35,13 +36,13 @@ div.home-container .side-container .user-profile .info {
 div.home-container .side-container .user-profile .info p.username {
   font-size: 1.2rem;
   font-weight: 600;
-  color: #333;
+  color: var(--color-highlight);
   margin-bottom: 0.2rem;
 }
 
 div.home-container .side-container .user-profile .info p.name {
   font-size: 1rem;
-  color: #888;
+  color: var(--color-text);
 }
 
 @media only screen and (max-width: 1100px) {
