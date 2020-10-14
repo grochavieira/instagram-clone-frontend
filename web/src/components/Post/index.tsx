@@ -4,8 +4,8 @@ import { RiSendPlaneLine } from "react-icons/ri";
 import { AiOutlineMessage } from "react-icons/ai";
 import { HiDotsHorizontal } from "react-icons/hi";
 import defaultUser from "../../assets/defaultUser.png";
-import testImage from "../../assets/test-image.jpg";
-import "./styles.css";
+
+import "./styles.scss";
 
 interface PostProps {
   postImage: string;
@@ -16,24 +16,21 @@ interface PostProps {
 
 const Post: React.FC<PostProps> = ({ postImage, userImage, username }) => {
   return (
-    <div className="post-container">
-      <div className="header">
-        <div className="user">
-          <img
-            src={userImage ? userImage : defaultUser}
-            alt="user profile image"
-          />
+    <div className="post">
+      <div className="post__header">
+        <div className="post__header__user">
+          <img src={userImage ? userImage : defaultUser} alt="user profile" />
           <p>{username}</p>
         </div>
-        <div className="options">
+        <div className="post__header__options">
           <HiDotsHorizontal />
         </div>
       </div>
-      <div className="content">
+      <div className="post__content">
         <img src={postImage} alt="" />
       </div>
-      <div className="like-section">
-        <div className="main-icons">
+      <div className="post__like-section">
+        <div className="post__like-section__main-icons">
           <span>
             <BsHeart />
           </span>
@@ -44,17 +41,17 @@ const Post: React.FC<PostProps> = ({ postImage, userImage, username }) => {
             <RiSendPlaneLine />
           </span>
         </div>
-        <div className="favorite-icon">
+        <div className="post__like-section__favorite-icon">
           <span>
             <BsBookmark />
           </span>
         </div>
       </div>
-      <div className="visualizations-section">
+      <div className="post__visualizations">
         <p>0 visualizações</p>
       </div>
-      <div className="comment-section"></div>
-      <div className="add-comment-section">
+      <div className="post__comment"></div>
+      <div className="post__add-comment">
         <input type="text" placeholder="Adicione um comentário..." />
         <button>Publicar</button>
       </div>

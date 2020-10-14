@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import Post from "../../components/Post";
-import ImageDropzone from "../../components/ImageDropzone";
 import User from "../../interfaces/User";
 import api from "../../services/api";
 import "./styles.scss";
@@ -13,7 +12,6 @@ interface Post {
 }
 
 const Home = () => {
-  const [selectedFile, setSelectedFile] = useState<File>();
   const [user, setUser] = useState<User>({
     _id: "",
     name: "",
@@ -45,9 +43,9 @@ const Home = () => {
   return (
     <>
       <Header currentPage="home" profileImage={user.profilePhotoUrl} />
-      <div className="home-container">
-        <div className="main-container">
-          <div className="online-friends-block"></div>
+      <div className="home">
+        <div className="home__main">
+          <div className="home__main__online-friends"></div>
           {[...posts].reverse().map((post: Post) => (
             <Post
               key={post._id}
@@ -58,14 +56,16 @@ const Home = () => {
             />
           ))}
         </div>
-        <div className="side-container">
-          <div className="user-profile">
-            <div className="photo">
+        <div className="home__aside">
+          <div className="home__aside__profile">
+            <div className="home__aside__profile__photo">
               <img src={user.profilePhotoUrl} alt="user profile photo" />
             </div>
-            <div className="info">
-              <p className="username">{user.username}</p>
-              <p className="name">{user.name}</p>
+            <div className="home__aside__profile__info">
+              <p className="home__aside__profile__info__username">
+                {user.username}
+              </p>
+              <p className="home__aside__profile__info__name">{user.name}</p>
             </div>
           </div>
         </div>

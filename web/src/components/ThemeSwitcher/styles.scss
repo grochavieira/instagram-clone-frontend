@@ -1,9 +1,13 @@
 .toggler {
+    z-index: 1000;
     position: fixed;
     bottom: 2rem;
     right: 2rem;
+
     input {
         width: 30px;
         height: 30px;
+
+        cursor: pointer;
     }
 }

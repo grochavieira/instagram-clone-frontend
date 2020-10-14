@@ -1,69 +1,68 @@
-div.home-container {
+.home {
   padding-top: 10rem;
   display: flex;
   padding-left: 13%;
   background-color: var(--color-secondary);
-}
 
-div.home-container .main-container .online-friends-block {
-  background-color: var(--color-primary);
-  border: 1px solid var(--color-border);
-  border-radius: 3px;
-  padding: 6rem 0;
-  margin-bottom: 3rem;
-}
+  &__main {
+    &__online-friends {
+      background-color: var(--color-primary);
+      border: 1px solid var(--color-border);
+      border-radius: 3px;
+      padding: 6rem 0;
+      margin-bottom: 3rem;
+    }
+  }
 
-div.home-container .side-container {
-  margin-left: 3rem;
-}
+  &__aside {
+    margin-left: 3rem;
 
-div.home-container .side-container .user-profile {
-  position: fixed;
-  display: flex;
-  align-items: center;
-}
+    &__profile {
+      position: fixed;
+      display: flex;
+      align-items: center;
 
-div.home-container .side-container .user-profile .photo img {
-  width: 6rem;
-  height: 6rem;
-  border-radius: 50%;
-}
+      &__photo {
+        img {
+          width: 6rem;
+          height: 6rem;
+          border-radius: 50%;
+        }
+      }
 
-div.home-container .side-container .user-profile .info {
-  margin-left: 1.5rem;
-}
+      &__info {
+        margin-left: 1.5rem;
 
-div.home-container .side-container .user-profile .info p.username {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--color-highlight);
-  margin-bottom: 0.2rem;
-}
+        &__username {
+          font-size: 1.2rem;
+          font-weight: 600;
+          color: var(--color-highlight);
+          margin-bottom: 0.2rem;
+        }
 
-div.home-container .side-container .user-profile .info p.name {
-  font-size: 1rem;
-  color: var(--color-text);
+        &__name {
+          font-size: 1rem;
+          color: var(--color-text);
+        }
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 1100px) {
-  div.home-container .side-container {
-    display: none;
-  }
-
-  div.home-container {
+  .home {
     justify-content: center;
     padding-left: 0px;
-  }
 
-  div.main-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+    &__main {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-  div.create-post-container {
-    width: 100%;
-    max-width: 60rem;
+    &__aside {
+      display: none;
+    }
   }
 }

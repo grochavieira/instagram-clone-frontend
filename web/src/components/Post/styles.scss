@@ -1,0 +1,116 @@
+.post {
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  width: 100%;
+  max-width: 60rem;
+  margin-bottom: 6rem;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.7rem 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+
+    p {
+      font-size: 1.2rem;
+      color: var(--color-text);
+      font-weight: 600;
+      margin-left: 1rem;
+    }
+
+    &__user {
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 4rem;
+        height: 4rem;
+        background-color: var(--color-secondary);
+        border-radius: 50%;
+        margin-left: 0.5rem;
+        cursor: pointer;
+      }
+
+      p {
+        cursor: pointer;
+      }
+    }
+
+    &__options svg {
+      width: 2.5rem;
+      height: 2.5rem;
+      padding: 0.5rem;
+      cursor: pointer;
+    }
+  }
+
+  &__content {
+    width: 100%;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &__like-section {
+    padding: 1rem 0 0.5rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__main-icons span svg {
+      width: 2.5rem;
+      height: 2.5rem;
+      color: var(--color-highlight);
+      margin-right: 1.5rem;
+      cursor: pointer;
+    }
+
+    &__favorite-icon span svg {
+      margin-right: 1.5rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      color: var(--color-highlight);
+      cursor: pointer;
+    }
+  }
+
+  &__visualizations p {
+    padding: 0 1.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: var(--color-text);
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  &__add-comment {
+    padding: 2rem;
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  input {
+    width: 100%;
+    border: 0;
+    font-size: 1.2rem;
+    background-color: var(--color-primary);
+    color: var(--color-text);
+  }
+
+  button {
+    cursor: pointer;
+    border: 0;
+    background-color: var(--color-primary);
+    font-weight: 600;
+    color: var(--color-tertiary);
+    font-size: 1.2rem;
+
+    &:hover {
+      color: var(--color-tertiary-dark);
+    }
+  }
+}

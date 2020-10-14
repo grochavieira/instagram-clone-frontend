@@ -29,25 +29,29 @@ const Message = () => {
   return (
     <>
       <Header currentPage="message" profileImage={user.profilePhotoUrl} />
-      <div className="message-container">
-        <main className="message-wrapper">
-          <section className="side-container">
-            <div className="header">
-              <div className="title">Direct</div>
+      <div className="message">
+        <main className="message__wrapper">
+          <section className="message__wrapper__aside">
+            <div className="message__wrapper__aside__header">
+              <div className="message__wrapper__aside__header__title">
+                Direct
+              </div>
               <HiOutlinePencilAlt />
             </div>
-            <div className="contacts"></div>
+            <div className="message__wrapper__aside__contacts"></div>
           </section>
           {/* <section className="send-message-container"></section> */}
-          <section className="default-content">
-            <div className="navigation">
+          <section className="message__wrapper__default-content">
+            <div className="message__wrapper__default-content__navigation">
               <RiSendPlaneFill />
             </div>
-            <div className="title">Suas Mensagens</div>
-            <div className="sub-title">
+            <div className="message__wrapper__default-content__title">
+              Suas Mensagens
+            </div>
+            <div className="message__wrapper__default-content__sub-title">
               Envie mensagens privadas para um amigo ou grupo
             </div>
-            <div className="button-wrapper">
+            <div className="message__wrapper__default-content__button-wrapper">
               <Button name="Enviar Mensagem" onAction={() => {}} />
             </div>
           </section>

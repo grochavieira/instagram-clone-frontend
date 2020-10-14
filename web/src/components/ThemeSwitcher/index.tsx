@@ -4,6 +4,7 @@ import useTheme from "../../utils/useTheme";
 import "./styles.scss";
 
 const selectTheme = () => {
+  console.log("Apertou");
   const themeType = localStorage.getItem("themeType");
   if (!themeType) return;
   const theme = JSON.parse(themeType);
