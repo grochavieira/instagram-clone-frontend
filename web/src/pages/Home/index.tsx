@@ -46,7 +46,7 @@ const Home = () => {
 
   setInterval(() => {
     setIsLoading(false);
-  }, 3000);
+  }, 1500);
 
   return (
     <>
