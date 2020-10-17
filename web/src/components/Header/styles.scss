@@ -5,6 +5,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
+  z-index: 1000;
   background-color: var(--color-primary);
   border: 0.1rem solid var(--color-border);
   padding-left: 5rem;

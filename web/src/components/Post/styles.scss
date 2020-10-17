@@ -52,6 +52,10 @@
     img {
       width: 100%;
     }
+
+    video {
+      width: 100%;
+    }
   }
 
   &__like-section {
@@ -112,5 +116,35 @@
     &:hover {
       color: var(--color-tertiary-dark);
     }
+  }
+}
+
+.video-js {
+  width: 100%;
+  z-index: 1;
+  border-bottom: 1px solid var(--color-border);
+
+  .vjs-big-play-button {
+    background-color: var(--color-primary);
+    border-radius: 3px;
+  }
+
+  .vjs-control-bar {
+    background-color: var(--color-primary);
+    color: var(--color-highlight);
+  }
+
+  .vjs-play-progress {
+    background-color: var(--color-tertiary);
+    color: var(--color-highlight);
+  }
+
+  .vjs-time-tooltip {
+    background-color: var(--color-tertiary);
+  }
+
+  .vjs-volume-level {
+    background-color: var(--color-text);
+    color: var(--color-highlight);
   }
 }

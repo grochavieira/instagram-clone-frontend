@@ -27,7 +27,7 @@ const ImageDropzone: React.FC<ImageDropzoneProps> = ({
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
-    accept: "image/*",
+    accept: "image/*, video/*",
   });
 
   return (

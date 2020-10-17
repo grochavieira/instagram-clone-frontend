@@ -3,7 +3,7 @@ import gc from "../config/cloud";
 import crypto from "crypto";
 const bucket = gc.bucket("instagram_server_images");
 
-const uploadImage = (file) =>
+const uploadImage = (file: any) =>
   new Promise((resolve, reject) => {
     const { originalname, buffer } = file;
 
