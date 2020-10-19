@@ -5,6 +5,7 @@ import uploadImage from "../helpers/helpers";
 class PostController {
   async index(request: Request, response: Response) {
     try {
+      console.log("========================================================");
       const posts = await PostModel.find();
 
       response.json(posts);

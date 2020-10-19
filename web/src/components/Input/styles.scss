@@ -12,3 +12,10 @@
     border: 1px solid var(--color-border);
   }
 }
+
+.error {
+  & input {
+    border: 1px solid #9a031f5b;
+    background-color: #9a031f28;
+  }
+}

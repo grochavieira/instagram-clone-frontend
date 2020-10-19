@@ -58,6 +58,11 @@
           border: 0;
         }
       }
+
+      & .photo-error {
+        background-color: #9a031f28;
+        border: 1px solid #9a031f5b;
+      }
     }
 
     &__terms {

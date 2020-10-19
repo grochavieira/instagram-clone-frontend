@@ -1,47 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Header from "../../components/Header";
 import Post from "../../components/Post";
 import User from "../../interfaces/User";
 import api from "../../services/api";
 import PostLoading from "../../components/Shimmer/PostLoading";
 import OnlineFriendsLoading from "../../components/Shimmer/OnlineFriendsLoading";
-import "./styles.scss";
 import UserProfileLoading from "../../components/Shimmer/UserProfileLoading";
+import { AuthContext } from "../../context/auth";
+import "./styles.scss";
 
 interface Post {
   _id: string;
-  user_id: string;
-  imageUrl: string;
+  user: string;
+  postUrl: string;
+  username: string;
 }
 
 const Home = () => {
+  const { user } = useContext<any>(AuthContext);
   const [isLoading, setIsLoading] = useState(true);
-  const [user, setUser] = useState<User>({
-    _id: "",
-    name: "",
-    email: "",
-    profilePhotoUrl: "",
-    username: "",
-  });
   const [posts, setPosts] = useState([]);
 
-  async function loadPosts(_id: string) {
-    const response = await api.get(`/user/posts/${_id}`);
-    setPosts(response.data);
-    console.log(response.data);
+  async function loadPosts() {
+    const { data } = await api.get(`/post`);
+    setPosts(data);
+    console.log(data);
   }
 
   useEffect(() => {
-    const json_object = localStorage.getItem("user");
-    if (json_object) {
-      const userData: User | null = JSON.parse(json_object);
-
-      if (userData) {
-        setUser(userData);
-
-        loadPosts(userData._id);
-      }
-    }
+    loadPosts();
   }, []);
 
   setInterval(() => {
@@ -64,10 +51,9 @@ const Home = () => {
               {[...posts].reverse().map((post: Post) => (
                 <Post
                   key={post._id}
-                  user_id={post.user_id}
-                  postImage={post.imageUrl}
-                  userImage={user.profilePhotoUrl}
-                  username={user.username}
+                  postImage={post.postUrl}
+                  userId={post.user}
+                  username={post.username}
                 />
               ))}
             </>

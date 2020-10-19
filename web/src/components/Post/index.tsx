@@ -7,28 +7,40 @@ import VideoPlayer from "react-video-js-player";
 import defaultUser from "../../assets/defaultUser.png";
 
 import "./styles.scss";
+import api from "../../services/api";
 
 interface PostProps {
   postImage: string;
-  user_id: string;
-  userImage: string;
+  userId: string;
   username: string;
 }
 
-const Post: React.FC<PostProps> = ({ postImage, userImage, username }) => {
+const Post: React.FC<PostProps> = ({ postImage, userId, username }) => {
   const [isPostImage, setIsPostImage] = useState(true);
+  const [user, setUser] = useState<any>({});
+
+  useEffect(() => {
+    async function getUser() {
+      const { data } = await api.get(`/user/${userId}`);
+      setUser(data);
+    }
+    getUser();
+  }, [userId]);
 
   useEffect(() => {
     if (postImage.includes(".mp4")) {
       setIsPostImage(false);
     }
-  }, []);
+  }, [postImage, userId]);
 
   return (
     <div className="post">
       <div className="post__header">
         <div className="post__header__user">
-          <img src={userImage ? userImage : defaultUser} alt="user profile" />
+          <img
+            src={user.profilePhotoUrl ? user.profilePhotoUrl : defaultUser}
+            alt="user profile"
+          />
           <p>{username}</p>
         </div>
         <div className="post__header__options">

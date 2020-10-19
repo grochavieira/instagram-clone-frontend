@@ -19,26 +19,28 @@ const userController = new UserController();
 const postController = new PostController();
 const commentsController = new CommentsController();
 
+// USER ROUTES
 routes.get("/user", userController.index);
+routes.get("/user/:id", userController.show);
 routes.post("/user/login", userController.login);
 routes.post("/user", multerMid.single("file"), userController.store);
 
-routes.get("/user/post", postController.index);
-routes.get("/user/post/:id", postController.show);
+// POST ROUTES
+routes.get("/post", postController.index);
+routes.get("/post/:id", postController.show);
 routes.post(
-  "/user/post",
+  "/post",
   loginRequired,
   multerMid.single("file"),
   postController.create
 );
-routes.delete("/user/post/:id", loginRequired, postController.delete);
-routes.post("/user/post/like/:id", loginRequired, postController.like);
+routes.delete("/post/:id", loginRequired, postController.delete);
 
-routes.post("/user/post/comment/:id", loginRequired, commentsController.create);
-routes.delete(
-  "/user/post/comment/:id",
-  loginRequired,
-  commentsController.delete
-);
+// LIKE ROUTES
+routes.post("/post/like/:id", loginRequired, postController.like);
+
+// COMMENTS ROUTES
+routes.post("/comment/:id", loginRequired, commentsController.create);
+routes.delete("/comment/:id", loginRequired, commentsController.delete);
 
 export default routes;

@@ -1,21 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
-import ImageDropzone from "../../components/ImageDropzone";
+import PhotoDropzone from "../../components/PhotoDropzone";
 import { Link, useHistory } from "react-router-dom";
-import instagramLogo from "../../assets/instagram.png";
+
+import { AuthContext } from "../../context/auth";
 import downloadAppIcon from "../../assets/download-app-store.png";
 import downloadGoogleIcon from "../../assets/download-google-play.png";
 import api from "../../services/api";
 import "./styles.scss";
 
 const Register = () => {
+  const context = useContext(AuthContext);
   const [profileImage, setProfileImage] = useState<File>();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [errors, setErrors] = useState<any>({});
 
   const history = useHistory();
 
@@ -26,15 +30,18 @@ const Register = () => {
       data.append("email", email);
       data.append("username", username);
       data.append("password", password);
+      data.append("confirmPassword", confirmPassword);
 
       if (profileImage) data.append("file", profileImage);
 
       const response = await api.post("/user", data);
 
-      alert("Cadastro realizado com sucesso!");
-      history.push("/");
-    } catch (e) {
-      console.log(e);
+      delete response.data.password;
+      localStorage.setItem("user", JSON.stringify(response.data));
+      history.push("/home");
+    } catch (err) {
+      const { errors: apiErrors } = err.response.data;
+      setErrors(apiErrors);
     }
   }
 
@@ -45,38 +52,63 @@ const Register = () => {
         <div className="register__container__subtitle">
           <p>Cadastre-se para ver fotos e vídeos dos seus amigos.</p>
         </div>
-        <Button onAction={() => {}} name="Entrar com o Facebook" />
+        {/* <Button onAction={() => {}} name="Entrar com o Facebook" /> */}
         <div className="or-block">
-          <p className="or-block__line">
-            <span>OU</span>
-          </p>
+          <p className="or-block__line">{/* <span>OU</span> */}</p>
         </div>
         <div className="register__container__perfil-dropzone">
           <p className="register__container__perfil-dropzone__label">
             Escolha uma foto de perfil
           </p>
-          <ImageDropzone info="" onFileUploaded={setProfileImage} />
+          <PhotoDropzone
+            error={errors.profilePhoto ? true : false}
+            info=""
+            onFileUploaded={setProfileImage}
+          />
         </div>
         <Input
           type="email"
           value={email}
           setValue={setEmail}
           placeholder="Email"
+          error={errors.email ? true : false}
         />
-        <Input value={name} setValue={setName} placeholder="Nome completo" />
+        <Input
+          value={name}
+          setValue={setName}
+          placeholder="Nome completo"
+          error={errors.name ? true : false}
+        />
         <Input
           value={username}
           setValue={setUsername}
           placeholder="Nome de usuário"
+          error={errors.username ? true : false}
         />
         <Input
           type="password"
           value={password}
           setValue={setPassword}
           placeholder="Senha"
+          error={errors.password ? true : false}
+        />
+        <Input
+          type="password"
+          value={confirmPassword}
+          setValue={setConfirmPassword}
+          placeholder="Confirmar Senha"
+          error={errors.confirmPassword ? true : false}
         />
         <Button onAction={handleSubmit} name="Cadastre-se" />
-
+        {Object.keys(errors).length > 0 && (
+          <div className="error-message">
+            <ul className="error-message__list">
+              {Object.values(errors).map((value: any) => (
+                <li key={value}>{value}</li>
+              ))}
+            </ul>
+          </div>
+        )}
         <div className="register__container__terms">
           <p>
             Ao se cadastrar, você concorda com nossos <br />{" "}

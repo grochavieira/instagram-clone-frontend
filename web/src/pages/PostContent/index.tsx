@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Header from "../../components/Header";
 import User from "../../interfaces/User";
 import { FiCamera, FiDelete } from "react-icons/fi";
@@ -7,31 +7,15 @@ import VideoPlayer from "react-video-js-player";
 import api from "../../services/api";
 
 import "./styles.scss";
+import { AuthContext } from "../../context/auth";
 
 const PostContent = () => {
+  const { user } = useContext<any>(AuthContext);
   const [selectedFile, setSelectedFile] = useState<File>();
   const [isFileImage, setIsFileImage] = useState(true);
   const [previewFile, setPreviewFile] = useState<any>();
-  const [user, setUser] = useState<User>({
-    _id: "",
-    name: "",
-    email: "",
-    profilePhotoUrl: "",
-    username: "",
-  });
 
   const history = useHistory();
-
-  useEffect(() => {
-    const json_object = localStorage.getItem("user");
-    if (json_object) {
-      const userData: User | null = JSON.parse(json_object);
-
-      if (userData) {
-        setUser(userData);
-      }
-    }
-  }, []);
 
   async function handlePost() {
     const data = new FormData();
@@ -44,17 +28,19 @@ const PostContent = () => {
 
     try {
       if (user) {
-        const { data: response } = await api.post(
-          `/user/post/${user._id}`,
-          data
-        );
+        const token = localStorage.getItem("jwtToken");
+        const { data: response } = await api.post(`/post`, data, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         if (response.post) {
           alert("Post criado com sucesso!");
           history.push("/home");
         }
       }
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+      console.log(err.response.data);
       alert("Não foi possível criar o post!");
     }
   }

@@ -14,6 +14,7 @@ const generateToken = (user: any) => {
       name: user.name,
       email: user.email,
       username: user.username,
+      profilePhotoUrl: user.profilePhotoUrl,
     },
     credentials.SECRET_KEY,
     { expiresIn: "1h" }
@@ -25,6 +26,19 @@ class UserController {
     const users = await UserModel.find();
 
     response.json(users);
+  }
+
+  async show(request: Request, response: Response) {
+    const { id: userId } = request.params;
+    const user = await UserModel.findById(userId);
+
+    if (!user) {
+      return response
+        .status(400)
+        .json({ errors: { user: "Esse usuário não existe" } });
+    }
+
+    return response.status(200).json(user);
   }
 
   async login(request: Request, response: Response) {

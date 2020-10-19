@@ -6,12 +6,14 @@ import "./styles.scss";
 
 interface ImageDropzoneProps {
   onFileUploaded: (file: File) => void;
+  error: boolean;
   info: string;
 }
 
-const ImageDropzone: React.FC<ImageDropzoneProps> = ({
+const PhotoDropzone: React.FC<ImageDropzoneProps> = ({
   onFileUploaded,
   info,
+  error,
 }) => {
   const [selectedFileUrl, setSelectedFileUrl] = useState("");
 
@@ -31,7 +33,10 @@ const ImageDropzone: React.FC<ImageDropzoneProps> = ({
   });
 
   return (
-    <div className="dropzone" {...getRootProps()}>
+    <div
+      className={error ? "dropzone photo-error" : "dropzone"}
+      {...getRootProps()}
+    >
       <input {...getInputProps()} accept="image/*" />
 
       {selectedFileUrl ? (
@@ -46,4 +51,4 @@ const ImageDropzone: React.FC<ImageDropzoneProps> = ({
   );
 };
 
-export default ImageDropzone;
+export default PhotoDropzone;
