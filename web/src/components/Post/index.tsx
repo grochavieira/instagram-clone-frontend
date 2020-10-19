@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BsHeart, BsBookmark } from "react-icons/bs";
 import { RiSendPlaneLine } from "react-icons/ri";
 import { AiOutlineMessage } from "react-icons/ai";
 import { HiDotsHorizontal } from "react-icons/hi";
 import VideoPlayer from "react-video-js-player";
-import defaultUser from "../../assets/defaultUser.png";
+import moment from "moment";
+import "moment/min/moment-with-locales";
 
+import defaultUser from "../../assets/defaultUser.png";
+import LikeButton from "../LikeButton";
 import "./styles.scss";
 import api from "../../services/api";
+import { AuthContext } from "../../context/auth";
 
 interface PostProps {
   postImage: string;
@@ -15,23 +19,38 @@ interface PostProps {
   username: string;
 }
 
-const Post: React.FC<PostProps> = ({ postImage, userId, username }) => {
+const Post: React.FC<any> = ({ post }) => {
+  const { user, triggerEvent, trigger } = useContext<any>(AuthContext);
+  const [comment, setComment] = useState("");
   const [isPostImage, setIsPostImage] = useState(true);
-  const [user, setUser] = useState<any>({});
 
   useEffect(() => {
-    async function getUser() {
-      const { data } = await api.get(`/user/${userId}`);
-      setUser(data);
-    }
-    getUser();
-  }, [userId]);
-
-  useEffect(() => {
-    if (postImage.includes(".mp4")) {
+    if (post.postUrl.includes(".mp4")) {
       setIsPostImage(false);
     }
-  }, [postImage, userId]);
+  }, [post.createdAt, post.postUrl]);
+
+  async function handleComment() {
+    try {
+      const token = localStorage.getItem("jwtToken");
+      api.post(
+        `/comment/${post._id}`,
+        { body: comment },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setComment("");
+      console.log({ trigger });
+      setTimeout(() => {
+        triggerEvent(!trigger);
+      }, 1000);
+    } catch (err) {
+      console.log(err.response.data.errors);
+    }
+  }
 
   return (
     <div className="post">
@@ -41,7 +60,7 @@ const Post: React.FC<PostProps> = ({ postImage, userId, username }) => {
             src={user.profilePhotoUrl ? user.profilePhotoUrl : defaultUser}
             alt="user profile"
           />
-          <p>{username}</p>
+          <p>{post.username}</p>
         </div>
         <div className="post__header__options">
           <HiDotsHorizontal />
@@ -49,16 +68,14 @@ const Post: React.FC<PostProps> = ({ postImage, userId, username }) => {
       </div>
       <div className="post__content">
         {isPostImage ? (
-          <img src={postImage} alt="" />
+          <img src={post.postUrl} alt="" />
         ) : (
-          <VideoPlayer width="100%" height="500px" src={postImage} />
+          <VideoPlayer width="100%" height="500px" src={post.postUrl} />
         )}
       </div>
       <div className="post__like-section">
         <div className="post__like-section__main-icons">
-          <span>
-            <BsHeart />
-          </span>
+          <LikeButton user={user} post={post} />
           <span>
             <AiOutlineMessage />
           </span>
@@ -72,13 +89,30 @@ const Post: React.FC<PostProps> = ({ postImage, userId, username }) => {
           </span>
         </div>
       </div>
-      <div className="post__visualizations">
-        <p>0 visualizações</p>
+      <div className="post__likes">
+        <p>{post.likes.length} curtidas</p>
+      </div>
+      <div className="post__comments">
+        {post.comments.length > 0 ? (
+          <p>
+            <strong>{post.comments[0].username}</strong> {post.comments[0].body}
+          </p>
+        ) : (
+          ""
+        )}
+      </div>
+      <div className="post__hours">
+        <p>{moment(post.createdAt).fromNow(true)}</p>
       </div>
       <div className="post__comment"></div>
       <div className="post__add-comment">
-        <input type="text" placeholder="Adicione um comentário..." />
-        <button>Publicar</button>
+        <input
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+          type="text"
+          placeholder="Adicione um comentário..."
+        />
+        <button onClick={handleComment}>Publicar</button>
       </div>
     </div>
   );

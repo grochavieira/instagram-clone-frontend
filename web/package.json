@@ -15,6 +15,7 @@
     "axios": "^0.20.0",
     "jwt-decode": "^3.0.0",
     "jwt-decoder": "^0.0.0",
+    "moment": "^2.29.1",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-content-loader": "^5.1.2",
@@ -48,6 +49,7 @@
     ]
   },
   "devDependencies": {
-    "@types/axios": "^0.14.0"
+    "@types/axios": "^0.14.0",
+    "@types/moment": "^2.13.0"
   }
 }

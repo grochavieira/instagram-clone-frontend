@@ -1,0 +1,24 @@
+.like {
+    transition: color 0.2s;
+    svg {
+        transition: all 0.2s;
+        font-size: 2.4rem;
+        margin-right: 1rem;
+    }
+
+    &.liked {
+        svg {
+            color: var(--color-highlight);
+        }
+    }
+
+    &.unliked {
+        svg {
+            color: rgb(179, 40, 40);
+        }
+    }
+
+    &:hover {
+        opacity: 0.8;
+    }
+}

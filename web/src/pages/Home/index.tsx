@@ -14,10 +14,19 @@ interface Post {
   user: string;
   postUrl: string;
   username: string;
+  comments: Array<{
+    body: string;
+    username: string;
+    createdAt: string;
+  }>;
+  likes: Array<{
+    username: string;
+    createdAt: string;
+  }>;
 }
 
 const Home = () => {
-  const { user } = useContext<any>(AuthContext);
+  const { user, trigger } = useContext<any>(AuthContext);
   const [isLoading, setIsLoading] = useState(true);
   const [posts, setPosts] = useState([]);
 
@@ -29,7 +38,7 @@ const Home = () => {
 
   useEffect(() => {
     loadPosts();
-  }, []);
+  }, [trigger]);
 
   setInterval(() => {
     setIsLoading(false);
@@ -49,12 +58,7 @@ const Home = () => {
             <>
               <div className="home__main__online-friends"></div>
               {[...posts].reverse().map((post: Post) => (
-                <Post
-                  key={post._id}
-                  postImage={post.postUrl}
-                  userId={post.user}
-                  username={post.username}
-                />
+                <Post key={post._id} post={post} />
               ))}
             </>
           )}

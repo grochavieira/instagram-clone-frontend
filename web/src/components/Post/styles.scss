@@ -81,10 +81,29 @@
     }
   }
 
-  &__visualizations p {
+  &__likes p {
     padding: 0 1.5rem;
     margin-bottom: 1rem;
     font-size: 1.2rem;
+    color: var(--color-text);
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  &__comments p {
+    padding: 0 1.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: var(--color-text);
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  &__hours p {
+    padding: 0 1.5rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    text-transform: uppercase;
     color: var(--color-text);
     font-weight: 600;
     cursor: pointer;

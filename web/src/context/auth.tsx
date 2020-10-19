@@ -3,6 +3,7 @@ import jwtDecode from "jwt-decode";
 
 const initialState = {
   user: null,
+  trigger: true,
 };
 
 if (localStorage.getItem("jwtToken")) {
@@ -17,8 +18,10 @@ if (localStorage.getItem("jwtToken")) {
 
 const AuthContext = createContext({
   user: null,
+  trigger: true,
   login: (userData: any) => {},
   logout: () => {},
+  triggerEvent: (value: boolean) => {},
 });
 
 function authReducer(state: any, action: any) {
@@ -32,6 +35,11 @@ function authReducer(state: any, action: any) {
       return {
         ...state,
         user: null,
+      };
+    case "TRIGGER_EVENT":
+      return {
+        ...state,
+        trigger: action.payload,
       };
     default:
       return state;
@@ -56,9 +64,22 @@ function AuthProvider(props: any) {
     });
   }
 
+  function triggerEvent(value: boolean) {
+    dispatch({
+      type: "TRIGGER_EVENT",
+      payload: value,
+    });
+  }
+
   return (
     <AuthContext.Provider
-      value={{ user: state.user, login, logout }}
+      value={{
+        user: state.user,
+        login,
+        logout,
+        triggerEvent,
+        trigger: state.trigger,
+      }}
       {...props}
     />
   );
