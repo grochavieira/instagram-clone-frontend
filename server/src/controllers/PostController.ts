@@ -9,32 +9,19 @@ class PostController {
 
       response.json(posts);
     } catch (e) {
-      response.status(404).json({ message: "Unable to Get Images" });
+      response
+        .status(404)
+        .json({ errors: { message: "Não foi possível criar o post" } });
     }
   }
 
   async show(request: Request, response: Response) {
     try {
-      const { id: user_id } = request.params;
-      const posts = await PostModel.find({ user_id });
-
-      if (!posts) {
-        response.json({ message: "User don't exist" });
-      }
-
-      response.json(posts);
-    } catch (e) {
-      response.status(404).json({ message: "Unable to Get Images" });
-    }
-  }
-
-  async details(request: Request, response: Response) {
-    try {
       const { id } = request.params;
       const post = await PostModel.findById(id);
 
       if (!post) {
-        response.json({ message: "Post don´t exist" });
+        response.status(400).json({ errors: { general: "Post não existe" } });
       }
 
       response.json(post);
@@ -43,26 +30,100 @@ class PostController {
     }
   }
 
-  async create(request: Request, response: Response) {
+  async create(request: any, response: Response) {
     try {
-      const myFile = request.file;
-      const { id: user_id } = request.params;
+      const { id, username } = request;
+      const postFile = request.file;
 
-      const imageUrl = await uploadImage(myFile);
+      if (!postFile) {
+        return response.status(400).json({
+          errors: {
+            postMedia: "É preciso inserir algum post antes de enviar",
+          },
+        });
+      }
 
-      console.log(request.body);
-      console.log(user_id);
+      const postUrl = await uploadImage(postFile);
 
-      const post = await PostModel.create({
-        user_id,
-        imageUrl,
+      const newPost = new PostModel({
+        postUrl,
+        user: id,
+        username,
       });
+
+      const post = await newPost.save();
 
       response.status(200).json({
         post,
       });
     } catch (e) {
-      response.status(404).json({ message: "Unable to upload" });
+      response
+        .status(404)
+        .json({ errors: { message: "Não foi possível postar" } });
+    }
+  }
+
+  async delete(request: any, response: Response) {
+    try {
+      const { username } = request;
+      const { id: postId } = request.params;
+
+      const post: any = await PostModel.findOne({ postId });
+
+      if (!post) {
+        return response
+          .status(400)
+          .json({ errors: { general: "Post não existe" } });
+      }
+
+      if (username === post.username) {
+        await post.delete();
+        return response
+          .status(200)
+          .json({ message: "Post deletado com sucesso" });
+      } else {
+        return response
+          .status(400)
+          .json({ errors: { general: "Ação não permitida" } });
+      }
+    } catch (err) {
+      response
+        .status(404)
+        .json({ errors: { message: "Não foi possível deletar o post" } });
+    }
+  }
+
+  async like(request: any, response: Response) {
+    try {
+      const { username } = request;
+      const { id: postId } = request.params;
+
+      const post: any = await PostModel.findById(postId);
+
+      if (post) {
+        if (post.likes.find((like: any) => like.username === username)) {
+          post.likes = post.likes.filter(
+            (like: any) => like.username !== username
+          );
+        } else {
+          post.likes.push({
+            username,
+          });
+        }
+
+        await post.save();
+        return response
+          .status(200)
+          .json({ message: "Ação realizada com sucesso" });
+      } else {
+        return response
+          .status(400)
+          .json({ errors: { general: "Post não existe" } });
+      }
+    } catch (err) {
+      response
+        .status(404)
+        .json({ errors: { message: "Não foi possível realizar a ação" } });
     }
   }
 }

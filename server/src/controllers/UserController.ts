@@ -1,6 +1,24 @@
 import { Request, Response } from "express";
 import UserModel from "../models/UserModel";
 import uploadImage from "../helpers/helpers";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+
+import credentials from "../credentials";
+import { validateRegisterInput, validateLoginInput } from "../util/validators";
+
+const generateToken = (user: any) => {
+  return jwt.sign(
+    {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      username: user.username,
+    },
+    credentials.SECRET_KEY,
+    { expiresIn: "1h" }
+  );
+};
 
 class UserController {
   async index(request: Request, response: Response) {
@@ -10,34 +28,96 @@ class UserController {
   }
 
   async login(request: Request, response: Response) {
-    const { email, password } = request.body;
+    try {
+      const { username, password } = request.body;
 
-    const user = await UserModel.findOne({ email, password });
+      const { valid, errors } = validateLoginInput(username, password);
 
-    response.json(user);
+      if (!valid) return response.status(400).json({ errors });
+
+      const user: any = await UserModel.findOne({ username });
+
+      if (!user) {
+        errors.general = "Nome de usuário não existe";
+        return response.status(400).json({ errors });
+      }
+
+      const match = await bcrypt.compare(password, user.password);
+
+      if (!match) {
+        errors.general = "Senha incorreta";
+        return response.status(400).json({ errors });
+      }
+
+      const token = generateToken(user);
+
+      response.status(200).json({
+        ...user._doc,
+        id: user._id,
+        token,
+      });
+    } catch (err) {
+      console.log(err);
+      response.status(404).json({
+        errors: {
+          message: "Não foi possível logar",
+        },
+      });
+    }
   }
 
   async store(request: Request, response: Response) {
     try {
-      const myFile = request.file;
-      const { name, email, username, password } = request.body;
+      const profilePhoto = request.file;
+      const { name, email, username, password, confirmPassword } = request.body;
 
-      const profilePhotoUrl = await uploadImage(myFile);
+      const { valid, errors } = validateRegisterInput(
+        name,
+        profilePhoto,
+        username,
+        email,
+        password,
+        confirmPassword
+      );
 
-      console.log(name);
+      if (!valid) return response.status(400).json({ errors });
 
-      const dataResponse = await UserModel.create({
+      const profilePhotoUrl = await uploadImage(profilePhoto);
+
+      const user = await UserModel.findOne({ username });
+      if (user) {
+        return response.status(400).json({
+          errors: {
+            username: "Nome de usuário já existe",
+          },
+        });
+      }
+
+      const passwordHash = await bcrypt.hash(password, 12);
+
+      const newUser = new UserModel({
         name,
         email,
         username,
-        password,
+        password: passwordHash,
         profilePhotoUrl,
       });
 
-      response.json(dataResponse);
-    } catch (e) {
+      const result: any = await newUser.save();
+
+      const token = generateToken(result);
+
+      return response.status(200).json({
+        ...result._doc,
+        id: result._id,
+        token,
+      });
+    } catch (err) {
+      console.log(err);
       response.status(404).json({
-        message: "Unable to create user",
+        errors: {
+          message: "Não foi possível criar o usuário",
+        },
       });
     }
   }
