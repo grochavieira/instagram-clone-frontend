@@ -8,13 +8,13 @@ const PostSchema = new mongoose.Schema({
     {
       body: { type: String, required: true },
       username: { type: String, required: true },
-      createdAt: { type: String, default: Date.now },
+      createdAt: { type: String, required: true },
     },
   ],
   likes: [
     {
       username: { type: String, required: true },
-      createdAt: { type: String, default: Date.now },
+      createdAt: { type: String, required: true },
     },
   ],
   user: {

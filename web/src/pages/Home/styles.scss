@@ -51,6 +51,41 @@
   }
 }
 
+.home__search {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10rem;
+  display: flex;
+  background-color: var(--color-secondary);
+
+  &__goback {
+    button {
+      border: 0;
+      background-color: var(--color-tertiary);
+      color: #fff;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+
+      svg {
+        font-size: 1.5rem;
+      }
+
+      &:hover {
+        background-color: var(--color-tertiary-dark);
+      }
+
+      &:active {
+        transform: scale(0.9);
+      }
+    }
+  }
+}
+
 @media only screen and (max-width: 1100px) {
   .home {
     justify-content: center;

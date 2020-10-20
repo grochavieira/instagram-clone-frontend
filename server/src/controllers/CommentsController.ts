@@ -21,10 +21,11 @@ class CommentsController {
           .status(400)
           .json({ errors: { general: "Post não existe" } });
       }
-
+      const currentDate = new Date();
       post.comments.unshift({
         body,
         username,
+        createdAt: String(currentDate),
       });
 
       const result = await post.save();

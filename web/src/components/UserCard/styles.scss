@@ -1,0 +1,58 @@
+.user {
+    background-color: var(--color-primary);
+    padding: 2rem 2rem;
+    margin: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 50rem;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.1);
+
+    &__section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &__photo {
+            img {
+                width: 8rem;
+                height: 8rem;
+                border-radius: 50%;
+                background-size: cover;
+                margin-right: 2rem;
+            }
+        }
+
+        &__info {
+            margin-right: 3rem;
+            p {
+                font-size: 1.5rem;
+            }
+        }
+    }
+
+    &__follow {
+        display: flex;
+        justify-self: flex-end;
+        button {
+            border: 0;
+            background-color: var(--color-tertiary);
+            padding: 1rem 2rem;
+            border-radius: 3px;
+            font-weight: 600;
+            color: #fff;
+            text-transform: uppercase;
+            transition: background-color 0.2s;
+            cursor: pointer;
+
+            &:hover {
+                background-color: var(--color-tertiary-dark);
+            }
+
+            &:active {
+                transform: scale(0.9);
+            }
+        }
+    }
+}

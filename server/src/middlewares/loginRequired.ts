@@ -18,7 +18,7 @@ export default async (request: any, response: Response, next: NextFunction) => {
 
   try {
     const data: any = jwt.verify(token, credentials.SECRET_KEY);
-    const { id, name, email, username } = data;
+    const { id, name, email, username, profilePhotoUrl, friends } = data;
 
     const user = await UserModel.findOne({
       username,
@@ -36,6 +36,8 @@ export default async (request: any, response: Response, next: NextFunction) => {
     request.name = name;
     request.email = email;
     request.username = username;
+    request.profilePhotoUrl = profilePhotoUrl;
+    request.friends = friends;
     return next();
   } catch (err) {
     return response.status(401).json({

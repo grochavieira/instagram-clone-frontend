@@ -36,8 +36,7 @@ const Register = () => {
 
       const response = await api.post("/user", data);
 
-      delete response.data.password;
-      localStorage.setItem("user", JSON.stringify(response.data));
+      context.login(response.data);
       history.push("/home");
     } catch (err) {
       const { errors: apiErrors } = err.response.data;

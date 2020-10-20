@@ -15,6 +15,7 @@ const generateToken = (user: any) => {
       email: user.email,
       username: user.username,
       profilePhotoUrl: user.profilePhotoUrl,
+      friends: user.friends,
     },
     credentials.SECRET_KEY,
     { expiresIn: "1h" }
@@ -22,10 +23,16 @@ const generateToken = (user: any) => {
 };
 
 class UserController {
-  async index(request: Request, response: Response) {
-    const users = await UserModel.find();
+  async index(request: any, response: Response) {
+    const { username } = request;
+    const usernameRegexp = new RegExp("^" + request.params.username);
+    const users: any = await UserModel.find({ username: usernameRegexp });
 
-    response.json(users);
+    const filteredUsers = users.filter(
+      (user: any) => user.username !== username
+    );
+
+    response.json(filteredUsers);
   }
 
   async show(request: Request, response: Response) {
@@ -131,6 +138,48 @@ class UserController {
       response.status(404).json({
         errors: {
           message: "Não foi possível criar o usuário",
+        },
+      });
+    }
+  }
+
+  async follow(request: any, response: Response) {
+    try {
+      const { username } = request;
+      const { friendUsername } = request.body;
+
+      const user: any = await UserModel.findOne({ username });
+
+      if (!user) {
+        return response.status(400).json({
+          errors: {
+            message: "Usuário não existe",
+          },
+        });
+      }
+
+      if (
+        user.friends.find((friend: any) => friend.username === friendUsername)
+      ) {
+        user.friends = user.friends.filter(
+          (friend: any) => friend.username !== friendUsername
+        );
+      } else {
+        const currentDate = new Date();
+        user.friends.push({
+          username: friendUsername,
+          createdAt: String(currentDate),
+        });
+      }
+
+      await user.save();
+
+      return response.status(200).json(user);
+    } catch (err) {
+      console.log(err);
+      response.status(404).json({
+        errors: {
+          message: "Não foi possível seguir o usuário",
         },
       });
     }

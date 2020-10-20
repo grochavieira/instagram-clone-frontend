@@ -1,18 +1,42 @@
 import { Request, Response } from "express";
 import PostModel from "../models/PostModel";
+import UserModel from "../models/UserModel";
 import uploadImage from "../helpers/helpers";
 
 class PostController {
-  async index(request: Request, response: Response) {
+  async index(request: any, response: Response) {
     try {
-      console.log("========================================================");
-      const posts = await PostModel.find();
+      const { username } = request;
+
+      const user: any = await UserModel.findOne({ username });
+
+      if (!user) {
+        return response.status(400).json({
+          erros: { general: "Usuário não existe" },
+        });
+      }
+
+      const friendsUsernames = user.friends.map((friend: any) => {
+        return friend.username;
+      });
+
+      friendsUsernames.push(username);
+
+      console.log(friendsUsernames);
+
+      const concatFriends = friendsUsernames.join("|");
+
+      const friendsRegex = new RegExp("^" + concatFriends);
+      console.log(friendsRegex);
+      const posts = await PostModel.find({
+        username: friendsRegex,
+      });
 
       response.json(posts);
     } catch (e) {
       response
         .status(404)
-        .json({ errors: { message: "Não foi possível criar o post" } });
+        .json({ errors: { message: "Não foi possível listar os posts" } });
     }
   }
 
@@ -107,8 +131,10 @@ class PostController {
             (like: any) => like.username !== username
           );
         } else {
+          const currentDate = new Date();
           post.likes.push({
             username,
+            createdAt: String(currentDate),
           });
         }
 

@@ -20,11 +20,27 @@
     }
   }
 
-  &__search-bar input {
+  &__search-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: var(--color-secondary);
     border: 1px solid var(--color-border);
     border-radius: 0.3rem;
     padding: 0.5rem 2rem;
+
+    svg {
+      color: var(--color-highlight);
+      font-size: 1.5rem;
+      margin-right: 1rem;
+    }
+
+    input {
+      color: var(--color-text);
+      width: 100%;
+      border: 0;
+      background-color: var(--color-secondary);
+    }
   }
 
   &__navigation-bar {

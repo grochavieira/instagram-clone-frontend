@@ -6,6 +6,7 @@ import { HiDotsHorizontal } from "react-icons/hi";
 import VideoPlayer from "react-video-js-player";
 import moment from "moment";
 import "moment/min/moment-with-locales";
+import { Link } from "react-router-dom";
 
 import defaultUser from "../../assets/defaultUser.png";
 import LikeButton from "../LikeButton";
@@ -22,7 +23,17 @@ interface PostProps {
 const Post: React.FC<any> = ({ post }) => {
   const { user, triggerEvent, trigger } = useContext<any>(AuthContext);
   const [comment, setComment] = useState("");
+  const [showComments, setShowComments] = useState(false);
   const [isPostImage, setIsPostImage] = useState(true);
+  const [postUser, setPostUser] = useState<any>({});
+
+  useEffect(() => {
+    async function getPostUser() {
+      const { data } = await api.get(`/user/${post.user}`);
+      setPostUser(data);
+    }
+    getPostUser();
+  }, [post.createdAt, post.postUrl, post.user, user]);
 
   useEffect(() => {
     if (post.postUrl.includes(".mp4")) {
@@ -43,7 +54,6 @@ const Post: React.FC<any> = ({ post }) => {
         }
       );
       setComment("");
-      console.log({ trigger });
       setTimeout(() => {
         triggerEvent(!trigger);
       }, 1000);
@@ -52,12 +62,18 @@ const Post: React.FC<any> = ({ post }) => {
     }
   }
 
+  function handleShowComments() {
+    setShowComments(!showComments);
+  }
+
   return (
     <div className="post">
       <div className="post__header">
         <div className="post__header__user">
           <img
-            src={user.profilePhotoUrl ? user.profilePhotoUrl : defaultUser}
+            src={
+              postUser.profilePhotoUrl ? postUser.profilePhotoUrl : defaultUser
+            }
             alt="user profile"
           />
           <p>{post.username}</p>
@@ -92,13 +108,33 @@ const Post: React.FC<any> = ({ post }) => {
       <div className="post__likes">
         <p>{post.likes.length} curtidas</p>
       </div>
+      {post.comments.length > 1 ? (
+        <div className="post__show-comments">
+          <button onClick={handleShowComments}>
+            Ver todos os {post.comments.length} comentários
+          </button>
+        </div>
+      ) : (
+        ""
+      )}
+
       <div className="post__comments">
-        {post.comments.length > 0 ? (
+        {!showComments && post.comments.length > 0 ? (
           <p>
-            <strong>{post.comments[0].username}</strong> {post.comments[0].body}
+            <strong>{post.comments[0].username}</strong> {post.comments[0].body}{" "}
+            <span className="hour">
+              {moment(post.comments[0].createdAt).fromNow(true)}
+            </span>
           </p>
         ) : (
-          ""
+          post.comments.map((comment: any) => (
+            <p>
+              <strong>{comment.username}</strong> {comment.body}{" "}
+              <span className="hour">
+                {moment(comment.createdAt).fromNow(true)}
+              </span>
+            </p>
+          ))
         )}
       </div>
       <div className="post__hours">

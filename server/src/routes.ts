@@ -20,13 +20,13 @@ const postController = new PostController();
 const commentsController = new CommentsController();
 
 // USER ROUTES
-routes.get("/user", userController.index);
+routes.get("/users/:username", loginRequired, userController.index);
 routes.get("/user/:id", userController.show);
 routes.post("/user/login", userController.login);
 routes.post("/user", multerMid.single("file"), userController.store);
 
 // POST ROUTES
-routes.get("/post", postController.index);
+routes.get("/post", loginRequired, postController.index);
 routes.get("/post/:id", postController.show);
 routes.post(
   "/post",
@@ -38,6 +38,9 @@ routes.delete("/post/:id", loginRequired, postController.delete);
 
 // LIKE ROUTES
 routes.post("/post/like/:id", loginRequired, postController.like);
+
+// FOLLOW ROUTES
+routes.post("/follow", loginRequired, userController.follow);
 
 // COMMENTS ROUTES
 routes.post("/comment/:id", loginRequired, commentsController.create);

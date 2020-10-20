@@ -14,10 +14,10 @@ function Routes() {
     <AuthProvider>
       <BrowserRouter>
         <Route exact path="/" component={Login} />
-        <Route path="/register" component={Register} />
-        <AuthRoute path="/home" component={Home} />
-        <AuthRoute path="/message" component={Message} />
-        <AuthRoute path="/post-content" component={PostContent} />
+        <Route exact path="/register" component={Register} />
+        <AuthRoute exact path="/home" component={Home} />
+        <AuthRoute exact path="/message" component={Message} />
+        <AuthRoute exact path="/post-content" component={PostContent} />
       </BrowserRouter>
     </AuthProvider>
   );
