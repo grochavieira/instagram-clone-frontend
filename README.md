@@ -38,7 +38,7 @@
 
 ## 💻 Sobre o projeto
 
-Um clone do site do Instagram do Facebook, na qual você pode logar/register, criar novos posts(images/videos), seguir outros usuários e ver os posts dos usuários que você segue.
+Um clone do site do Instagram do Facebook, na qual você pode logar/registrar, criar novos posts(imagens/videos), seguir outros usuários e ver os posts dos usuários que você segue.
 
 ---
 
