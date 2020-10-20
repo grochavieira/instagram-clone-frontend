@@ -16,14 +16,15 @@ export const ThemeSwitcher = () => {
   useTheme(darkModeEnabled ? "dark" : "light");
 
   return (
-    <label className="toggler" htmlFor="theme-toggler">
+    <>
       <input
-        id="theme-toggler"
+        id="switch"
         type="checkbox"
         checked={darkModeEnabled}
         onChange={(e) => setDarkModeEnabled(e.target.checked)}
       />
-    </label>
+      <label className="toggler" htmlFor="switch"></label>
+    </>
   );
 };
 

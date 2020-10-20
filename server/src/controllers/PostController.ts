@@ -55,6 +55,22 @@ class PostController {
     }
   }
 
+  async search(request: any, response: Response) {
+    try {
+      const { username } = request;
+
+      const posts = await PostModel.find({
+        username,
+      });
+
+      return response.status(200).json(posts);
+    } catch (err) {
+      response
+        .status(404)
+        .json({ errors: { message: "Não foi possível listar os posts" } });
+    }
+  }
+
   async create(request: any, response: Response) {
     try {
       const { id, username } = request;

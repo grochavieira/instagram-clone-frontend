@@ -8,6 +8,7 @@ import Register from "./pages/Register";
 import Home from "./pages/Home";
 import Message from "./pages/Message";
 import PostContent from "./pages/PostContent";
+import Profile from "./pages/Profile";
 
 function Routes() {
   return (
@@ -18,6 +19,7 @@ function Routes() {
         <AuthRoute exact path="/home" component={Home} />
         <AuthRoute exact path="/message" component={Message} />
         <AuthRoute exact path="/post-content" component={PostContent} />
+        <AuthRoute exact path="/profile" component={Profile} />
       </BrowserRouter>
     </AuthProvider>
   );

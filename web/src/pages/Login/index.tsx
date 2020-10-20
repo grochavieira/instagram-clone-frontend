@@ -5,6 +5,7 @@ import Footer from "../../components/Footer";
 import { Link, useHistory } from "react-router-dom";
 import facebookIcon from "../../assets/facebook.svg";
 
+import ThemeSwitcher from "../../components/ThemeSwitcher";
 import { AuthContext } from "../../context/auth";
 import downloadAppIcon from "../../assets/download-app-store.png";
 import downloadGoogleIcon from "../../assets/download-google-play.png";
@@ -44,6 +45,9 @@ const Login = () => {
   return (
     <div className="login">
       <div className="login__container">
+        <div className="theme-block">
+          <ThemeSwitcher />
+        </div>
         <p className="login__container__instagram-text">Instagram</p>
         <Input
           type="text"

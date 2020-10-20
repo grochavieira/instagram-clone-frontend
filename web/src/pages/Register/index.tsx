@@ -10,6 +10,7 @@ import downloadAppIcon from "../../assets/download-app-store.png";
 import downloadGoogleIcon from "../../assets/download-google-play.png";
 import api from "../../services/api";
 import "./styles.scss";
+import ThemeSwitcher from "../../components/ThemeSwitcher";
 
 const Register = () => {
   const context = useContext(AuthContext);
@@ -47,6 +48,9 @@ const Register = () => {
   return (
     <div className="register">
       <div className="register__container">
+        <div className="theme-block">
+          <ThemeSwitcher />
+        </div>
         <p className="register__container__instagram-text">Instagram</p>
         <div className="register__container__subtitle">
           <p>Cadastre-se para ver fotos e vídeos dos seus amigos.</p>

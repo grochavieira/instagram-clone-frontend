@@ -28,6 +28,7 @@ routes.post("/user", multerMid.single("file"), userController.store);
 // POST ROUTES
 routes.get("/post", loginRequired, postController.index);
 routes.get("/post/:id", postController.show);
+routes.get("/posts", loginRequired, postController.search);
 routes.post(
   "/post",
   loginRequired,

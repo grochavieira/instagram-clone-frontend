@@ -52,7 +52,7 @@ Um clone do site do Instagram do Facebook, na qual você pode logar/registrar, c
 - [x] Usuário pode criar um post e armazenar as images/vídeos em um servidor
 - [x] Usuário pode seguir outros usuários
 - [x] Usuário pode ver o post de outros usuários (pessoas que o usuário segue)
-- [ ] User has a profile that displays all the images they have uploaded
+- [x] Usuário tem um perfil que mostra todas as imagens/videos que ele postou.
 
 ## Bonus features
 
