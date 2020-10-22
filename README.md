@@ -71,7 +71,7 @@ Um clone do site do Instagram do Facebook, na qual você pode logar/registrar, c
 
 Este projeto é divido em duas partes:
 
-1. Backend (pasta backend)
+1. Backend (pasta server)
 2. Frontend (pasta web)
 
 💡O Frontend e o Mobile precisam que o Backend esteja sendo executado para funcionar.

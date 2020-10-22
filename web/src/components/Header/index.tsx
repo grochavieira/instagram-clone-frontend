@@ -29,7 +29,7 @@ const Header: React.FC<HeaderProps> = ({
   setSearch,
   handleKey,
 }) => {
-  const context = useContext(AuthContext);
+  const context = useContext<any>(AuthContext);
   const [showNavbar, setShowNavbar] = useState(false);
 
   const history = useHistory();
@@ -93,7 +93,11 @@ const Header: React.FC<HeaderProps> = ({
           <li>
             <img
               onClick={() => setShowNavbar(!showNavbar)}
-              src={context.user !== null ? context.user.profilePhotoUrl : ""}
+              src={
+                context.user.profilePhotoUrl !== null
+                  ? context.user.profilePhotoUrl
+                  : ""
+              }
               alt="user"
             />
             <div className={showNavbar ? "navbar" : "navbar disabled"}>

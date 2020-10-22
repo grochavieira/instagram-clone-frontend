@@ -1,7 +1,7 @@
 import React from "react";
 import ContentLoader from "react-content-loader";
 
-const ProfileLoading = (props) => (
+const ProfileLoading = (props: any) => (
   <ContentLoader
     speed={2}
     width="100%"
