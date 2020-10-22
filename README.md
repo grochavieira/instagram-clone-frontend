@@ -92,8 +92,8 @@ $ git clone https://github.com/grochavieira/InstagramClone.git
 # Acesse a pasta do projeto no terminal/cmd
 $ cd InstagramClone
 
-# Vá para a pasta backend
-$ cd backend
+# Vá para a pasta server
+$ cd server
 
 # Instale as dependências com npm
 $ npm install
