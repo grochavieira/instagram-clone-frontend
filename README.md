@@ -1,10 +1,10 @@
 <p align="center">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/grochavieira/InstagramClone?color=%2304D361&style=for-the-badge">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/grochavieira/instagram-clone?color=%2304D361&style=for-the-badge">
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/grochavieira/InstagramClone?style=for-the-badge">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/grochavieira/instagram-clone?style=for-the-badge">
   
-  <a href="https://github.com/grochavieira/InstagramClone/commits/master">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/grochavieira/InstagramClone?style=for-the-badge">
+  <a href="https://github.com/grochavieira/instagram-clone/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/grochavieira/instagram-clone?style=for-the-badge">
   </a>
     
    <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen?style=for-the-badge">
@@ -87,10 +87,10 @@ Além disto é bom ter um editor para trabalhar com o código como [VSCode](http
 ```bash
 
 # Clone este repositório
-$ git clone https://github.com/grochavieira/InstagramClone.git
+$ git clone https://github.com/grochavieira/instagram-clone.git
 
 # Acesse a pasta do projeto no terminal/cmd
-$ cd InstagramClone
+$ cd instagram-clone
 
 # Vá para a pasta server
 $ cd server
@@ -110,10 +110,10 @@ $ npm start
 ```bash
 
 # Clone este repositório
-$ git clone https://github.com/grochavieira/InstagramClone.git
+$ git clone https://github.com/grochavieira/instagram-clone.git
 
 # Acesse a pasta do projeto no seu terminal/cmd
-$ cd InstagramClone
+$ cd instagram-clone
 
 # Vá para a pasta da aplicação Front End
 $ cd web
@@ -141,7 +141,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - **[Axios](https://github.com/axios/axios)**
 - **[SCSS](https://sass-lang.com/)**
 
-> Veja o arquivo [package.json](https://github.com/grochavieira/InstagramClone/blob/master/web/package.json)
+> Veja o arquivo [package.json](https://github.com/grochavieira/instagram-clone/blob/master/web/package.json)
 
 #### **Server** ([NodeJS](https://nodejs.org/en/) + [TypeScript](https://www.typescriptlang.org/))
 
@@ -151,7 +151,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - **[ts-node](https://github.com/TypeStrong/ts-node)**
 - **[Multer](https://github.com/expressjs/multer)**
 
-> Veja o arquivo [package.json](https://github.com/grochavieira/InstagramClone/blob/master/backend/package.json)
+> Veja o arquivo [package.json](https://github.com/grochavieira/instagram-clone/blob/master/backend/package.json)
 
 #### **Utilitários**
 
