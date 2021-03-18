@@ -16,7 +16,7 @@
  
 </p>
 <h1 align="center">
-    <img src="./assets/instagram_logo.png" />
+    <img src="./assets/logo_black.png" />
 </h1>
 
 <h4 align="center"> 
