@@ -69,12 +69,7 @@ Um clone do site do Instagram do Facebook, na qual você pode logar/registrar, c
 
 ## 🚀 Como executar o projeto
 
-Este projeto é divido em duas partes:
-
-1. Backend (pasta server)
-2. Frontend (pasta web)
-
-💡O Frontend e o Mobile precisam que o Backend esteja sendo executado para funcionar.
+💡O Frontend precisa que o Backend esteja sendo executado para funcionar, que pode ser acessado **[AQUI](https://github.com/grochavieira/instagram-clone-backend)**.
 
 ### Pré-requisitos
 
@@ -82,38 +77,15 @@ Antes de começar, você vai precisar ter instalado em sua máquina as seguintes
 [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/), [Yarn](https://classic.yarnpkg.com/en/docs/install).d
 Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
 
-#### 🎲 Rodando o Backend (servidor)
-
-```bash
-
-# Clone este repositório
-$ git clone https://github.com/grochavieira/instagram-clone.git
-
-# Acesse a pasta do projeto no terminal/cmd
-$ cd instagram-clone
-
-# Vá para a pasta server
-$ cd server
-
-# Instale as dependências com npm
-$ npm install
-
-# Execute a aplicação
-$ npm start
-
-# O servidor inciará na porta:3333 - acesse http://localhost:3333
-
-```
-
 #### 🧭 Rodando a aplicação web (Frontend)
 
 ```bash
 
 # Clone este repositório
-$ git clone https://github.com/grochavieira/instagram-clone.git
+$ git clone https://github.com/grochavieira/instagram-clone-frontend.git
 
 # Acesse a pasta do projeto no seu terminal/cmd
-$ cd instagram-clone
+$ cd instagram-clone-frontend
 
 # Vá para a pasta da aplicação Front End
 $ cd web
@@ -141,23 +113,13 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - **[Axios](https://github.com/axios/axios)**
 - **[SCSS](https://sass-lang.com/)**
 
-> Veja o arquivo [package.json](https://github.com/grochavieira/instagram-clone/blob/master/web/package.json)
-
-#### **Server** ([NodeJS](https://nodejs.org/en/) + [TypeScript](https://www.typescriptlang.org/))
-
-- **[Express](https://expressjs.com/)**
-- **[CORS](https://expressjs.com/en/resources/middleware/cors.html)**
-- **[MongoDB](https://www.mongodb.com/)**
-- **[ts-node](https://github.com/TypeStrong/ts-node)**
-- **[Multer](https://github.com/expressjs/multer)**
-
-> Veja o arquivo [package.json](https://github.com/grochavieira/instagram-clone/blob/master/backend/package.json)
+> Veja o arquivo [package.json](https://github.com/grochavieira/instagram-clone-frontend/blob/master/web/package.json)
 
 #### **Utilitários**
 
 - Editor: **[Visual Studio Code](https://code.visualstudio.com/)**
 - Teste de API: **[Insomnia](https://insomnia.rest/)**
-<!-- - Ícones: **[Feather Icons](https://feathericons.com/)** -->
+- Ícones: **[Feather Icons](https://feathericons.com/)**
 - Fontes: **[Grand Hotel](https://fonts.google.com/specimen/GrandHotel)**
 
 ---
