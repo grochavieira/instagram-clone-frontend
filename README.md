@@ -1,16 +1,16 @@
 <p align="center">
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/grochavieira/instagram-clone-frontend?color=%2304D361&style=flat">
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/grochavieira/instagram-clone-frontend?style=for-the-badge">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/grochavieira/instagram-clone-frontend?style=flat">
   
   <a href="https://github.com/grochavieira/instagram-clone-frontend/commits/master">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/grochavieira/instagram-clone-frontend?style=for-the-badge">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/grochavieira/instagram-clone-frontend?style=flat">
   </a>
     
-   <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen?style=for-the-badge">
+   <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen?style=flat">
 
   <a href="https://github.com/grochavieira">
-    <img alt="Feito por Guilherme Rocha Vieira" src="https://img.shields.io/badge/feito%20por-grochavieira-%237519C1?style=for-the-badge&logo=github">
+    <img alt="Feito por Guilherme Rocha Vieira" src="https://img.shields.io/badge/feito%20por-grochavieira-%237519C1?style=flat&logo=github">
   </a>
   
  
