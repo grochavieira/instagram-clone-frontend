@@ -9,11 +9,6 @@
     
    <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen?style=flat">
 
-  <a href="https://github.com/grochavieira">
-    <img alt="Feito por Guilherme Rocha Vieira" src="https://img.shields.io/badge/feito%20por-grochavieira-%237519C1?style=flat&logo=github">
-  </a>
-  
- 
 </p>
 <h1 align="center">
     <img src="./assets/logo_frontend.png" />
