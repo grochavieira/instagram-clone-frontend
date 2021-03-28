@@ -18,7 +18,7 @@ const AuthRoutes = () => {
         <Route exact path="/register" component={Register} />
         <Route exact path="/message" component={Message} />
         <Route exact path="/post-content" component={PostContent} />
-        <Route exact path="/profile" component={Profile} />
+        <Route exact path="/profile/:username" component={Profile} />
       </Switch>
     </BrowserRouter>
   );

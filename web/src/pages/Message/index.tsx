@@ -16,6 +16,7 @@ const Message = () => {
       publicId: "",
     },
     username: "",
+    friends: [],
   });
 
   useEffect(() => {

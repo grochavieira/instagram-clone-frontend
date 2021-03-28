@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { BsHeart, BsHeartFill } from "react-icons/bs";
+import { BsHeart } from "react-icons/bs";
 import {
   AiOutlineHome,
   AiFillHome,
@@ -11,15 +11,19 @@ import { IoMdPaperPlane, IoIosPaperPlane } from "react-icons/io";
 import { BiUserCircle } from "react-icons/bi";
 import { Link, useHistory, useLocation } from "react-router-dom";
 
+import User from "../../interfaces/User";
 import ThemeSwitcher from "../ThemeSwitcher";
 import AuthContext from "../../contexts/auth";
+import api from "../../services/api";
 import "./styles.scss";
 
 const Header = () => {
   const { user, signOut } = useContext<any>(AuthContext);
   const { pathname } = useLocation();
-  console.log(pathname);
+
   const [showNavbar, setShowNavbar] = useState(false);
+  const [search, setSearch] = useState("");
+  const [users, setUsers] = useState<User[]>([]);
 
   const history = useHistory();
 
@@ -28,28 +32,48 @@ const Header = () => {
     history.push("/");
   }
 
+  async function handleSearch() {
+    const { data } = await api.get(`/users/${search}`);
+    setUsers(data);
+    console.log(data);
+  }
+
   return (
     <nav className="header">
       <div className="header__logo">
         <p className="header__logo__text">Instagram</p>
       </div>
 
-      {/* {pathname === "/" ? (
+      {pathname === "/" ? (
         <>
           <div className="header__search-bar">
             <AiOutlineSearch />
             <input
-              onKeyPress={handleKey}
               value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={(e) => {
+                setSearch(e.target.value);
+                handleSearch();
+              }}
               type="text"
               placeholder="Pesquisar"
             />
           </div>
+          <div className={search !== "" ? "search" : "search disabled"}>
+            {users.map((user: User) => (
+              <div
+                onClick={() => history.push(`/profile/${user.username}`)}
+                key={user._id}
+                className="search__item"
+              >
+                <img src={user.profilePhoto.url} alt={user.username} />
+                <p>{user.username}</p>
+              </div>
+            ))}
+          </div>
         </>
       ) : (
         ""
-      )} */}
+      )}
 
       <div className="header__navigation-bar">
         <ul>
@@ -87,7 +111,7 @@ const Header = () => {
             />
             <div className={showNavbar ? "navbar" : "navbar disabled"}>
               <div className="navbar__item">
-                <Link to="/profile">
+                <Link to={`/profile/${user.username}`}>
                   <BiUserCircle /> Perfil
                 </Link>
               </div>

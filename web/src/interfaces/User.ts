@@ -1,3 +1,8 @@
+interface Friend {
+  username: string;
+  createdAt: string;
+}
+
 export default interface User {
   _id: string;
   name: string;
@@ -7,4 +12,5 @@ export default interface User {
     url: string;
   };
   username: string;
+  friends: Friend[] | [];
 }

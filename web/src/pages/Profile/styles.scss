@@ -50,6 +50,11 @@
                     &:active {
                         transform: scale(0.9);
                     }
+
+                    &.follow {
+                        background-color: var(--color-tertiary);
+                        color: var(--color-primary);
+                    }
                 }
 
                 svg {

@@ -7,18 +7,36 @@ import ProfileLoading from "../../components/Shimmer/ProfileLoading";
 import AuthContext from "../../contexts/auth";
 import api from "../../services/api";
 import "./styles.scss";
+import { useLocation } from "react-router";
+import User from "../../interfaces/User";
 
 const Profile = () => {
-  const { user } = useContext<any>(AuthContext);
+  const { user: currentUser } = useContext<any>(AuthContext);
+  console.log(currentUser);
+  const { pathname } = useLocation();
+  const username = pathname.replace("/profile/", "");
   const [isLoading, setIsLoading] = useState(true);
   const [userPosts, setUserPosts] = useState<any>([]);
+  const [user, setUser] = useState<User>({
+    _id: "",
+    name: "",
+    email: "",
+    profilePhoto: {
+      url: "",
+      publicId: "",
+    },
+    username: "",
+    friends: [],
+  });
 
   useEffect(() => {
     async function loadUserData() {
       setIsLoading(true);
-      const { data: posts } = await api.get(`/posts`);
+      const { data: userData } = await api.get(`/user/${username}`);
+      const { data: posts } = await api.get(`/posts/${username}`);
       setIsLoading(false);
       setUserPosts(posts);
+      setUser(userData);
       console.log(posts);
     }
     loadUserData();
@@ -42,8 +60,13 @@ const Profile = () => {
               <div className="profile__main__info">
                 <div className="profile__main__info__username">
                   {user.username}
-                  <button>Editar perfil</button>
-                  <BsGearWide />
+                  {user.username !== currentUser.username ? (
+                    <button className="follow">Seguir</button>
+                  ) : (
+                    <>
+                      <button>Editar perfil</button> <BsGearWide />
+                    </>
+                  )}
                 </div>
                 <div className="profile__main__info__social">
                   <div className="profile__main__info__social__item">
