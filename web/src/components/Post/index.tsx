@@ -72,7 +72,7 @@ const Post: React.FC<any> = ({ post }) => {
         <div className="post__header__user">
           <img
             src={
-              postUser.profilePhotoUrl ? postUser.profilePhotoUrl : defaultUser
+              postUser.profilePhoto ? postUser.profilePhoto.url : defaultUser
             }
             alt="user profile"
           />

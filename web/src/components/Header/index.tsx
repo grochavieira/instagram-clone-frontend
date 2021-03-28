@@ -94,8 +94,8 @@ const Header: React.FC<HeaderProps> = ({
             <img
               onClick={() => setShowNavbar(!showNavbar)}
               src={
-                context.user.profilePhotoUrl !== null
-                  ? context.user.profilePhotoUrl
+                context.user.profilePhoto !== null
+                  ? context.user.profilePhoto.url
                   : ""
               }
               alt="user"

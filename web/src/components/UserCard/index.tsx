@@ -46,7 +46,7 @@ const UserCard = ({ user }: any) => {
     <div className="user">
       <div className="user__section">
         <div className="user__section__photo">
-          <img src={user.profilePhotoUrl} />
+          <img src={user.profilePhoto.url} />
         </div>
         <div className="user__section__info">
           <p>

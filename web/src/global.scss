@@ -67,3 +67,18 @@ a {
   color: #9a031e;
   border: 1px solid #9a031e;
 }
+
+.Toastify__toast {
+  border-radius: 5px;
+  font-size: 1.6rem;
+}
+
+.Toastify__toast--error {
+  background-color: #ff3366;
+}
+.Toastify__toast--success {
+  background-color: rgb(0, 149, 247);
+}
+.Toastify__toast--warning {
+  background-color: #ff33;
+}

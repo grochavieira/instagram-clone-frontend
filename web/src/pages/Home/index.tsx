@@ -75,7 +75,7 @@ const Home = () => {
         search={searchUsers}
         setSearch={setSearchUsers}
         currentPage="home"
-        profileImage={user.profilePhotoUrl}
+        profileImage={user.ProfilePhoto ? user.profilePhoto.url : ""}
       />
       {users ? (
         <div className="home__search">
@@ -112,7 +112,7 @@ const Home = () => {
               ) : (
                 <>
                   <div className="home__aside__profile__photo">
-                    <img src={user.profilePhotoUrl} alt="user profile photo" />
+                    <img src={user.profilePhoto.url} alt="user profile photo" />
                   </div>
                   <div className="home__aside__profile__info">
                     <p className="home__aside__profile__info__username">

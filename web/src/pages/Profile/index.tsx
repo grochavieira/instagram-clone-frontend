@@ -43,7 +43,7 @@ const Profile = () => {
           <>
             <main className="profile__main">
               <div className="profile__main__image">
-                <img src={user.profilePhotoUrl} alt="user" />
+                <img src={user.profilePhoto.url} alt="user" />
               </div>
               <div className="profile__main__info">
                 <div className="profile__main__info__username">
