@@ -7,7 +7,6 @@ import Button from "../../components/Button";
 import Footer from "../../components/Footer";
 import PhotoDropzone from "../../components/PhotoDropzone";
 import Loading from "../../components/Loading";
-import ThemeSwitcher from "../../components/ThemeSwitcher";
 import AuthContext from "../../contexts/auth";
 import api from "../../services/api";
 import downloadAppIcon from "../../assets/download-app-store.png";
@@ -15,7 +14,7 @@ import downloadGoogleIcon from "../../assets/download-google-play.png";
 import "./styles.scss";
 
 const Register = () => {
-  const { signIn, signed } = useContext(AuthContext);
+  const { signIn } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const [profileImage, setProfileImage] = useState<File>();
   const [name, setName] = useState("");
@@ -42,6 +41,7 @@ const Register = () => {
       const response = await api.post("/user", data);
 
       toast.success("usuário cadastrado com sucesso!");
+
       signIn({ username, password });
       setIsLoading(false);
       history.push("/home");
@@ -59,9 +59,6 @@ const Register = () => {
       {isLoading && <Loading />}
       <div className="register">
         <div className="register__container">
-          {/* <div className="theme-block">
-            <ThemeSwitcher />
-          </div> */}
           <p className="register__container__instagram-text">Instagram</p>
           <div className="register__container__subtitle">
             <p>Cadastre-se para ver fotos e vídeos dos seus amigos.</p>

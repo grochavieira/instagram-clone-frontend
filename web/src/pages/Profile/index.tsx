@@ -2,11 +2,11 @@ import React, { useContext, useState, useEffect } from "react";
 import { BsGearWide, BsBookmark } from "react-icons/bs";
 import { MdGridOn, MdFlashOn } from "react-icons/md";
 import { BiUserPin } from "react-icons/bi";
+
+import ProfileLoading from "../../components/Shimmer/ProfileLoading";
 import AuthContext from "../../contexts/auth";
 import api from "../../services/api";
 import "./styles.scss";
-import Loading from "../../components/Loading";
-import ProfileLoading from "../../components/Shimmer/ProfileLoading";
 
 const Profile = () => {
   const { user } = useContext<any>(AuthContext);
@@ -63,7 +63,7 @@ const Profile = () => {
               <div className="profile__bar__item active">
                 <MdGridOn /> Publicações
               </div>
-              <div className="profile__bar__item">
+              {/* <div className="profile__bar__item">
                 {" "}
                 <MdFlashOn /> IGTV
               </div>
@@ -73,7 +73,7 @@ const Profile = () => {
               <div className="profile__bar__item">
                 <BiUserPin />
                 Marcados
-              </div>
+              </div> */}
             </div>
             <div className="profile__content">
               <div className="profile__content__publications">

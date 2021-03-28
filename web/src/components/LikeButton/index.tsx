@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsHeartFill } from "react-icons/bs";
-import AuthContext from "../../contexts/auth";
+
 import api from "../../services/api";
 
 import "./styles.scss";

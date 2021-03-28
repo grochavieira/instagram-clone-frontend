@@ -9,7 +9,6 @@ import {
 } from "react-icons/ai";
 import { IoMdPaperPlane, IoIosPaperPlane } from "react-icons/io";
 import { BiUserCircle } from "react-icons/bi";
-import { RiSendPlaneLine, RiSendPlaneFill } from "react-icons/ri";
 import { Link, useHistory, useLocation } from "react-router-dom";
 
 import ThemeSwitcher from "../ThemeSwitcher";

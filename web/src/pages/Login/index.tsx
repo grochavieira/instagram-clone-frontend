@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { toast } from "react-toastify";
 
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
 import Loading from "../../components/Loading";
-import ThemeSwitcher from "../../components/ThemeSwitcher";
 import AuthContext from "../../contexts/auth";
 import downloadAppIcon from "../../assets/download-app-store.png";
 import downloadGoogleIcon from "../../assets/download-google-play.png";
@@ -18,9 +16,6 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState<any>({});
-  console.log(signed);
-
-  const history = useHistory();
 
   async function handleLogin() {
     setIsLoading(true);
@@ -36,9 +31,6 @@ const Login = () => {
       {isLoading && <Loading />}
       <div className="login">
         <div className="login__container">
-          {/* <div className="theme-block">
-            <ThemeSwitcher />
-          </div> */}
           <p className="login__container__instagram-text">Instagram</p>
           <Input
             type="text"

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { FiSearch, FiArrowLeft } from "react-icons/fi";
+import { FiArrowLeft } from "react-icons/fi";
 
 import Post from "../../components/Post";
 import UserCard from "../../components/UserCard";
@@ -14,6 +14,7 @@ interface Post {
   _id: string;
   user: string;
   postUrl: string;
+  publicId: string;
   username: string;
   comments: Array<{
     body: string;

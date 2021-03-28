@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Header from "../../components/Header";
+
 import User from "../../interfaces/User";
 import { HiOutlinePencilAlt } from "react-icons/hi";
 import { RiSendPlaneFill } from "react-icons/ri";
@@ -11,7 +11,10 @@ const Message = () => {
     _id: "",
     name: "",
     email: "",
-    profilePhotoUrl: "",
+    profilePhoto: {
+      url: "",
+      publicId: "",
+    },
     username: "",
   });
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import useTheme from "../../utils/useTheme";
 
+import useTheme from "../../utils/useTheme";
 import "./styles.scss";
 
 const selectTheme = () => {

@@ -1,5 +1,6 @@
 import React from "react";
 import Lottie from "react-lottie";
+
 import animationData from "../../assets/camera-animation.json";
 import "./styles.scss";
 
