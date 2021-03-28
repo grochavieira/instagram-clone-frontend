@@ -8,17 +8,12 @@ import moment from "moment";
 import "moment/min/moment-with-locales";
 import { Link } from "react-router-dom";
 
-import defaultUser from "../../assets/defaultUser.png";
-import LikeButton from "../LikeButton";
-import "./styles.scss";
+// import LikeButton from "../LikeButton";
+import AuthContext from "../../contexts/auth";
 import api from "../../services/api";
-import { AuthContext } from "../../context/auth";
-
-interface PostProps {
-  postImage: string;
-  userId: string;
-  username: string;
-}
+import defaultUser from "../../assets/defaultUser.png";
+import "./styles.scss";
+import LikeButton from "../LikeButton";
 
 const Post: React.FC<any> = ({ post }) => {
   const { user, triggerEvent, trigger } = useContext<any>(AuthContext);
@@ -43,20 +38,8 @@ const Post: React.FC<any> = ({ post }) => {
 
   async function handleComment() {
     try {
-      const token = localStorage.getItem("jwtToken");
-      api.post(
-        `/comment/${post._id}`,
-        { body: comment },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      api.post(`/comment/${post._id}`, { body: comment });
       setComment("");
-      setTimeout(() => {
-        triggerEvent(!trigger);
-      }, 1000);
     } catch (err) {
       console.log(err.response.data.errors);
     }

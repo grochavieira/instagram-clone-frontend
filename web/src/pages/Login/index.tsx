@@ -7,45 +7,27 @@ import Button from "../../components/Button";
 import Footer from "../../components/Footer";
 import Loading from "../../components/Loading";
 import ThemeSwitcher from "../../components/ThemeSwitcher";
-import { AuthContext } from "../../context/auth";
-import api from "../../services/api";
+import AuthContext from "../../contexts/auth";
 import downloadAppIcon from "../../assets/download-app-store.png";
 import downloadGoogleIcon from "../../assets/download-google-play.png";
 import "./styles.scss";
 
 const Login = () => {
-  const context = useContext(AuthContext);
+  const { signIn, signed } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState<any>({});
+  console.log(signed);
 
   const history = useHistory();
 
   async function handleLogin() {
     setIsLoading(true);
-    try {
-      const user = {
-        username,
-        password,
-      };
-
-      const { data } = await api.post("/user/login", user);
-      setIsLoading(false);
-      if (data !== null) {
-        delete data.password;
-        localStorage.setItem("user", JSON.stringify(data));
-        toast.success("login efetuado com sucesso!");
-        context.login(data);
-        history.push("/home");
-      } else {
-        toast.warn("usuário não existe!");
-      }
-    } catch (err) {
-      setIsLoading(false);
-      toast.error("não foi possível efetuar o login!");
-      const { errors: responseErrors } = err.response.data;
-      setErrors(responseErrors);
+    const response: any = await signIn({ username, password });
+    setIsLoading(false);
+    if (!response.success) {
+      setErrors(response.responseErrors);
     }
   }
 

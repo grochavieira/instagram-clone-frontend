@@ -3,31 +3,27 @@ import { BsGearWide, BsBookmark } from "react-icons/bs";
 import { MdGridOn, MdFlashOn } from "react-icons/md";
 import { BiUserPin } from "react-icons/bi";
 import Header from "../../components/Header";
-import { AuthContext } from "../../context/auth";
+import AuthContext from "../../contexts/auth";
 import api from "../../services/api";
 import "./styles.scss";
-import Footer from "../../components/Footer";
+import Loading from "../../components/Loading";
 import ProfileLoading from "../../components/Shimmer/ProfileLoading";
 
 const Profile = () => {
-  const { user: userData } = useContext<any>(AuthContext);
+  const { user } = useContext<any>(AuthContext);
   const [isLoading, setIsLoading] = useState(true);
-  const [user, setUser] = useState<any>({});
   const [userPosts, setUserPosts] = useState<any>([]);
 
   useEffect(() => {
     async function loadUserData() {
-      const token = localStorage.getItem("jwtToken");
-      const { data } = await api.get(`/user/${userData.id}`);
-      const { data: posts } = await api.get(`/posts`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setUser(data);
+      setIsLoading(true);
+      const { data: posts } = await api.get(`/posts`);
+      setIsLoading(false);
       setUserPosts(posts);
       console.log(posts);
     }
     loadUserData();
-  }, [userData.id]);
+  }, []);
 
   setInterval(() => {
     setIsLoading(false);
@@ -35,7 +31,7 @@ const Profile = () => {
 
   return (
     <>
-      <Header currentPage="profile" />
+      {isLoading && <Loading />}
       <div className="profile">
         {isLoading ? (
           <ProfileLoading />
@@ -98,8 +94,6 @@ const Profile = () => {
           </>
         )}
       </div>
-
-      {/* <Footer /> */}
     </>
   );
 };

@@ -1,6 +1,6 @@
 .header {
   position: fixed;
-  width: 100%;
+  width: 100vw;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -8,7 +8,7 @@
   z-index: 1000;
   background-color: var(--color-primary);
   border: 0.1rem solid var(--color-border);
-  padding: 0 12%;
+  padding: 0 13%;
 
   &__logo {
     &__text {

@@ -8,14 +8,14 @@ import Footer from "../../components/Footer";
 import PhotoDropzone from "../../components/PhotoDropzone";
 import Loading from "../../components/Loading";
 import ThemeSwitcher from "../../components/ThemeSwitcher";
-import { AuthContext } from "../../context/auth";
+import AuthContext from "../../contexts/auth";
 import api from "../../services/api";
 import downloadAppIcon from "../../assets/download-app-store.png";
 import downloadGoogleIcon from "../../assets/download-google-play.png";
 import "./styles.scss";
 
 const Register = () => {
-  const context = useContext(AuthContext);
+  const { signIn, signed } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const [profileImage, setProfileImage] = useState<File>();
   const [name, setName] = useState("");
@@ -41,9 +41,9 @@ const Register = () => {
 
       const response = await api.post("/user", data);
 
-      setIsLoading(false);
       toast.success("usuário cadastrado com sucesso!");
-      context.login(response.data);
+      signIn({ username, password });
+      setIsLoading(false);
       history.push("/home");
     } catch (err) {
       setIsLoading(false);

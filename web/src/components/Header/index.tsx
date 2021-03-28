@@ -9,33 +9,22 @@ import {
 } from "react-icons/ai";
 import { BiUserCircle } from "react-icons/bi";
 import { RiSendPlaneLine, RiSendPlaneFill } from "react-icons/ri";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 
 import ThemeSwitcher from "../ThemeSwitcher";
+import AuthContext from "../../contexts/auth";
 import "./styles.scss";
-import { AuthContext } from "../../context/auth";
 
-interface HeaderProps {
-  profileImage?: string;
-  currentPage?: string;
-  search?: string;
-  setSearch?: (value: string) => void;
-  handleKey?: (event: any) => void;
-}
-
-const Header: React.FC<HeaderProps> = ({
-  currentPage,
-  search,
-  setSearch,
-  handleKey,
-}) => {
-  const context = useContext<any>(AuthContext);
+const Header = () => {
+  const { user, signOut } = useContext<any>(AuthContext);
+  const { pathname } = useLocation();
+  console.log(pathname);
   const [showNavbar, setShowNavbar] = useState(false);
 
   const history = useHistory();
 
   function handleLogout() {
-    context.logout();
+    signOut();
     history.push("/");
   }
 
@@ -45,7 +34,7 @@ const Header: React.FC<HeaderProps> = ({
         <p className="header__logo__text">Instagram</p>
       </div>
 
-      {handleKey && setSearch && currentPage === "home" ? (
+      {/* {pathname === "/" ? (
         <>
           <div className="header__search-bar">
             <AiOutlineSearch />
@@ -60,18 +49,18 @@ const Header: React.FC<HeaderProps> = ({
         </>
       ) : (
         ""
-      )}
+      )} */}
 
       <div className="header__navigation-bar">
         <ul>
           <li>
-            <Link to="/home">
-              {currentPage === "home" ? <AiFillHome /> : <AiOutlineHome />}{" "}
+            <Link to="/">
+              {pathname === "/" ? <AiFillHome /> : <AiOutlineHome />}{" "}
             </Link>
           </li>
           <li>
             <Link to="/post-content">
-              {currentPage === "post-content" ? (
+              {pathname === "/post-content" ? (
                 <AiFillCamera />
               ) : (
                 <AiOutlineCamera />
@@ -80,7 +69,7 @@ const Header: React.FC<HeaderProps> = ({
           </li>
           <li>
             <Link to="/message">
-              {currentPage === "message" ? (
+              {pathname === "/message" ? (
                 <RiSendPlaneFill />
               ) : (
                 <RiSendPlaneLine />
@@ -93,11 +82,7 @@ const Header: React.FC<HeaderProps> = ({
           <li>
             <img
               onClick={() => setShowNavbar(!showNavbar)}
-              src={
-                context.user.profilePhoto !== null
-                  ? context.user.profilePhoto.url
-                  : ""
-              }
+              src={user.profilePhoto !== null ? user.profilePhoto.url : ""}
               alt="user"
             />
             <div className={showNavbar ? "navbar" : "navbar disabled"}>

@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import { FiSearch, FiArrowLeft } from "react-icons/fi";
-import Header from "../../components/Header";
+
 import Post from "../../components/Post";
-import User from "../../interfaces/User";
-import api from "../../services/api";
 import UserCard from "../../components/UserCard";
 import PostLoading from "../../components/Shimmer/PostLoading";
 import OnlineFriendsLoading from "../../components/Shimmer/OnlineFriendsLoading";
 import UserProfileLoading from "../../components/Shimmer/UserProfileLoading";
-import { AuthContext } from "../../context/auth";
+import AuthContext from "../../contexts/auth";
+import api from "../../services/api";
 import "./styles.scss";
 
 interface Post {
@@ -28,7 +27,7 @@ interface Post {
 }
 
 const Home = () => {
-  const { user, trigger } = useContext<any>(AuthContext);
+  const { user } = useContext<any>(AuthContext);
   const [isLoading, setIsLoading] = useState(true);
   const [posts, setPosts] = useState([]);
   const [searchUsers, setSearchUsers] = useState("");
@@ -37,11 +36,7 @@ const Home = () => {
   async function loadPosts() {
     try {
       const token = localStorage.getItem("jwtToken");
-      const { data } = await api.get(`/post`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const { data } = await api.get(`/post`);
       setPosts(data);
     } catch (err) {
       console.log(err.response.data.errors);
@@ -50,7 +45,7 @@ const Home = () => {
 
   useEffect(() => {
     loadPosts();
-  }, [trigger, users]);
+  }, [users]);
 
   setInterval(() => {
     setIsLoading(false);
@@ -58,25 +53,13 @@ const Home = () => {
 
   async function handleKeyPress(event: any) {
     if (event.key === "Enter") {
-      const token = localStorage.getItem("jwtToken");
-      const { data } = await api.get(`/users/${searchUsers}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const { data } = await api.get(`/users/${searchUsers}`);
       setUsers(data);
     }
   }
 
   return (
     <>
-      <Header
-        handleKey={handleKeyPress}
-        search={searchUsers}
-        setSearch={setSearchUsers}
-        currentPage="home"
-        profileImage={user.ProfilePhoto ? user.profilePhoto.url : ""}
-      />
       {users ? (
         <div className="home__search">
           <div className="home__search__goback">
@@ -112,7 +95,12 @@ const Home = () => {
               ) : (
                 <>
                   <div className="home__aside__profile__photo">
-                    <img src={user.profilePhoto.url} alt="user profile photo" />
+                    <img
+                      src={
+                        user.profilePhoto !== null ? user.profilePhoto.url : ""
+                      }
+                      alt="user profile photo"
+                    />
                   </div>
                   <div className="home__aside__profile__info">
                     <p className="home__aside__profile__info__username">

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 
-import { AuthContext } from "../../context/auth";
+import AuthContext from "../../contexts/auth";
 import api from "../../services/api";
 import "./styles.scss";
 

@@ -28,7 +28,6 @@ const Message = () => {
 
   return (
     <>
-      <Header currentPage="message" profileImage={user.profilePhotoUrl} />
       <div className="message">
         <main className="message__wrapper">
           <section className="message__wrapper__aside">
