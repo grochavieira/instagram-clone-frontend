@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from "react";
 import { BsGearWide, BsBookmark } from "react-icons/bs";
 import { MdGridOn, MdFlashOn } from "react-icons/md";
 import { BiUserPin } from "react-icons/bi";
-import Header from "../../components/Header";
 import AuthContext from "../../contexts/auth";
 import api from "../../services/api";
 import "./styles.scss";
@@ -31,7 +30,6 @@ const Profile = () => {
 
   return (
     <>
-      {isLoading && <Loading />}
       <div className="profile">
         {isLoading ? (
           <ProfileLoading />

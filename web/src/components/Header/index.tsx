@@ -7,6 +7,7 @@ import {
   AiFillCamera,
   AiOutlineSearch,
 } from "react-icons/ai";
+import { IoMdPaperPlane, IoIosPaperPlane } from "react-icons/io";
 import { BiUserCircle } from "react-icons/bi";
 import { RiSendPlaneLine, RiSendPlaneFill } from "react-icons/ri";
 import { Link, useHistory, useLocation } from "react-router-dom";
@@ -70,9 +71,9 @@ const Header = () => {
           <li>
             <Link to="/message">
               {pathname === "/message" ? (
-                <RiSendPlaneFill />
+                <IoIosPaperPlane />
               ) : (
-                <RiSendPlaneLine />
+                <IoMdPaperPlane />
               )}
             </Link>
           </li>

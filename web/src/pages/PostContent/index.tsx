@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
-import Header from "../../components/Header";
-import User from "../../interfaces/User";
-import { FiCamera, FiDelete } from "react-icons/fi";
+import { FiCamera } from "react-icons/fi";
 import { useHistory } from "react-router-dom";
-import api from "../../services/api";
-import Loading from "../../components/Loading";
+import { toast } from "react-toastify";
 
-import "./styles.scss";
+import Loading from "../../components/Loading";
 import AuthContext from "../../contexts/auth";
+import api from "../../services/api";
+import "./styles.scss";
 
 const PostContent = () => {
   const { user } = useContext<any>(AuthContext);
@@ -30,18 +29,17 @@ const PostContent = () => {
 
     try {
       if (user) {
-        const token = localStorage.getItem("jwtToken");
         const { data: response } = await api.post(`/post`, data);
         if (response.post) {
           setIsLoading(false);
-          alert("Post criado com sucesso!");
+          toast.success("Post criado com sucesso!");
           history.push("/");
         }
       }
     } catch (err) {
       setIsLoading(false);
       console.log(err.response.data);
-      alert("Não foi possível criar o post!");
+      toast.error("Não foi possível criar o post!");
     }
   }
 

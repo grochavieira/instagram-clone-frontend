@@ -66,12 +66,17 @@
       background-color: var(--color-tertiary);
       padding: 1.5rem 10rem;
       margin: 2rem 0;
-      border-radius: 30rem;
+      border-radius: 5px;
+      transition: all 0.2s;
       cursor: pointer;
     }
 
     button:hover {
       background-color: var(--color-tertiary-dark);
+    }
+
+    button:active {
+      transform: scale(0.9);
     }
   }
 }

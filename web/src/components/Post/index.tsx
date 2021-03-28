@@ -1,22 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
 import { BsHeart, BsBookmark } from "react-icons/bs";
-import { RiSendPlaneLine } from "react-icons/ri";
 import { AiOutlineMessage } from "react-icons/ai";
 import { HiDotsHorizontal } from "react-icons/hi";
+import { IoMdPaperPlane } from "react-icons/io";
 import VideoPlayer from "react-video-js-player";
 import moment from "moment";
 import "moment/min/moment-with-locales";
-import { Link } from "react-router-dom";
 
-// import LikeButton from "../LikeButton";
+import LikeButton from "../LikeButton";
 import AuthContext from "../../contexts/auth";
 import api from "../../services/api";
 import defaultUser from "../../assets/defaultUser.png";
 import "./styles.scss";
-import LikeButton from "../LikeButton";
 
 const Post: React.FC<any> = ({ post }) => {
-  const { user, triggerEvent, trigger } = useContext<any>(AuthContext);
+  const { user } = useContext<any>(AuthContext);
   const [comment, setComment] = useState("");
   const [showComments, setShowComments] = useState(false);
   const [isPostImage, setIsPostImage] = useState(true);
@@ -79,7 +77,7 @@ const Post: React.FC<any> = ({ post }) => {
             <AiOutlineMessage />
           </span>
           <span>
-            <RiSendPlaneLine />
+            <IoMdPaperPlane />
           </span>
         </div>
         <div className="post__like-section__favorite-icon">

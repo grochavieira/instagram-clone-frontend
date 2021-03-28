@@ -35,7 +35,6 @@ const Home = () => {
 
   async function loadPosts() {
     try {
-      const token = localStorage.getItem("jwtToken");
       const { data } = await api.get(`/post`);
       setPosts(data);
     } catch (err) {
@@ -50,13 +49,6 @@ const Home = () => {
   setInterval(() => {
     setIsLoading(false);
   }, 1500);
-
-  async function handleKeyPress(event: any) {
-    if (event.key === "Enter") {
-      const { data } = await api.get(`/users/${searchUsers}`);
-      setUsers(data);
-    }
-  }
 
   return (
     <>
