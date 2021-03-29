@@ -12,6 +12,7 @@ import { BiUserCircle } from "react-icons/bi";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 
+import SearchInput from "../SearchInput";
 import User from "../../interfaces/User";
 import ThemeSwitcher from "../ThemeSwitcher";
 import AuthContext from "../../contexts/auth";
@@ -23,8 +24,6 @@ const Header = () => {
   const { pathname } = useLocation();
 
   const [showNavbar, setShowNavbar] = useState(false);
-  const [search, setSearch] = useState("");
-  const [users, setUsers] = useState<User[]>([]);
 
   const history = useHistory();
 
@@ -33,64 +32,13 @@ const Header = () => {
     history.push("/");
   }
 
-  useEffect(() => {
-    handleSearch();
-  }, [search]);
-
-  async function handleSearch() {
-    try {
-      if (search.length > 0) {
-        const { data } = await api.get(`/users/${search}`);
-        setUsers(data);
-        console.log(data);
-      }
-    } catch (err) {
-      console.log(err);
-      if (err.response.data.errors.invalid_token) {
-        signOut();
-        toast.warn("sua sessão acabou!");
-      }
-    }
-  }
-
   return (
     <nav className="header">
       <div className="header__logo">
         <p className="header__logo__text">Instagram</p>
       </div>
 
-      {pathname === "/" ? (
-        <>
-          <div className="header__search-bar">
-            <AiOutlineSearch />
-            <input
-              value={search}
-              onChange={(e) => {
-                setSearch(e.target.value);
-              }}
-              type="text"
-              placeholder="Pesquisar"
-            />
-          </div>
-          <div className={search !== "" ? "search" : "search disabled"}>
-            {users.map((user: User) => (
-              <div
-                onClick={() => {
-                  history.push(`/profile/${user.username}`);
-                  setSearch("");
-                }}
-                key={user._id}
-                className="search__item"
-              >
-                <img src={user.profilePhoto.url} alt={user.username} />
-                <p>{user.username}</p>
-              </div>
-            ))}
-          </div>
-        </>
-      ) : (
-        ""
-      )}
+      {pathname === "/" ? <SearchInput /> : ""}
 
       <div className="header__navigation-bar">
         <ul>

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { BsHeart, BsBookmark } from "react-icons/bs";
 import { AiOutlineMessage } from "react-icons/ai";
 import { HiDotsHorizontal } from "react-icons/hi";
@@ -7,15 +7,20 @@ import VideoPlayer from "react-video-js-player";
 import moment from "moment";
 import "moment/min/moment-with-locales";
 import { toast } from "react-toastify";
+import ReactLoading from "react-loading";
 
 import LikeButton from "../LikeButton";
 import AuthContext from "../../contexts/auth";
 import api from "../../services/api";
 import defaultUser from "../../assets/defaultUser.png";
 import "./styles.scss";
+import { useHistory } from "react-router";
 
 const Post: React.FC<any> = ({ post }) => {
   const { user, signOut } = useContext<any>(AuthContext);
+  const history = useHistory();
+  const commentInput: any = useRef(null);
+  const [isCommentLoading, setIsCommentLoading] = useState(false);
   const [comment, setComment] = useState("");
   const [showComments, setShowComments] = useState(false);
   const [isPostImage, setIsPostImage] = useState(true);
@@ -36,9 +41,11 @@ const Post: React.FC<any> = ({ post }) => {
   }, [post.createdAt, post.postUrl]);
 
   async function handleComment() {
+    setIsCommentLoading(true);
     try {
       await api.post(`/comment/${post._id}`, { body: comment });
       setComment("");
+      setIsCommentLoading(false);
     } catch (err) {
       console.log(err.response.data.errors);
       if (err.response.data.errors.invalid_token) {
@@ -47,6 +54,7 @@ const Post: React.FC<any> = ({ post }) => {
       } else {
         toast.error("não foi possível comentar!");
       }
+      setIsCommentLoading(false);
     }
   }
 
@@ -57,7 +65,10 @@ const Post: React.FC<any> = ({ post }) => {
   return (
     <div className="post">
       <div className="post__header">
-        <div className="post__header__user">
+        <div
+          onClick={() => history.push(`/profile/${user.username}`)}
+          className="post__header__user"
+        >
           <img
             src={
               postUser.profilePhoto ? postUser.profilePhoto.url : defaultUser
@@ -80,7 +91,7 @@ const Post: React.FC<any> = ({ post }) => {
       <div className="post__like-section">
         <div className="post__like-section__main-icons">
           <LikeButton user={user} post={post} />
-          <span>
+          <span onClick={() => commentInput.current.focus()}>
             <AiOutlineMessage />
           </span>
           <span>
@@ -131,12 +142,25 @@ const Post: React.FC<any> = ({ post }) => {
       <div className="post__comment"></div>
       <div className="post__add-comment">
         <input
+          ref={commentInput}
           value={comment}
           onChange={(e) => setComment(e.target.value)}
           type="text"
           placeholder="Adicione um comentário..."
         />
-        <button onClick={handleComment}>Publicar</button>
+
+        {isCommentLoading ? (
+          <span className="post__add-comment__loading">
+            <ReactLoading type="spin" color="#aaa" height={15} width={25} />
+          </span>
+        ) : (
+          <button
+            onClick={handleComment}
+            className="post__add-comment__publish"
+          >
+            Publicar
+          </button>
+        )}
       </div>
     </div>
   );
