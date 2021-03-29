@@ -31,7 +31,6 @@ const Home = () => {
   const { user } = useContext<any>(AuthContext);
   const [isLoading, setIsLoading] = useState(true);
   const [posts, setPosts] = useState([]);
-  const [searchUsers, setSearchUsers] = useState("");
   const [users, setUsers] = useState<any>("");
 
   async function loadPosts() {

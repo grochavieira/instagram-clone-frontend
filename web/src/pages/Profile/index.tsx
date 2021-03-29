@@ -3,6 +3,7 @@ import { BsGearWide, BsBookmark } from "react-icons/bs";
 import { MdGridOn, MdFlashOn } from "react-icons/md";
 import { BiUserPin } from "react-icons/bi";
 
+import FollowButton from "../../components/Follow";
 import ProfileLoading from "../../components/Shimmer/ProfileLoading";
 import AuthContext from "../../contexts/auth";
 import api from "../../services/api";
@@ -12,7 +13,7 @@ import User from "../../interfaces/User";
 
 const Profile = () => {
   const { user: currentUser } = useContext<any>(AuthContext);
-  console.log(currentUser);
+
   const { pathname } = useLocation();
   const username = pathname.replace("/profile/", "");
   const [isLoading, setIsLoading] = useState(true);
@@ -37,10 +38,9 @@ const Profile = () => {
       setIsLoading(false);
       setUserPosts(posts);
       setUser(userData);
-      console.log(posts);
     }
     loadUserData();
-  }, []);
+  }, [username]);
 
   setInterval(() => {
     setIsLoading(false);
@@ -61,7 +61,7 @@ const Profile = () => {
                 <div className="profile__main__info__username">
                   {user.username}
                   {user.username !== currentUser.username ? (
-                    <button className="follow">Seguir</button>
+                    <FollowButton key={user._id} user={user} />
                   ) : (
                     <>
                       <button>Editar perfil</button> <BsGearWide />

@@ -22,7 +22,7 @@ const Post: React.FC<any> = ({ post }) => {
 
   useEffect(() => {
     async function getPostUser() {
-      const { data } = await api.get(`/user/${post.user}`);
+      const { data } = await api.get(`/user/${post.username}`);
       setPostUser(data);
     }
     getPostUser();

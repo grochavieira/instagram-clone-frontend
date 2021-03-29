@@ -1,5 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
+
+import User from "../interfaces/User";
 import api from "../services/api";
 
 interface AuthContextData {
@@ -7,12 +9,13 @@ interface AuthContextData {
   user: object | null;
   signIn({ email, password }: any): Promise<object>;
   signOut(): void;
+  updateUser(): void;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
-  const [user, setUser] = useState<object | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [, setToken] = useState<string | null>(null);
 
   useEffect(() => {
@@ -32,6 +35,23 @@ export const AuthProvider: React.FC = ({ children }) => {
 
     loadStoragedData();
   }, []);
+
+  async function updateUser() {
+    try {
+      if (user) {
+        const { data } = await api.get(`/user/${user.username}`);
+
+        console.log(data);
+        setUser(data);
+
+        localStorage.setItem("@instagram-clone-user", JSON.stringify(data));
+      }
+
+      return { success: true };
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   async function signIn({ username, password }: any) {
     try {
@@ -65,7 +85,9 @@ export const AuthProvider: React.FC = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ signed: !!user, user, signIn, signOut }}>
+    <AuthContext.Provider
+      value={{ signed: !!user, user, signIn, signOut, updateUser }}
+    >
       {children}
     </AuthContext.Provider>
   );
