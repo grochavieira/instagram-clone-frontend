@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import jwt from "jsonwebtoken";
 
 import User from "../interfaces/User";
 import api from "../services/api";
@@ -24,12 +25,22 @@ export const AuthProvider: React.FC = ({ children }) => {
       const storagedToken = localStorage.getItem("@instagram-clone-token");
 
       if (storagedUser && storagedToken) {
-        api.defaults.headers.Authorization = `Bearer ${JSON.parse(
-          storagedToken
-        )}`;
-
-        setUser(JSON.parse(storagedUser));
-        setToken(JSON.parse(storagedToken));
+        try {
+          const parsedToken = JSON.parse(storagedToken);
+          jwt.verify(
+            parsedToken,
+            process.env.REACT_APP_TOKEN_SECRET || "",
+            (err: any, decoded: any) => {
+              if (err) {
+                signOut();
+              } else {
+                api.defaults.headers.Authorization = `Bearer ${parsedToken}`;
+                setUser(JSON.parse(storagedUser));
+                setToken(parsedToken);
+              }
+            }
+          );
+        } catch (err) {}
       }
     }
 
@@ -57,12 +68,12 @@ export const AuthProvider: React.FC = ({ children }) => {
     try {
       const { data } = await api.post("/user/login", { username, password });
 
+      api.defaults.headers.Authorization = `Bearer ${data.token}`;
+
       toast.success("Login efetuado com sucesso!");
-      console.log(data.user);
+
       setUser(data.user);
       setToken(data.token);
-
-      api.defaults.headers.Authorization = `Bearer ${data.token}`;
 
       localStorage.setItem("@instagram-clone-user", JSON.stringify(data.user));
       localStorage.setItem(

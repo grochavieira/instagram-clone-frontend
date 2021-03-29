@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { FiArrowLeft } from "react-icons/fi";
+import { toast } from "react-toastify";
 
 import Post from "../../components/Post";
 import UserCard from "../../components/UserCard";
@@ -28,7 +29,7 @@ interface Post {
 }
 
 const Home = () => {
-  const { user } = useContext<any>(AuthContext);
+  const { user, signOut } = useContext<any>(AuthContext);
   const [isLoading, setIsLoading] = useState(true);
   const [posts, setPosts] = useState([]);
   const [users, setUsers] = useState<any>("");
@@ -38,7 +39,11 @@ const Home = () => {
       const { data } = await api.get(`/post`);
       setPosts(data);
     } catch (err) {
-      console.log(err.response.data.errors);
+      console.log(err);
+      if (err.response.data.errors.invalid_token) {
+        signOut();
+        toast.warn("sua sessão acabou!");
+      }
     }
   }
 

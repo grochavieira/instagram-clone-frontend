@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BsHeart } from "react-icons/bs";
 import {
   AiOutlineHome,
@@ -10,6 +10,7 @@ import {
 import { IoMdPaperPlane, IoIosPaperPlane } from "react-icons/io";
 import { BiUserCircle } from "react-icons/bi";
 import { Link, useHistory, useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import User from "../../interfaces/User";
 import ThemeSwitcher from "../ThemeSwitcher";
@@ -32,10 +33,24 @@ const Header = () => {
     history.push("/");
   }
 
+  useEffect(() => {
+    handleSearch();
+  }, [search]);
+
   async function handleSearch() {
-    const { data } = await api.get(`/users/${search}`);
-    setUsers(data);
-    console.log(data);
+    try {
+      if (search.length > 0) {
+        const { data } = await api.get(`/users/${search}`);
+        setUsers(data);
+        console.log(data);
+      }
+    } catch (err) {
+      console.log(err);
+      if (err.response.data.errors.invalid_token) {
+        signOut();
+        toast.warn("sua sessão acabou!");
+      }
+    }
   }
 
   return (
@@ -52,7 +67,6 @@ const Header = () => {
               value={search}
               onChange={(e) => {
                 setSearch(e.target.value);
-                handleSearch();
               }}
               type="text"
               placeholder="Pesquisar"
@@ -61,7 +75,10 @@ const Header = () => {
           <div className={search !== "" ? "search" : "search disabled"}>
             {users.map((user: User) => (
               <div
-                onClick={() => history.push(`/profile/${user.username}`)}
+                onClick={() => {
+                  history.push(`/profile/${user.username}`);
+                  setSearch("");
+                }}
                 key={user._id}
                 className="search__item"
               >

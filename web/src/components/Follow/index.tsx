@@ -11,7 +11,9 @@ interface FollowButtonProps {
 }
 
 const FollowButton = ({ user }: FollowButtonProps) => {
-  const { user: currentUser, updateUser }: any = useContext(AuthContext);
+  const { user: currentUser, updateUser, signOut }: any = useContext(
+    AuthContext
+  );
   const [isFollowing, setIsFollowing] = useState(false);
 
   useEffect(() => {
@@ -40,14 +42,18 @@ const FollowButton = ({ user }: FollowButtonProps) => {
       await updateUser();
     } catch (err) {
       console.log(err);
-      toast.success(`Não foi possível seguir o usuário ${user.username}`);
+      if (err.response.data.errors.invalid_token) {
+        signOut();
+        toast.warn("sua sessão acabou!");
+      } else {
+        toast.error(`Não foi possível seguir o usuário ${user.username}`);
+      }
     }
   }
 
   return (
     <>
       <button id="follow" onClick={handleFollow}>
-        {" "}
         {isFollowing ? "Não" : ""} Seguir
       </button>
     </>

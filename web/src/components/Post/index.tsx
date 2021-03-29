@@ -6,6 +6,7 @@ import { IoMdPaperPlane } from "react-icons/io";
 import VideoPlayer from "react-video-js-player";
 import moment from "moment";
 import "moment/min/moment-with-locales";
+import { toast } from "react-toastify";
 
 import LikeButton from "../LikeButton";
 import AuthContext from "../../contexts/auth";
@@ -14,7 +15,7 @@ import defaultUser from "../../assets/defaultUser.png";
 import "./styles.scss";
 
 const Post: React.FC<any> = ({ post }) => {
-  const { user } = useContext<any>(AuthContext);
+  const { user, signOut } = useContext<any>(AuthContext);
   const [comment, setComment] = useState("");
   const [showComments, setShowComments] = useState(false);
   const [isPostImage, setIsPostImage] = useState(true);
@@ -36,10 +37,16 @@ const Post: React.FC<any> = ({ post }) => {
 
   async function handleComment() {
     try {
-      api.post(`/comment/${post._id}`, { body: comment });
+      await api.post(`/comment/${post._id}`, { body: comment });
       setComment("");
     } catch (err) {
       console.log(err.response.data.errors);
+      if (err.response.data.errors.invalid_token) {
+        signOut();
+        toast.warn("sua sessão acabou!");
+      } else {
+        toast.error("não foi possível comentar!");
+      }
     }
   }
 

@@ -9,7 +9,7 @@ import api from "../../services/api";
 import "./styles.scss";
 
 const PostContent = () => {
-  const { user } = useContext<any>(AuthContext);
+  const { user, signOut } = useContext<any>(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File>();
   const [isFileImage, setIsFileImage] = useState(true);
@@ -39,7 +39,12 @@ const PostContent = () => {
     } catch (err) {
       setIsLoading(false);
       console.log(err.response.data);
-      toast.error("Não foi possível criar o post!");
+      if (err.response.data.errors.invalid_token) {
+        signOut();
+        toast.warn("sua sessão acabou!");
+      } else {
+        toast.error("Não foi possível criar o post!");
+      }
     }
   }
 

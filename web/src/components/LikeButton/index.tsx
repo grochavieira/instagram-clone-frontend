@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BsHeartFill } from "react-icons/bs";
+import { toast } from "react-toastify";
 
+import AuthContext from "../../contexts/auth";
 import api from "../../services/api";
-
 import "./styles.scss";
 
 const LikeButton: React.FC<any> = ({ user, post: { likes, _id } }) => {
+  const { signOut } = useContext(AuthContext);
   const [liked, setLiked] = useState(false);
 
   useEffect(() => {
@@ -16,11 +18,17 @@ const LikeButton: React.FC<any> = ({ user, post: { likes, _id } }) => {
 
   async function handleLike() {
     try {
-      const token = localStorage.getItem("jwtToken");
-      api.post(`post/like/${_id}`, token);
+      await api.post(`post/like/${_id}`);
       setLiked(!liked);
     } catch (err) {
-      console.log(err.response.data.errors);
+      console.log("ENTROU AQUI");
+      console.log(err);
+      if (err.response.data.errors.invalid_token) {
+        signOut();
+        toast.warn("sua sessão acabou!");
+      } else {
+        toast.error("não foi possível dar like!");
+      }
     }
   }
 
