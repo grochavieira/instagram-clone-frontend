@@ -23,6 +23,7 @@ const LikeButton: React.FC<any> = ({ user, post: { likes, _id } }) => {
     } catch (err) {
       console.log("ENTROU AQUI");
       console.log(err);
+      console.log(err.response.data.errors);
       if (err.response.data.errors.invalid_token) {
         signOut();
         toast.warn("sua sessão acabou!");

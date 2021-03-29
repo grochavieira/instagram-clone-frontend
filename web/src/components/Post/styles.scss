@@ -127,6 +127,7 @@
     color: var(--color-text);
     font-weight: 600;
     cursor: pointer;
+    word-wrap: break-word;
 
     strong {
       font-size: 1.3rem;

@@ -1,0 +1,202 @@
+.details {
+    width: 100%;
+    height: 100%;
+
+    padding-top: 20rem;
+
+    background-color: var(--color-secondary);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    &__container {
+        display: flex;
+
+        width: 90%;
+        max-width: 100rem;
+        min-height: 50rem;
+        max-height: 70rem;
+
+        margin-bottom: 20rem;
+
+        border-radius: 5px;
+        background-color: var(--color-primary);
+        border: 1px solid var(--color-border);
+
+        &__image {
+            width: 70%;
+            img {
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
+            }
+        }
+
+        &__content {
+            width: 40%;
+
+            display: flex;
+            flex-direction: column;
+
+            border-left: 1px solid var(--color-border);
+
+            &__info {
+                height: 25%;
+                max-height: 7rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                padding: 0rem 1.5rem;
+
+                border-bottom: 1px solid var(--color-border);
+
+                &__owner {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    cursor: pointer;
+
+                    img {
+                        width: 4rem;
+                        height: 4rem;
+                        border-radius: 50%;
+                    }
+
+                    strong {
+                        font-size: 1.4rem;
+                        margin-left: 1rem;
+                    }
+                }
+
+                svg {
+                    font-size: 2.5rem;
+                    cursor: pointer;
+                }
+            }
+
+            &__comments {
+                overflow-y: scroll;
+                height: 100%;
+                // max-height: 40rem;
+
+                display: flex;
+                flex-direction: column;
+                padding: 2rem;
+
+                &__item {
+                    width: 100%;
+                    margin-bottom: 2rem;
+
+                    font-size: 1.4rem;
+
+                    &__owner {
+                        display: flex;
+                        align-items: center;
+
+                        img {
+                            width: 4rem;
+                            height: 4rem;
+                            border-radius: 50%;
+                        }
+
+                        strong {
+                            margin: 0rem 1rem;
+                        }
+
+                        &__hour {
+                            opacity: 0.5;
+                        }
+                    }
+
+                    p {
+                        margin-left: 5rem;
+                        word-wrap: break-word;
+                    }
+                }
+            }
+
+            &__like-section {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                border-top: 1px solid var(--color-border);
+
+                // height: 18%;
+                padding: 1rem 0rem;
+                max-height: 7rem;
+
+                svg {
+                    font-size: 2.5rem;
+                    margin: 0rem 0.7rem;
+                }
+            }
+
+            &__likes {
+                margin-left: 1rem;
+                margin-bottom: 1rem;
+
+                font-size: 1.4rem;
+
+                p {
+                    margin-top: 0.5rem;
+                    text-transform: uppercase;
+                    color: var(--color-text);
+                    opacity: 0.7;
+                }
+            }
+
+            &__publish-comment {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+
+                width: 100%;
+                height: 18%;
+                max-height: 7rem;
+                padding: 1.5rem 0rem;
+
+                border-top: 1px solid var(--color-border);
+
+                input {
+                    margin: 0rem 1rem;
+                    width: 100%;
+
+                    border: 0;
+                    background-color: transparent;
+                    color: var(--color-text);
+                }
+
+                span {
+                    margin-right: 2.5rem;
+                    margin-top: -1rem;
+                }
+
+                button {
+                    width: 30%;
+
+                    border: 0;
+                    background-color: transparent;
+                    color: var(--color-tertiary);
+                    cursor: pointer;
+                    transition: all 0.2s;
+
+                    &:hover {
+                        opacity: 0.8;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.dummy {
+    flex-grow: 1;
+}

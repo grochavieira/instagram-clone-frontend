@@ -22,7 +22,6 @@ const Post: React.FC<any> = ({ post }) => {
   const commentInput: any = useRef(null);
   const [isCommentLoading, setIsCommentLoading] = useState(false);
   const [comment, setComment] = useState("");
-  const [showComments, setShowComments] = useState(false);
   const [isPostImage, setIsPostImage] = useState(true);
   const [postUser, setPostUser] = useState<any>({});
 
@@ -57,11 +56,6 @@ const Post: React.FC<any> = ({ post }) => {
       setIsCommentLoading(false);
     }
   }
-
-  function handleShowComments() {
-    setShowComments(!showComments);
-  }
-
   return (
     <div className="post">
       <div className="post__header">
@@ -116,7 +110,7 @@ const Post: React.FC<any> = ({ post }) => {
       </div>
       {post.comments.length > 1 ? (
         <div className="post__show-comments">
-          <button onClick={handleShowComments}>
+          <button onClick={() => history.push(`/post/${post._id}`)}>
             Ver todos os {post.comments.length} comentários
           </button>
         </div>
@@ -125,22 +119,13 @@ const Post: React.FC<any> = ({ post }) => {
       )}
 
       <div className="post__comments">
-        {!showComments && post.comments.length > 0 ? (
+        {post.comments.length > 0 && (
           <p>
             <strong>{post.comments[0].username}</strong> {post.comments[0].body}
             <span className="hour">
               {moment(post.comments[0].createdAt).fromNow(true)}
             </span>
           </p>
-        ) : (
-          post.comments.map((comment: any) => (
-            <p>
-              <strong>{comment.username}</strong> {comment.body}{" "}
-              <span className="hour">
-                {moment(comment.createdAt).fromNow(true)}
-              </span>
-            </p>
-          ))
         )}
       </div>
       <div className="post__hours">
