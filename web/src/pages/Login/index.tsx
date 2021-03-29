@@ -44,7 +44,7 @@ const Login = () => {
             value={password}
             setValue={setPassword}
             placeholder="Senha"
-            error={errors.password || errors.general ? true : false}
+            error={errors.password ? true : false}
           />
           <Button onAction={handleLogin} name="Entrar" />
           {Object.keys(errors).length > 0 && (

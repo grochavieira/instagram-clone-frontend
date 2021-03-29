@@ -1,0 +1,44 @@
+.not-found-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding-top: 10rem;
+
+    background-color: var(--color-secondary);
+
+    h1 {
+        font-size: 4rem;
+        font-family: "Grand Hotel";
+    }
+
+    img {
+        width: 90%;
+        max-width: 400px;
+    }
+
+    button {
+        font-size: 2rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: #fff;
+
+        border: 0;
+        border-radius: 15px;
+        padding: 1.5rem 4rem;
+
+        background: linear-gradient(329.54deg, rgb(255, 172, 77) 0%, rgb(212, 67, 123) 100%);
+
+        cursor: pointer;
+        transition: all 0.2s;
+
+        &:hover {
+            opacity: 0.8;
+        }
+
+        &:active {
+            transform: scale(0.9);
+        }
+    }
+}
