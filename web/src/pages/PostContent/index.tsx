@@ -12,6 +12,7 @@ const PostContent = () => {
   const { user, signOut } = useContext<any>(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File>();
+  const [caption, setCaption] = useState("");
   const [isFileImage, setIsFileImage] = useState(true);
   const [previewFile, setPreviewFile] = useState<any>();
 
@@ -22,6 +23,10 @@ const PostContent = () => {
     const data = new FormData();
 
     console.log(selectedFile);
+
+    if (caption) {
+      data.append("caption", caption);
+    }
 
     if (selectedFile) {
       data.append("file", selectedFile);
@@ -73,20 +78,32 @@ const PostContent = () => {
     <>
       {isLoading && <Loading />}
       <div className="post-content">
-        <div className="post-content__create">
-          {isFileImage ? (
-            <img src={previewFile} />
-          ) : (
-            <video controls preload="auto" width="100%" src={previewFile} />
-            // <video src={previewFile} autoPlay />
-          )}
+        <div className="post-content__post">
+          <div className="post-content__post__image">
+            {isFileImage ? (
+              <img src={previewFile} />
+            ) : (
+              <video controls preload="auto" width="100%" src={previewFile} />
+              // <video src={previewFile} autoPlay />
+            )}
+          </div>
+          <div className="post-content__post__caption">
+            <input
+              value={caption}
+              onChange={(e) => setCaption(e.target.value)}
+              placeholder="Escreva uma legenda..."
+              type="text"
+            />
+          </div>
+          <div className="post-content__post__publish">
+            <button onClick={handlePost}>Postar</button>
+          </div>
         </div>
         <div className="post-content__button">
           <label htmlFor="media">
             <FiCamera />
           </label>
           <input id="media" onChange={getFile} type="file" name="media" />
-          <button onClick={handlePost}>Postar</button>
         </div>
       </div>
     </>

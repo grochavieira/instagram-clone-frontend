@@ -107,6 +107,13 @@ const Post: React.FC<any> = ({ post }) => {
       <div className="post__likes">
         <p>{post.likes.length} curtidas</p>
       </div>
+      <div className="post__caption">
+        {post.caption && (
+          <p>
+            <strong>{post.username}</strong> {post.caption.body}
+          </p>
+        )}
+      </div>
       {post.comments.length > 1 ? (
         <div className="post__show-comments">
           <button onClick={handleShowComments}>
@@ -120,7 +127,7 @@ const Post: React.FC<any> = ({ post }) => {
       <div className="post__comments">
         {!showComments && post.comments.length > 0 ? (
           <p>
-            <strong>{post.comments[0].username}</strong> {post.comments[0].body}{" "}
+            <strong>{post.comments[0].username}</strong> {post.comments[0].body}
             <span className="hour">
               {moment(post.comments[0].createdAt).fromNow(true)}
             </span>

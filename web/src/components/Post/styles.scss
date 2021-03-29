@@ -92,6 +92,23 @@
     cursor: pointer;
   }
 
+  &__caption {
+    padding: 0 1.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: var(--color-text);
+    font-weight: 600;
+    cursor: pointer;
+
+    strong {
+      font-size: 1.3rem;
+    }
+
+    span {
+      font-size: 1rem;
+    }
+  }
+
   &__show-comments {
     padding: 0 1.5rem;
     margin-bottom: 1rem;
@@ -117,6 +134,10 @@
 
     span {
       font-size: 1rem;
+
+      &.hour {
+        margin-left: 1rem;
+      }
     }
   }
 
