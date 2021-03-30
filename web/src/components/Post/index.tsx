@@ -9,6 +9,7 @@ import "moment/min/moment-with-locales";
 import { toast } from "react-toastify";
 import ReactLoading from "react-loading";
 
+import { Comment } from "../../interfaces/Post";
 import LikeButton from "../LikeButton";
 import AuthContext from "../../contexts/auth";
 import api from "../../services/api";
@@ -21,6 +22,7 @@ const Post: React.FC<any> = ({ post }) => {
   const history = useHistory();
   const commentInput: any = useRef(null);
   const [isCommentLoading, setIsCommentLoading] = useState(false);
+  const [commentsPreview, setCommentsPreview] = useState<Comment[] | any>([]);
   const [comment, setComment] = useState("");
   const [isPostImage, setIsPostImage] = useState(true);
   const [postUser, setPostUser] = useState<any>({});
@@ -29,6 +31,10 @@ const Post: React.FC<any> = ({ post }) => {
     async function getPostUser() {
       const { data } = await api.get(`/user/${post.username}`);
       setPostUser(data);
+
+      if (post.comments.length > 0) {
+        setCommentsPreview([post.comments[0]]);
+      }
     }
     getPostUser();
   }, [post.createdAt, post.postUrl, post.user, user]);
@@ -43,6 +49,12 @@ const Post: React.FC<any> = ({ post }) => {
     setIsCommentLoading(true);
     try {
       await api.post(`/comment/${post._id}`, { body: comment });
+      const newComment = {
+        body: comment,
+        username: post.username,
+        createdAt: String(new Date()),
+      };
+      setCommentsPreview([...commentsPreview, newComment]);
       setComment("");
       setIsCommentLoading(false);
     } catch (err) {
@@ -119,14 +131,16 @@ const Post: React.FC<any> = ({ post }) => {
       )}
 
       <div className="post__comments">
-        {post.comments.length > 0 && (
-          <p>
-            <strong>{post.comments[0].username}</strong> {post.comments[0].body}
-            <span className="hour">
-              {moment(post.comments[0].createdAt).fromNow(true)}
-            </span>
-          </p>
-        )}
+        {commentsPreview !== null &&
+          commentsPreview.length > 0 &&
+          commentsPreview.map((comment: Comment) => (
+            <p key={comment.createdAt}>
+              <strong>{comment.username}</strong> {comment.body}
+              <span className="hour">
+                {moment(comment.createdAt).fromNow(true)}
+              </span>
+            </p>
+          ))}
       </div>
       <div className="post__hours">
         <p>{moment(post.createdAt).fromNow(true)}</p>
@@ -137,6 +151,7 @@ const Post: React.FC<any> = ({ post }) => {
           ref={commentInput}
           value={comment}
           onChange={(e) => setComment(e.target.value)}
+          onKeyPress={(e) => e.key === "Enter" && handleComment()}
           type="text"
           placeholder="Adicione um comentário..."
         />

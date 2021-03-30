@@ -94,7 +94,10 @@ const PostDetails = () => {
               </div>
             )}
             {post.comments.map((comment: Comment) => (
-              <div className="details__container__content__comments__item">
+              <div
+                key={comment.createdAt}
+                className="details__container__content__comments__item"
+              >
                 <div className="details__container__content__comments__item__owner">
                   <img src={comment.profilePhotoURL} alt={comment.username} />
                   <strong>{comment.username}</strong>
