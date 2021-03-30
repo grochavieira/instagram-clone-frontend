@@ -11,19 +11,20 @@ import UserProfileLoading from "../../components/Shimmer/UserProfileLoading";
 import AuthContext from "../../contexts/auth";
 import api from "../../services/api";
 import "./styles.scss";
+import PostContext from "../../contexts/post";
 
 const Home = () => {
   const { user, signOut } = useContext<any>(AuthContext);
+  const { posts, getPosts } = useContext(PostContext);
   const [isLoading, setIsLoading] = useState(true);
-  const [posts, setPosts] = useState([]);
   const [users, setUsers] = useState<any>("");
   const [selectedPost, setSelectedPost] = useState<IPost | any>({});
   const [isModalActive, setIsModalActive] = useState(false);
 
   async function loadPosts() {
     try {
-      const { data } = await api.get(`/post`);
-      setPosts(data);
+      getPosts();
+      console.log(posts);
     } catch (err) {
       console.log(err);
       if (err.response.data.errors.invalid_token) {

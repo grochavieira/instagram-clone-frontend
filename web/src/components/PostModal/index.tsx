@@ -1,8 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import { Post } from "../../interfaces/Post";
+import PostContext from "../../contexts/post";
 import AuthContext from "../../contexts/auth";
+import api from "../../services/api";
 import "./styles.scss";
 
 interface PostModalProps {
@@ -12,6 +15,7 @@ interface PostModalProps {
 
 const PostModal = ({ post, setIsModalActive }: PostModalProps) => {
   const { user } = useContext<any>(AuthContext);
+  const { getPosts } = useContext(PostContext);
   const history = useHistory();
 
   const [isCurrentUserPost, setIsCurrentUserPost] = useState(false);
@@ -21,6 +25,20 @@ const PostModal = ({ post, setIsModalActive }: PostModalProps) => {
       setIsCurrentUserPost(true);
     }
   }, []);
+
+  async function handleDelete() {
+    try {
+      console.log(post?._id);
+      const { data } = await api.delete(`/post/${post?._id}`);
+
+      getPosts();
+      toast.success("post deletado com sucesso!");
+      history.push("/");
+    } catch (err) {
+      console.log(err.response.data.errors);
+      toast.error("não foi possível deletar o post");
+    }
+  }
 
   return (
     <>
@@ -36,7 +54,10 @@ const PostModal = ({ post, setIsModalActive }: PostModalProps) => {
             Ir até a Postagem
           </div>
           {isCurrentUserPost && (
-            <div className="post-modal__container__item delete">
+            <div
+              onClick={handleDelete}
+              className="post-modal__container__item delete"
+            >
               Deletar Postagem
             </div>
           )}
