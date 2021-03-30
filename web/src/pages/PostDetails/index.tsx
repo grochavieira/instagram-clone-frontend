@@ -26,7 +26,7 @@ const PostDetails = () => {
 
   const [isCommentLoading, setIsCommentLoading] = useState(false);
   const [comment, setComment] = useState("");
-  const [post, setPost] = useState<Post | null>(null);
+  const [post, setPost] = useState<Post | any>(null);
   const [postUser, setPostUser] = useState<any>({});
 
   useEffect(() => {
@@ -43,6 +43,16 @@ const PostDetails = () => {
     setIsCommentLoading(true);
     try {
       await api.post(`/comment/${postId}`, { body: comment });
+      const newComment = {
+        body: comment,
+        profilePhotoURL: user.profilePhoto.url,
+        username: postUser.username,
+        createdAt: String(new Date()),
+      };
+
+      post.comments.unshift(newComment);
+      setPost(post);
+
       setComment("");
       setIsCommentLoading(false);
     } catch (err) {
@@ -135,6 +145,7 @@ const PostDetails = () => {
             <input
               value={comment}
               onChange={(e) => setComment(e.target.value)}
+              onKeyPress={(e) => e.key === "Enter" && handleComment()}
               placeholder="Digite um comentário..."
               type="text"
             />
