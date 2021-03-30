@@ -5,7 +5,7 @@ import { BiUserPin } from "react-icons/bi";
 
 import FollowButton from "../../components/Follow";
 import ProfileLoading from "../../components/Shimmer/ProfileLoading";
-import AuthContext from "../../contexts/auth";
+import AuthContext from "../../contexts/AuthProvider";
 import api from "../../services/api";
 import "./styles.scss";
 import { useLocation } from "react-router";

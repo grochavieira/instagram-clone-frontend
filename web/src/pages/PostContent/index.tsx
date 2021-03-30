@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import Loading from "../../components/Loading";
-import AuthContext from "../../contexts/auth";
+import AuthContext from "../../contexts/AuthProvider";
 import api from "../../services/api";
 import "./styles.scss";
 

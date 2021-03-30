@@ -12,7 +12,7 @@ import ReactLoading from "react-loading";
 
 import { Comment, Post as IPost } from "../../interfaces/Post";
 import LikeButton from "../LikeButton";
-import AuthContext from "../../contexts/auth";
+import AuthContext from "../../contexts/AuthProvider";
 import api from "../../services/api";
 import defaultUser from "../../assets/defaultUser.png";
 import "./styles.scss";
@@ -43,7 +43,14 @@ const Post = ({ post, setSelectedPost, setIsModalActive }: PostProps) => {
       }
     }
     getPostUser();
-  }, [post.createdAt, post.postUrl, post.user, user]);
+  }, [
+    post.comments,
+    post.createdAt,
+    post.postUrl,
+    post.user,
+    post.username,
+    user,
+  ]);
 
   useEffect(() => {
     if (post.postUrl.includes(".mp4")) {

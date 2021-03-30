@@ -13,7 +13,7 @@ import ReactLoading from "react-loading";
 import PostModal from "../../components/PostModal";
 import Loading from "../../components/Loading";
 import LikeButton from "../../components/LikeButton";
-import AuthContext from "../../contexts/auth";
+import AuthContext from "../../contexts/AuthProvider";
 import { Post, Comment } from "../../interfaces/Post";
 import api from "../../services/api";
 import "./styles.scss";

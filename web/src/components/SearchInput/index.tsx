@@ -4,7 +4,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import ReactLoading from "react-loading";
 
 import User from "../../interfaces/User";
-import AuthContext from "../../contexts/auth";
+import AuthContext from "../../contexts/AuthProvider";
 import api from "../../services/api";
 import "./styles.scss";
 import { useHistory } from "react-router-dom";
@@ -19,7 +19,7 @@ const SearchInput = () => {
 
   useEffect(() => {
     handleSearch();
-  }, [search]);
+  }, [handleSearch, search]);
 
   async function handleSearch() {
     setIsLoading(true);

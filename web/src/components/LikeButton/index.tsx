@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { BsHeartFill } from "react-icons/bs";
 import { toast } from "react-toastify";
 
-import AuthContext from "../../contexts/auth";
+import AuthContext from "../../contexts/AuthProvider";
 import api from "../../services/api";
 import "./styles.scss";
 

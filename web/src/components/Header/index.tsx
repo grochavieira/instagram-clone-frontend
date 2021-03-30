@@ -15,7 +15,7 @@ import { toast } from "react-toastify";
 import SearchInput from "../SearchInput";
 import User from "../../interfaces/User";
 import ThemeSwitcher from "../ThemeSwitcher";
-import AuthContext from "../../contexts/auth";
+import AuthContext from "../../contexts/AuthProvider";
 import api from "../../services/api";
 import "./styles.scss";
 

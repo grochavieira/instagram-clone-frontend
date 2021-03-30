@@ -3,8 +3,8 @@ import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { Post } from "../../interfaces/Post";
-import PostContext from "../../contexts/post";
-import AuthContext from "../../contexts/auth";
+import PostContext from "../../contexts/PostProvider";
+import AuthContext from "../../contexts/AuthProvider";
 import api from "../../services/api";
 import "./styles.scss";
 
@@ -24,7 +24,7 @@ const PostModal = ({ post, setIsModalActive }: PostModalProps) => {
     if (user.username === post?.username) {
       setIsCurrentUserPost(true);
     }
-  }, []);
+  }, [post, user.username]);
 
   async function handleDelete() {
     try {

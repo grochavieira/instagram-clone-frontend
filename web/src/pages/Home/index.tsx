@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import { FiArrowLeft } from "react-icons/fi";
 import { toast } from "react-toastify";
+import io from "socket.io-client";
 
 import { Post as IPost } from "../../interfaces/Post";
 import Post from "../../components/Post";
@@ -8,35 +8,48 @@ import PostModal from "../../components/PostModal";
 import PostLoading from "../../components/Shimmer/PostLoading";
 import OnlineFriendsLoading from "../../components/Shimmer/OnlineFriendsLoading";
 import UserProfileLoading from "../../components/Shimmer/UserProfileLoading";
-import AuthContext from "../../contexts/auth";
-import api from "../../services/api";
+import { useSocket } from "../../contexts/SocketProvider";
+import AuthContext from "../../contexts/AuthProvider";
 import "./styles.scss";
-import PostContext from "../../contexts/post";
+import PostContext from "../../contexts/PostProvider";
 
 const Home = () => {
+  const socket = useSocket();
   const { user, signOut } = useContext<any>(AuthContext);
   const { posts, getPosts } = useContext(PostContext);
   const [isLoading, setIsLoading] = useState(true);
-  const [users, setUsers] = useState<any>("");
   const [selectedPost, setSelectedPost] = useState<IPost | any>({});
   const [isModalActive, setIsModalActive] = useState(false);
 
-  async function loadPosts() {
-    try {
-      getPosts();
-      console.log(posts);
-    } catch (err) {
-      console.log(err);
-      if (err.response.data.errors.invalid_token) {
-        signOut();
-        toast.warn("sua sessão acabou!");
-      }
-    }
-  }
+  useEffect(() => {
+    if (socket == null) return;
+    socket.emit("message", "teste", () => {
+      console.log("mensagem foi emitida");
+    });
+  }, [socket]);
 
   useEffect(() => {
+    if (socket == null) return;
+    socket.on("test", (message: any, callback: any) => {
+      console.log(message);
+      callback();
+    });
+  }, [socket]);
+
+  useEffect(() => {
+    async function loadPosts() {
+      try {
+        getPosts();
+      } catch (err) {
+        console.log(err);
+        if (err.response.data.errors.invalid_token) {
+          signOut();
+          toast.warn("sua sessão acabou!");
+        }
+      }
+    }
     loadPosts();
-  }, [users]);
+  }, [getPosts, signOut]);
 
   setInterval(() => {
     setIsLoading(false);

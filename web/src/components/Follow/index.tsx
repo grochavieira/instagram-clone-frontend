@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import AuthContext from "../../contexts/auth";
+import AuthContext from "../../contexts/AuthProvider";
 
 import { toast } from "react-toastify";
 import User from "../../interfaces/User";
@@ -27,7 +27,7 @@ const FollowButton = ({ user }: FollowButtonProps) => {
       }
     }
     checkUserFollow();
-  }, []);
+  }, [currentUser.friends, user.username]);
 
   async function handleFollow() {
     try {

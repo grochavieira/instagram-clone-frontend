@@ -5,7 +5,7 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
 import Loading from "../../components/Loading";
-import AuthContext from "../../contexts/auth";
+import AuthContext from "../../contexts/AuthProvider";
 import downloadAppIcon from "../../assets/download-app-store.png";
 import downloadGoogleIcon from "../../assets/download-google-play.png";
 import "./styles.scss";
