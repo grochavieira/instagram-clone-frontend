@@ -72,6 +72,14 @@
       color: var(--color-highlight);
       margin-right: 0.9rem;
       cursor: pointer;
+
+      &:hover {
+        opacity: 0.8;
+      }
+
+      &:active {
+        transform: scale(0.9);
+      }
     }
 
     &__favorite-icon span svg {

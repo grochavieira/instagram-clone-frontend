@@ -30,7 +30,7 @@ const PostModal = ({ post, setIsModalActive }: PostModalProps) => {
     try {
       console.log(post?._id);
       const { data } = await api.delete(`/post/${post?._id}`);
-
+      setIsModalActive(false);
       getPosts();
       toast.success("post deletado com sucesso!");
       history.push("/");

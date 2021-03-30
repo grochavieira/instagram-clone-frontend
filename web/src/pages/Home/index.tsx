@@ -30,11 +30,26 @@ const Home = () => {
 
   useEffect(() => {
     if (socket == null) return;
-    socket.on("test", (message: any, callback: any) => {
+    socket.on("liked-post", (message: string) => {
       console.log(message);
-      callback();
+      getPosts();
     });
-  }, [socket]);
+
+    socket.on("post-deleted", (message: string) => {
+      console.log(message);
+      getPosts();
+    });
+
+    socket.on("post-created", (message: string) => {
+      console.log(message);
+      getPosts();
+    });
+
+    socket.on("commented-post", (message: string) => {
+      console.log(message);
+      getPosts();
+    });
+  }, [getPosts, socket]);
 
   useEffect(() => {
     async function loadPosts() {

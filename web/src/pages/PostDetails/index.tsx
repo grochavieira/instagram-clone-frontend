@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import { useHistory, useLocation } from "react-router";
 import ReactLoading from "react-loading";
 
+import { useSocket } from "../../contexts/SocketProvider";
 import PostModal from "../../components/PostModal";
 import Loading from "../../components/Loading";
 import LikeButton from "../../components/LikeButton";
@@ -19,6 +20,7 @@ import api from "../../services/api";
 import "./styles.scss";
 
 const PostDetails = () => {
+  const socket = useSocket();
   const { user, signOut } = useContext<any>(AuthContext);
   const history = useHistory();
   const { pathname } = useLocation();
@@ -38,8 +40,30 @@ const PostDetails = () => {
       setPostUser(data);
       setPost(postData);
     }
+
     getPostData();
   }, [postId]);
+
+  useEffect(() => {
+    if (socket == null) return;
+
+    async function getPostData() {
+      const { data: postData } = await api.get(`/post/${postId}`);
+      const { data } = await api.get(`/user/${postData.username}`);
+      setPostUser(data);
+      setPost(postData);
+    }
+
+    socket.on("commented-post", async (message: string) => {
+      console.log(message);
+      getPostData();
+    });
+
+    socket.on("liked-post", async (message: string) => {
+      console.log(message);
+      getPostData();
+    });
+  }, [postId, socket]);
 
   async function handleComment() {
     setIsCommentLoading(true);
