@@ -96,6 +96,8 @@
     align-items: center;
     width: 100%;
 
+    margin-bottom: 8rem;
+
     label {
       font-size: 3rem;
       background-color: var(--color-primary);
@@ -118,9 +120,11 @@
     button {
       font-size: 1.6rem;
       font-weight: 600;
+
       color: var(--color-primary);
       border: 0;
       background-color: var(--color-tertiary);
+
       padding: 1.5rem 10rem;
       margin: 2rem 0;
       border-radius: 5px;

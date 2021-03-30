@@ -2,8 +2,9 @@ import React, { useState, useEffect, useContext } from "react";
 import { FiArrowLeft } from "react-icons/fi";
 import { toast } from "react-toastify";
 
+import { Post as IPost } from "../../interfaces/Post";
 import Post from "../../components/Post";
-import UserCard from "../../components/UserCard";
+import PostModal from "../../components/PostModal";
 import PostLoading from "../../components/Shimmer/PostLoading";
 import OnlineFriendsLoading from "../../components/Shimmer/OnlineFriendsLoading";
 import UserProfileLoading from "../../components/Shimmer/UserProfileLoading";
@@ -11,28 +12,13 @@ import AuthContext from "../../contexts/auth";
 import api from "../../services/api";
 import "./styles.scss";
 
-interface Post {
-  _id: string;
-  user: string;
-  postUrl: string;
-  publicId: string;
-  username: string;
-  comments: Array<{
-    body: string;
-    username: string;
-    createdAt: string;
-  }>;
-  likes: Array<{
-    username: string;
-    createdAt: string;
-  }>;
-}
-
 const Home = () => {
   const { user, signOut } = useContext<any>(AuthContext);
   const [isLoading, setIsLoading] = useState(true);
   const [posts, setPosts] = useState([]);
   const [users, setUsers] = useState<any>("");
+  const [selectedPost, setSelectedPost] = useState<IPost | any>({});
+  const [isModalActive, setIsModalActive] = useState(false);
 
   async function loadPosts() {
     try {
@@ -57,62 +43,57 @@ const Home = () => {
 
   return (
     <>
-      {users ? (
-        <div className="home__search">
-          <div className="home__search__goback">
-            <button onClick={() => setUsers("")}>
-              <FiArrowLeft />
-            </button>
-          </div>
-          {users.map((user: any) => (
-            <UserCard key={user._id} user={user} />
-          ))}
+      {isModalActive && (
+        <PostModal setIsModalActive={setIsModalActive} post={selectedPost} />
+      )}
+      <div className="home">
+        <div className="home__main">
+          {isLoading ? (
+            <>
+              <OnlineFriendsLoading />
+              <PostLoading />
+            </>
+          ) : (
+            <>
+              <div className="home__main__online-friends"></div>
+              {[...posts].reverse().map((post: IPost) => (
+                <Post
+                  key={post._id}
+                  setSelectedPost={setSelectedPost}
+                  setIsModalActive={setIsModalActive}
+                  post={post}
+                />
+              ))}
+            </>
+          )}
         </div>
-      ) : (
-        <div className="home">
-          <div className="home__main">
+        <div className="home__aside">
+          <div className="home__aside__profile">
             {isLoading ? (
-              <>
-                <OnlineFriendsLoading />
-                <PostLoading />
-              </>
+              <UserProfileLoading />
             ) : (
               <>
-                <div className="home__main__online-friends"></div>
-                {[...posts].reverse().map((post: Post) => (
-                  <Post key={post._id} post={post} />
-                ))}
+                <div className="home__aside__profile__photo">
+                  <img
+                    src={
+                      user.profilePhoto !== null ? user.profilePhoto.url : ""
+                    }
+                    alt="user profile photo"
+                  />
+                </div>
+                <div className="home__aside__profile__info">
+                  <p className="home__aside__profile__info__username">
+                    {user.username}
+                  </p>
+                  <p className="home__aside__profile__info__name">
+                    {user.name}
+                  </p>
+                </div>
               </>
             )}
           </div>
-          <div className="home__aside">
-            <div className="home__aside__profile">
-              {isLoading ? (
-                <UserProfileLoading />
-              ) : (
-                <>
-                  <div className="home__aside__profile__photo">
-                    <img
-                      src={
-                        user.profilePhoto !== null ? user.profilePhoto.url : ""
-                      }
-                      alt="user profile photo"
-                    />
-                  </div>
-                  <div className="home__aside__profile__info">
-                    <p className="home__aside__profile__info__username">
-                      {user.username}
-                    </p>
-                    <p className="home__aside__profile__info__name">
-                      {user.name}
-                    </p>
-                  </div>
-                </>
-              )}
-            </div>
-          </div>
         </div>
-      )}
+      </div>
     </>
   );
 };

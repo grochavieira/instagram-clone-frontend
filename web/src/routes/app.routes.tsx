@@ -10,7 +10,7 @@ const AppRoutes = () => {
       <Switch>
         <Route exact path="/" component={Login} />
         <Route exact path="/register" component={Register} />
-        {/* <Redirect to="/" /> */}
+        <Redirect to="/" />
       </Switch>
     </BrowserRouter>
   );

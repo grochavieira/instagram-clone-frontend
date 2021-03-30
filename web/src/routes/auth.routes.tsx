@@ -21,8 +21,8 @@ const AuthRoutes = () => {
         <Route exact path="/post-content" component={PostContent} />
         <Route exact path="/post/:postId" component={PostDetails} />
         <Route exact path="/profile/:username" component={Profile} />
-        {/* <Route exact path="/404" component={Page404} />
-        <Redirect to="/404" /> */}
+        <Route exact path="/404" component={Page404} />
+        <Redirect to="/404" />
       </Switch>
     </BrowserRouter>
   );
