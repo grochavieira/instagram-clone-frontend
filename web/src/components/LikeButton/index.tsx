@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-import { BsHeartFill } from "react-icons/bs";
+import { BsHeartFill, BsHeart } from "react-icons/bs";
 import { toast } from "react-toastify";
 
 import AuthContext from "../../contexts/AuthProvider";
 import api from "../../services/api";
 import "./styles.scss";
 
-const LikeButton: React.FC<any> = ({ user, post: { likes, _id } }) => {
-  const { signOut } = useContext(AuthContext);
+const LikeButton: React.FC<any> = ({ post: { likes, _id } }) => {
+  const { user, signOut }: any = useContext(AuthContext);
   const [liked, setLiked] = useState(false);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const LikeButton: React.FC<any> = ({ user, post: { likes, _id } }) => {
   async function handleLike() {
     try {
       await api.post(`post/like/${_id}`);
-      // setLiked(!liked);
+      setLiked(!liked);
     } catch (err) {
       console.log(err.response.data.errors);
       if (err.response.data.errors.invalid_token) {
@@ -36,7 +36,7 @@ const LikeButton: React.FC<any> = ({ user, post: { likes, _id } }) => {
       onClick={handleLike}
       className={liked ? "like unliked" : "like liked"}
     >
-      <BsHeartFill />
+      {liked ? <BsHeartFill /> : <BsHeart />}
     </button>
   );
 };

@@ -13,12 +13,17 @@ interface ActivityCardProps {
 const ActivityCard = ({ activity }: ActivityCardProps) => {
   const history = useHistory();
 
+  function handleNotificationRoute() {
+    if (activity.notificationType !== "follow") {
+      history.push(`/post/${activity.postId}`);
+    } else {
+      history.push(`/profile/${activity.followingUsername}`);
+    }
+  }
+
   return (
     <>
-      <div
-        onClick={() => history.push(`/post/${activity.postId}`)}
-        className="activity-card"
-      >
+      <div onClick={handleNotificationRoute} className="activity-card">
         <div className="activity-card__profile-image">
           <img src={activity.profilePhotoURL} alt={activity.username} />
         </div>

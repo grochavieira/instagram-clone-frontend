@@ -157,7 +157,7 @@ const PostDetails = () => {
             <div className="dummy"></div>
             <div className="details__container__content__like-section">
               <div className="details__container__content__like-section__main">
-                <LikeButton user={postUser} post={post} />
+                <LikeButton post={post} />
                 <AiOutlineMessage />
                 <IoMdPaperPlane />
               </div>

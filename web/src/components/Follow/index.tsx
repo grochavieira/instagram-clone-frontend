@@ -35,9 +35,6 @@ const FollowButton = ({ user }: FollowButtonProps) => {
         friendUsername: user.username,
       });
       console.log(data);
-      toast.success(
-        `Agora você está ${isFollowing ? "não" : ""} seguindo ${user.username}`
-      );
       setIsFollowing(!isFollowing);
       await updateUser();
     } catch (err) {
@@ -45,8 +42,6 @@ const FollowButton = ({ user }: FollowButtonProps) => {
       if (err.response.data.errors.invalid_token) {
         signOut();
         toast.warn("sua sessão acabou!");
-      } else {
-        toast.error(`Não foi possível seguir o usuário ${user.username}`);
       }
     }
   }

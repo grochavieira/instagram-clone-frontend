@@ -135,7 +135,7 @@ const Post = ({
         </div>
         <div className="post__like-section">
           <div className="post__like-section__main-icons">
-            <LikeButton user={user} post={post} />
+            <LikeButton post={post} />
             <span onClick={() => commentInput.current.focus()}>
               <AiOutlineMessage />
             </span>
