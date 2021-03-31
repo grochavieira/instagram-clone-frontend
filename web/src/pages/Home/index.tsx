@@ -2,7 +2,10 @@ import React, { useState, useEffect, useContext } from "react";
 import { toast } from "react-toastify";
 import io from "socket.io-client";
 
-import { SocketProps } from "../../interfaces/Socket";
+import {
+  SocketPostProps,
+  SocketNotificationProps,
+} from "../../interfaces/Socket";
 import { Post as IPost } from "../../interfaces/Post";
 import Post from "../../components/Post";
 import PostModal from "../../components/PostModal";
@@ -34,7 +37,7 @@ const Home = () => {
   useEffect(() => {
     if (socket == null) return;
 
-    socket.on("post-created", ({ post: updatedPost }: SocketProps) => {
+    socket.on("post-created", ({ post: updatedPost }: SocketPostProps) => {
       if (
         user.friends.find(
           (friend: any) => friend.username === updatedPost.username
@@ -43,7 +46,7 @@ const Home = () => {
         setPosts([...posts, updatedPost]);
     });
 
-    socket.on("post-deleted", ({ post: updatedPost }: SocketProps) => {
+    socket.on("post-deleted", ({ post: updatedPost }: SocketPostProps) => {
       if (
         user.friends.find(
           (friend: any) => friend.username === updatedPost.username

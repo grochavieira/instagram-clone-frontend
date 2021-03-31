@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { BsHeart } from "react-icons/bs";
+import { BsHeart, BsHeartFill } from "react-icons/bs";
 import {
   AiOutlineHome,
   AiFillHome,
@@ -12,20 +12,58 @@ import { BiUserCircle } from "react-icons/bi";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 
+import { SocketNotificationProps } from "../../interfaces/Socket";
+import { Notification } from "../../interfaces/Notification";
 import SearchInput from "../SearchInput";
 import User from "../../interfaces/User";
 import ThemeSwitcher from "../ThemeSwitcher";
+import { useSocket } from "../../contexts/SocketProvider";
 import AuthContext from "../../contexts/AuthProvider";
 import api from "../../services/api";
 import "./styles.scss";
 
 const Header = () => {
   const { user, signOut } = useContext<any>(AuthContext);
+  const socket = useSocket();
   const { pathname } = useLocation();
+  const history = useHistory();
 
   const [showNavbar, setShowNavbar] = useState(false);
+  const [notifications, setNotifications] = useState<Notification[]>([]);
+  const [unreadNotifications, setUnreadNotifications] = useState(0);
 
-  const history = useHistory();
+  useEffect(() => {
+    async function getNotifications() {
+      try {
+        const { data } = await api.get("/notifications");
+        console.log(data);
+        setNotifications(data);
+        let counter = 0;
+        for (const notification of data) {
+          if (!notification.wasRead) {
+            counter++;
+          }
+        }
+        console.log({ counter });
+        setUnreadNotifications(counter);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    getNotifications();
+  }, []);
+
+  useEffect(() => {
+    if (socket == null) return;
+    socket.on("notification", ({ notification }: SocketNotificationProps) => {
+      if (user.username === notification.username) {
+        console.log({ notification });
+        setNotifications([...notifications, notification]);
+        setUnreadNotifications(unreadNotifications + 1);
+      }
+    });
+  }, [notifications, socket, unreadNotifications, user.username]);
 
   function handleLogout() {
     signOut();
@@ -65,8 +103,19 @@ const Header = () => {
               )}
             </Link>
           </li>
-          <li>
-            <BsHeart />
+          <li
+            onClick={() => history.push("/activity")}
+            className="header__navigation-bar__notifications"
+          >
+            {pathname === "/activity" ? <BsHeartFill /> : <BsHeart />}
+
+            {unreadNotifications > 0 ? (
+              <span className="header__navigation-bar__notifications__number">
+                {unreadNotifications}
+              </span>
+            ) : (
+              ""
+            )}
           </li>
           <li>
             <img

@@ -1,5 +1,10 @@
-import { Post } from "../interfaces/Post";
+import { Post } from "./Post";
+import { Notification } from "./Notification";
 
-export interface SocketProps {
+export interface SocketPostProps {
   post: Post;
+}
+
+export interface SocketNotificationProps {
+  notification: Notification;
 }

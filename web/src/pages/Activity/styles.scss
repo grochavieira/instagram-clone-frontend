@@ -1,0 +1,47 @@
+.activity {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 5rem 0rem;
+    display: flex;
+    background-color: var(--color-secondary);
+
+    &__container {
+        width: 100%;
+        max-width: 50rem;
+
+        &__empty {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            span {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                border: 5px solid var(--color-text);
+                border-radius: 50%;
+
+                svg {
+                    font-size: 10rem;
+                    padding: 2rem;
+
+                    margin-bottom: -0.5rem;
+                }
+            }
+
+            strong {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+
+            p {
+                font-size: 1.5rem;
+            }
+        }
+    }
+}

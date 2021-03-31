@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import { useHistory, useLocation } from "react-router";
 import ReactLoading from "react-loading";
 
-import { SocketProps } from "../../interfaces/Socket";
+import { SocketPostProps } from "../../interfaces/Socket";
 import { useSocket } from "../../contexts/SocketProvider";
 import PostModal from "../../components/PostModal";
 import Loading from "../../components/Loading";
@@ -52,11 +52,11 @@ const PostDetails = () => {
 
   useEffect(() => {
     if (socket == null) return;
-    socket.on("liked-post", ({ post: updatedPost }: SocketProps) => {
+    socket.on("liked-post", ({ post: updatedPost }: SocketPostProps) => {
       if (postId === updatedPost._id) setPost(updatedPost);
     });
 
-    socket.on("commented-post", ({ post: updatedPost }: SocketProps) => {
+    socket.on("commented-post", ({ post: updatedPost }: SocketPostProps) => {
       if (postId === updatedPost._id) setPost(updatedPost);
     });
   }, [postId, socket]);

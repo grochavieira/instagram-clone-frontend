@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 import ReactLoading from "react-loading";
 
 import { useSocket } from "../../contexts/SocketProvider";
-import { SocketProps } from "../../interfaces/Socket";
+import { SocketPostProps } from "../../interfaces/Socket";
 import { Comment, Post as IPost } from "../../interfaces/Post";
 import LikeButton from "../LikeButton";
 import AuthContext from "../../contexts/AuthProvider";
@@ -62,11 +62,11 @@ const Post = ({
 
   useEffect(() => {
     if (socket == null) return;
-    socket.on("liked-post", ({ post: updatedPost }: SocketProps) => {
+    socket.on("liked-post", ({ post: updatedPost }: SocketPostProps) => {
       if (post._id === updatedPost._id) setPost(updatedPost);
     });
 
-    socket.on("commented-post", ({ post: updatedPost }: SocketProps) => {
+    socket.on("commented-post", ({ post: updatedPost }: SocketPostProps) => {
       if (post._id === updatedPost._id) setPost(updatedPost);
     });
   }, [post._id, socket]);

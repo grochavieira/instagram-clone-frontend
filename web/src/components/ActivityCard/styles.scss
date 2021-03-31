@@ -1,0 +1,51 @@
+.activity-card {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+
+    padding: 2rem 0rem;
+    border-bottom: 1px solid var(--color-border);
+    transition: all 0.2s;
+    cursor: pointer;
+
+    &__profile-image {
+        margin-left: 2rem;
+
+        img {
+            width: 8rem;
+            height: 8rem;
+            border-radius: 50%;
+        }
+    }
+
+    &__body {
+        word-wrap: break-word;
+        margin-left: 2rem;
+        font-size: 1.6rem;
+    }
+
+    &:hover {
+        background-color: var(--color-border);
+    }
+
+    &:active {
+        opacity: 0.5;
+    }
+
+    &__hour {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+
+        text-transform: uppercase;
+
+        opacity: 0.7;
+    }
+}
+
+.activity-card:first-child {
+    border-top: 1px solid var(--color-border);
+}

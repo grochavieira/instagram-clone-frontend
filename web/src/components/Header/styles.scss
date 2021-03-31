@@ -20,6 +20,24 @@
   }
 
   &__navigation-bar {
+    &__notifications {
+      &__number {
+        position: absolute;
+        top: -0.8rem;
+        right: -1rem;
+
+        background-color: #ff3366;
+        border-radius: 50%;
+        width: 2rem;
+        height: 2rem;
+
+        text-align: center;
+
+        font-size: 1.5rem;
+        color: #fff;
+      }
+    }
+
     ul {
       list-style-type: none;
       display: flex;
