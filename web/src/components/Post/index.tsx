@@ -10,6 +10,8 @@ import "moment/min/moment-with-locales";
 import { toast } from "react-toastify";
 import ReactLoading from "react-loading";
 
+import { useSocket } from "../../contexts/SocketProvider";
+import { SocketProps } from "../../interfaces/Socket";
 import { Comment, Post as IPost } from "../../interfaces/Post";
 import LikeButton from "../LikeButton";
 import AuthContext from "../../contexts/AuthProvider";
@@ -23,10 +25,16 @@ interface PostProps {
   setIsModalActive(value: boolean): void;
 }
 
-const Post = ({ post, setSelectedPost, setIsModalActive }: PostProps) => {
+const Post = ({
+  post: receivedPost,
+  setSelectedPost,
+  setIsModalActive,
+}: PostProps) => {
+  const socket = useSocket();
   const { user, signOut } = useContext<any>(AuthContext);
   const history = useHistory();
   const commentInput: any = useRef(null);
+  const [post, setPost] = useState<IPost>(receivedPost);
   const [isCommentLoading, setIsCommentLoading] = useState(false);
   const [commentsPreview, setCommentsPreview] = useState<Comment[] | any>([]);
   const [comment, setComment] = useState("");
@@ -51,6 +59,17 @@ const Post = ({ post, setSelectedPost, setIsModalActive }: PostProps) => {
     post.username,
     user,
   ]);
+
+  useEffect(() => {
+    if (socket == null) return;
+    socket.on("liked-post", ({ post: updatedPost }: SocketProps) => {
+      if (post._id === updatedPost._id) setPost(updatedPost);
+    });
+
+    socket.on("commented-post", ({ post: updatedPost }: SocketProps) => {
+      if (post._id === updatedPost._id) setPost(updatedPost);
+    });
+  }, [post._id, socket]);
 
   useEffect(() => {
     if (post.postUrl.includes(".mp4")) {

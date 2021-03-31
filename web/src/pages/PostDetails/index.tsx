@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import { useHistory, useLocation } from "react-router";
 import ReactLoading from "react-loading";
 
+import { SocketProps } from "../../interfaces/Socket";
 import { useSocket } from "../../contexts/SocketProvider";
 import PostModal from "../../components/PostModal";
 import Loading from "../../components/Loading";
@@ -35,33 +36,28 @@ const PostDetails = () => {
 
   useEffect(() => {
     async function getPostData() {
-      const { data: postData } = await api.get(`/post/${postId}`);
-      const { data } = await api.get(`/user/${postData.username}`);
-      setPostUser(data);
-      setPost(postData);
+      try {
+        const { data: postData } = await api.get(`/post/${postId}`);
+        const { data: userData } = await api.get(`/user/${postData.username}`);
+
+        setPostUser(userData);
+        setPost(postData);
+      } catch (err) {
+        history.push("/");
+      }
     }
 
     getPostData();
-  }, [postId]);
+  }, [history, postId]);
 
   useEffect(() => {
     if (socket == null) return;
-
-    async function getPostData() {
-      const { data: postData } = await api.get(`/post/${postId}`);
-      const { data } = await api.get(`/user/${postData.username}`);
-      setPostUser(data);
-      setPost(postData);
-    }
-
-    socket.on("commented-post", async (message: string) => {
-      console.log(message);
-      getPostData();
+    socket.on("liked-post", ({ post: updatedPost }: SocketProps) => {
+      if (postId === updatedPost._id) setPost(updatedPost);
     });
 
-    socket.on("liked-post", async (message: string) => {
-      console.log(message);
-      getPostData();
+    socket.on("commented-post", ({ post: updatedPost }: SocketProps) => {
+      if (postId === updatedPost._id) setPost(updatedPost);
     });
   }, [postId, socket]);
 

@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { Post } from "../../interfaces/Post";
-import PostContext from "../../contexts/PostProvider";
 import AuthContext from "../../contexts/AuthProvider";
 import api from "../../services/api";
 import "./styles.scss";
@@ -15,7 +14,6 @@ interface PostModalProps {
 
 const PostModal = ({ post, setIsModalActive }: PostModalProps) => {
   const { user } = useContext<any>(AuthContext);
-  const { getPosts } = useContext(PostContext);
   const history = useHistory();
 
   const [isCurrentUserPost, setIsCurrentUserPost] = useState(false);
@@ -31,7 +29,6 @@ const PostModal = ({ post, setIsModalActive }: PostModalProps) => {
       console.log(post?._id);
       const { data } = await api.delete(`/post/${post?._id}`);
       setIsModalActive(false);
-      getPosts();
       toast.success("post deletado com sucesso!");
       history.push("/");
     } catch (err) {

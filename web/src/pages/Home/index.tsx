@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { toast } from "react-toastify";
 import io from "socket.io-client";
 
+import { SocketProps } from "../../interfaces/Socket";
 import { Post as IPost } from "../../interfaces/Post";
 import Post from "../../components/Post";
 import PostModal from "../../components/PostModal";
@@ -10,46 +11,51 @@ import OnlineFriendsLoading from "../../components/Shimmer/OnlineFriendsLoading"
 import UserProfileLoading from "../../components/Shimmer/UserProfileLoading";
 import { useSocket } from "../../contexts/SocketProvider";
 import AuthContext from "../../contexts/AuthProvider";
+import api from "../../services/api";
 import "./styles.scss";
-import PostContext from "../../contexts/PostProvider";
 
 const Home = () => {
   const socket = useSocket();
   const { user, signOut } = useContext<any>(AuthContext);
-  const { posts, getPosts } = useContext(PostContext);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedPost, setSelectedPost] = useState<IPost | any>({});
   const [isModalActive, setIsModalActive] = useState(false);
+  const [posts, setPosts] = useState<IPost[] | any>([]);
+
+  async function getPosts() {
+    try {
+      const { data } = await api.get("/post");
+      setPosts(data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   useEffect(() => {
     if (socket == null) return;
-    socket.emit("message", "teste", () => {
-      console.log("mensagem foi emitida");
-    });
-  }, [socket]);
 
-  useEffect(() => {
-    if (socket == null) return;
-    socket.on("liked-post", (message: string) => {
-      console.log(message);
-      getPosts();
+    socket.on("post-created", ({ post: updatedPost }: SocketProps) => {
+      if (
+        user.friends.find(
+          (friend: any) => friend.username === updatedPost.username
+        )
+      )
+        setPosts([...posts, updatedPost]);
     });
 
-    socket.on("post-deleted", (message: string) => {
-      console.log(message);
-      getPosts();
+    socket.on("post-deleted", ({ post: updatedPost }: SocketProps) => {
+      if (
+        user.friends.find(
+          (friend: any) => friend.username === updatedPost.username
+        )
+      ) {
+        const newPosts = posts.filter(
+          (post: IPost) => post._id !== updatedPost._id
+        );
+        setPosts(newPosts);
+      }
     });
-
-    socket.on("post-created", (message: string) => {
-      console.log(message);
-      getPosts();
-    });
-
-    socket.on("commented-post", (message: string) => {
-      console.log(message);
-      getPosts();
-    });
-  }, [getPosts, socket]);
+  }, [posts, socket, user.friends]);
 
   useEffect(() => {
     async function loadPosts() {
@@ -64,7 +70,7 @@ const Home = () => {
       }
     }
     loadPosts();
-  }, [getPosts, signOut]);
+  }, [signOut]);
 
   setInterval(() => {
     setIsLoading(false);

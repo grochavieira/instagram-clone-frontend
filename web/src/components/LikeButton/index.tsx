@@ -19,10 +19,8 @@ const LikeButton: React.FC<any> = ({ user, post: { likes, _id } }) => {
   async function handleLike() {
     try {
       await api.post(`post/like/${_id}`);
-      setLiked(!liked);
+      // setLiked(!liked);
     } catch (err) {
-      console.log("ENTROU AQUI");
-      console.log(err);
       console.log(err.response.data.errors);
       if (err.response.data.errors.invalid_token) {
         signOut();
