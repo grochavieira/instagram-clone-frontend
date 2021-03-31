@@ -15,7 +15,6 @@ import { toast } from "react-toastify";
 import { SocketNotificationProps } from "../../interfaces/Socket";
 import { Notification } from "../../interfaces/Notification";
 import SearchInput from "../SearchInput";
-import User from "../../interfaces/User";
 import ThemeSwitcher from "../ThemeSwitcher";
 import { useSocket } from "../../contexts/SocketProvider";
 import AuthContext from "../../contexts/AuthProvider";
@@ -25,7 +24,7 @@ import "./styles.scss";
 const Header = () => {
   const { user, signOut } = useContext<any>(AuthContext);
   const socket = useSocket();
-  const { pathname } = useLocation();
+  let { pathname } = useLocation();
   const history = useHistory();
 
   const [showNavbar, setShowNavbar] = useState(false);
@@ -36,7 +35,6 @@ const Header = () => {
     async function getNotifications() {
       try {
         const { data } = await api.get("/notifications");
-        console.log(data);
         setNotifications(data);
         let counter = 0;
         for (const notification of data) {
@@ -44,7 +42,6 @@ const Header = () => {
             counter++;
           }
         }
-        console.log({ counter });
         setUnreadNotifications(counter);
       } catch (err) {
         console.log(err);
@@ -58,16 +55,30 @@ const Header = () => {
     if (socket == null) return;
     socket.on("notification", ({ notification }: SocketNotificationProps) => {
       if (user.username === notification.username) {
-        console.log({ notification });
         setNotifications([...notifications, notification]);
         setUnreadNotifications(unreadNotifications + 1);
       }
     });
-  }, [notifications, socket, unreadNotifications, user.username]);
+    if (pathname === "/activity") setUnreadNotifications(0);
+  }, [notifications, pathname, socket, unreadNotifications, user.username]);
 
   function handleLogout() {
     signOut();
     history.push("/");
+  }
+
+  async function handleNotifications() {
+    try {
+      notifications.forEach(async (notification: Notification) => {
+        if (!notification.wasRead) {
+          await api.put(`/notifications/${notification._id}`);
+        }
+      });
+      setUnreadNotifications(0);
+      history.push("/activity");
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
@@ -104,7 +115,7 @@ const Header = () => {
             </Link>
           </li>
           <li
-            onClick={() => history.push("/activity")}
+            onClick={handleNotifications}
             className="header__navigation-bar__notifications"
           >
             {pathname === "/activity" ? <BsHeartFill /> : <BsHeart />}

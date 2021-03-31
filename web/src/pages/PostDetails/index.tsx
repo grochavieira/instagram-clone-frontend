@@ -59,7 +59,11 @@ const PostDetails = () => {
     socket.on("commented-post", ({ post: updatedPost }: SocketPostProps) => {
       if (postId === updatedPost._id) setPost(updatedPost);
     });
-  }, [postId, socket]);
+
+    socket.on("post-deleted", ({ post: updatedPost }: SocketPostProps) => {
+      if (postId === updatedPost._id) history.push("/");
+    });
+  }, [history, postId, socket]);
 
   async function handleComment() {
     setIsCommentLoading(true);

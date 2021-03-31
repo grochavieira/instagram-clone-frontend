@@ -36,12 +36,15 @@ const Activity = () => {
 
   useEffect(() => {
     if (socket == null) return;
-    socket.on("notification", ({ notification }: SocketNotificationProps) => {
-      if (user.username === notification.username) {
-        console.log({ notification });
-        setNotifications([notification, ...notifications]);
+    socket.on(
+      "notification",
+      async ({ notification }: SocketNotificationProps) => {
+        if (user.username === notification.username) {
+          setNotifications([notification, ...notifications]);
+          await api.put(`/notifications/${notification._id}`);
+        }
       }
-    });
+    );
   }, [notifications, socket, user.username]);
 
   return (

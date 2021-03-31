@@ -48,6 +48,7 @@ const Home = () => {
 
     socket.on("post-deleted", ({ post: updatedPost }: SocketPostProps) => {
       if (
+        user.username === updatedPost.username ||
         user.friends.find(
           (friend: any) => friend.username === updatedPost.username
         )
@@ -58,7 +59,7 @@ const Home = () => {
         setPosts(newPosts);
       }
     });
-  }, [posts, socket, user.friends]);
+  }, [posts, socket, user.friends, user.username]);
 
   useEffect(() => {
     async function loadPosts() {
@@ -73,6 +74,9 @@ const Home = () => {
       }
     }
     loadPosts();
+    return () => {
+      setPosts([]);
+    };
   }, [signOut]);
 
   setInterval(() => {
