@@ -76,7 +76,10 @@ const FooterMobile = () => {
         <span onClick={() => history.push("/")} className="footer-mobile__item">
           {pathname !== "/" ? <AiOutlineHome /> : <AiFillHome />}
         </span>
-        <span onClick={() => history.push("/")} className="footer-mobile__item">
+        <span
+          onClick={() => history.push("/search")}
+          className="footer-mobile__item"
+        >
           <AiOutlineSearch />
         </span>
 

@@ -11,7 +11,7 @@ function App() {
     <>
       <AuthProvider>
         <Routes />
-        <ToastContainer />
+        <ToastContainer autoClose={3000} />
       </AuthProvider>
     </>
   );
