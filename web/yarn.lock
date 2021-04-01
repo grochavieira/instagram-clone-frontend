@@ -1362,7 +1362,7 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
-"@npmcli/arborist@^2.0.0", "@npmcli/arborist@^2.2.9":
+"@npmcli/arborist@^2.0.0", "@npmcli/arborist@^2.3.0":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@npmcli/arborist/-/arborist-2.3.0.tgz#0d3273f85691711b10a85f82dffd235d755a3f57"
   integrity sha512-4z8x8jImp/Clwol4sgmR6qdntLQZDxNFabBSbyr9EB11cyWHyqhRvBKip/1sBTcQAScIwuFT64MOu/HI4a5Nkw==
@@ -1400,7 +1400,7 @@
   resolved "https://registry.yarnpkg.com/@npmcli/ci-detect/-/ci-detect-1.3.0.tgz#6c1d2c625fb6ef1b9dea85ad0a5afcbef85ef22a"
   integrity sha512-oN3y7FAROHhrAt7Rr7PnTSwrHrZVRTS2ZbyxeQwSSYD0ifwM3YNgQqbaRmjcWoPyq77MjchusjJDspbzMmip1Q==
 
-"@npmcli/config@^2.0.0":
+"@npmcli/config@^2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@npmcli/config/-/config-2.1.0.tgz#fabfbbbebc3a417db672be4014a7ba71e6bb37f3"
   integrity sha512-vYTUs6b1ORqWgWFrLkyscdhyhtB1YhbtEM2iaH5rM5Bv1/tWqZEpspGLh+Re6YuPRUmXulzkf3iWhu9ntz8cVw==
@@ -8877,13 +8877,13 @@ npm-user-validate@^1.0.1:
   integrity sha512-uQwcd/tY+h1jnEaze6cdX/LrhWhoBxfSknxentoqmIuStxUExxjWd3ULMLFPiFUrZKbOVMowH6Jq2FRWfmhcEw==
 
 npm@^7.7.6:
-  version "7.7.6"
-  resolved "https://registry.yarnpkg.com/npm/-/npm-7.7.6.tgz#8cd025b76498809cdea4bf1bfff9b049115cc6a9"
-  integrity sha512-4dOo2M/SRzRNWH1e0tmcJMFkDjHJKsJQlxpi3OgJ/N/BsIvbdQFFMioG0vmuFVAev7P2f/rShApb18jk5RpdXA==
+  version "7.8.0"
+  resolved "https://registry.yarnpkg.com/npm/-/npm-7.8.0.tgz#9fc9ff97d33338baacfd0fd23c8fe932deadce38"
+  integrity sha512-9AC3Dj9OUWaUdmTmEVttE/1MWkfF7+sAKPRo9tKEyjo49AXmHQBn+RC33M9dima91mEMqDIA71xyRm4VmhDipg==
   dependencies:
-    "@npmcli/arborist" "^2.2.9"
+    "@npmcli/arborist" "^2.3.0"
     "@npmcli/ci-detect" "^1.2.0"
-    "@npmcli/config" "^2.0.0"
+    "@npmcli/config" "^2.1.0"
     "@npmcli/run-script" "^1.8.4"
     abbrev "~1.1.1"
     ansicolors "~0.3.2"
