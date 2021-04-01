@@ -1,45 +1,56 @@
 .profile {
-    padding-top: 8rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    padding-top: 8rem;
+
     background-color: var(--color-secondary);
 
     &__main {
         display: flex;
+        justify-content: center;
         align-items: center;
+
         width: 100%;
         max-width: 100rem;
-        padding-left: 10rem;
+
         padding-bottom: 5rem;
+
         &__image {
             margin-right: 10rem;
+
             img {
-                width: 18rem;
-                height: 18rem;
+                width: 14rem;
+                height: 14rem;
                 border-radius: 50%;
             }
         }
 
         &__info {
             &__username {
-                font-size: 3.5rem;
-                margin-bottom: 2rem;
                 display: flex;
-                justify-content: center;
+                justify-content: flex-start;
                 align-items: center;
 
+                font-size: 3rem;
+                margin-bottom: 2rem;
+
                 button {
-                    border: 0;
                     color: var(--color-highlight);
                     background-color: var(--color-secondary);
-                    border: 1px solid var(--color-border);
-                    padding: 0.8rem 1rem;
+
+                    border: 0;
                     border-radius: 3px;
+                    border: 1px solid var(--color-border);
+
+                    padding: 0.8rem 1rem;
                     margin: 0 2rem;
+
                     font-size: 1.3rem;
                     font-weight: 600;
+
                     transition: opacity transform 0.2s;
                     cursor: pointer;
 
@@ -67,16 +78,17 @@
             }
 
             &__social {
-                font-size: 2rem;
                 display: flex;
+                font-size: 1.8rem;
                 margin-bottom: 2rem;
+
                 &__item {
                     margin-right: 2rem;
                 }
             }
 
             &__name {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
         }
     }
@@ -113,12 +125,14 @@
     }
 
     &__content {
+        margin-bottom: 10rem;
+
         &__publications {
             width: 100%;
-            max-width: 60rem;
+            max-width: 70rem;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-            grid-gap: 0.3rem;
+            grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+            grid-gap: 1rem;
 
             div img {
                 width: 100%;
@@ -127,6 +141,113 @@
             div video {
                 width: 100%;
                 height: 100%;
+            }
+        }
+    }
+}
+
+@media (max-width: 700px) {
+    .profile {
+        &__main {
+            &__image {
+                margin-right: 5rem;
+
+                img {
+                    width: 14rem;
+                    height: 14rem;
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .profile {
+        &__main {
+            &__image {
+                margin-right: 5rem;
+
+                img {
+                    width: 12rem;
+                    height: 12rem;
+                    border-radius: 50%;
+                }
+            }
+
+            &__info {
+                &__username {
+                    font-size: 2rem;
+
+                    button {
+                        font-size: 1rem;
+                    }
+                }
+
+                &__social {
+                    font-size: 1.5rem;
+                }
+
+                &__name {
+                    font-size: 1.5rem;
+                }
+            }
+        }
+
+        &__content {
+            &__publications {
+                width: 100%;
+                max-width: 40rem;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+                grid-gap: 1rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 520px) {
+    .profile {
+        &__main {
+            padding-left: 2rem;
+            padding-right: 2rem;
+            padding-bottom: 2rem;
+            &__image {
+                margin-right: 2rem;
+
+                img {
+                    width: 9rem;
+                    height: 9rem;
+                    border-radius: 50%;
+                }
+            }
+
+            &__info {
+                &__username {
+                    font-size: 1.5rem;
+
+                    button {
+                        font-size: 1rem;
+                    }
+                }
+
+                &__social {
+                    font-size: 1rem;
+                }
+
+                &__name {
+                    font-size: 1.2rem;
+                }
+            }
+        }
+
+        &__content {
+            &__publications {
+                width: 100%;
+                max-width: 40rem;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+                grid-gap: 1rem;
             }
         }
     }

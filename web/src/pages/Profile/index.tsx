@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
-import { BsGearWide, BsBookmark } from "react-icons/bs";
-import { MdGridOn, MdFlashOn } from "react-icons/md";
-import { BiUserPin } from "react-icons/bi";
+import { FiSettings } from "react-icons/fi";
+import { MdGridOn } from "react-icons/md";
 
 import FollowButton from "../../components/Follow";
 import ProfileLoading from "../../components/Shimmer/ProfileLoading";
@@ -64,13 +63,17 @@ const Profile = () => {
                     <FollowButton key={user._id} user={user} />
                   ) : (
                     <>
-                      <button>Editar perfil</button> <BsGearWide />
+                      <button>Editar Perfil</button> <FiSettings />
                     </>
                   )}
                 </div>
                 <div className="profile__main__info__social">
                   <div className="profile__main__info__social__item">
                     <strong>{userPosts.length}</strong> publicações
+                  </div>
+                  <div className="profile__main__info__social__item">
+                    <strong> 0 </strong>
+                    seguidores
                   </div>
                   <div className="profile__main__info__social__item">
                     <strong>{user.friends ? user.friends.length : 0}</strong>{" "}
