@@ -47,3 +47,26 @@
         }
     }
 }
+
+@media (max-width: 500px) {
+    .activity {
+        &__container {
+            &__empty {
+                span {
+                    border: 3px solid var(--color-text);
+                    svg {
+                        font-size: 8rem;
+                    }
+                }
+
+                strong {
+                    font-size: 2rem;
+                }
+
+                p {
+                    font-size: 1.1rem;
+                }
+            }
+        }
+    }
+}
