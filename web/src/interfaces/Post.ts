@@ -6,6 +6,7 @@ export interface Caption {
 export interface Comment {
   body: string;
   username: string;
+  followingUsername: string;
   profilePhotoURL: string;
   createdAt: string;
 }

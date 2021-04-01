@@ -170,9 +170,9 @@ const PostDetails = () => {
                     <div className="details__container__content__comments__item__owner">
                       <img
                         src={comment.profilePhotoURL}
-                        alt={comment.username}
+                        alt={comment.followingUsername}
                       />
-                      <strong>{comment.username}</strong>
+                      <strong>{comment.followingUsername}</strong>
                       <span
                         className={
                           "details__container__content__comments__item__owner__hour"

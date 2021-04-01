@@ -52,6 +52,7 @@ const Post = ({
 
       if (post.comments.length > 0) {
         setCommentsPreview([post.comments[0]]);
+        console.log(post.comments);
       }
     }
     getPostUser();
@@ -88,6 +89,7 @@ const Post = ({
       const newComment = {
         body: comment,
         username: post.username,
+        followingUsername: user.username,
         createdAt: String(new Date()),
       };
       setCommentsPreview([...commentsPreview, newComment]);
@@ -184,12 +186,15 @@ const Post = ({
               )}
               {post.comments.map((comment: Comment) => (
                 <div
-                  key={comment.createdAt + comment.username}
+                  key={comment.createdAt + comment.followingUsername}
                   className="post__comments-mobile__item"
                 >
                   <div className="post__comments-mobile__item__owner">
-                    <img src={comment.profilePhotoURL} alt={comment.username} />
-                    <strong>{comment.username}</strong>
+                    <img
+                      src={comment.profilePhotoURL}
+                      alt={comment.followingUsername}
+                    />
+                    <strong>{comment.followingUsername}</strong>
                     <span className={"post__comments-mobile__item__hour"}>
                       <TimeAgo date={comment.createdAt} formatter={formatter} />
                     </span>
@@ -224,7 +229,7 @@ const Post = ({
                 commentsPreview.length > 0 &&
                 commentsPreview.map((comment: Comment) => (
                   <p key={comment.createdAt}>
-                    <strong>{comment.username}</strong> {comment.body}
+                    <strong>{comment.followingUsername}</strong> {comment.body}
                     <span className="hour">
                       <TimeAgo date={comment.createdAt} formatter={formatter} />
                     </span>
