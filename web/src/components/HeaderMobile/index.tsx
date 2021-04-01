@@ -1,16 +1,25 @@
-import React, { useContext } from "react";
-import { FiLogOut, FiSun } from "react-icons/fi";
+import React, { useContext, useState } from "react";
+import { FiLogOut, FiSun, FiMoon } from "react-icons/fi";
 
+import useTheme from "../../utils/useTheme";
+import { selectTheme } from "../ThemeSwitcher";
 import AuthContext from "../../contexts/AuthProvider";
 import "./styles.scss";
 
 const HeaderMobile = () => {
   const { signOut } = useContext<any>(AuthContext);
+
+  const [isDarkModeEnabled, setIsDarkModeEnabled] = useState(selectTheme());
+  useTheme(isDarkModeEnabled ? "dark" : "light");
+
   return (
     <>
       <div className="header-mobile">
-        <div className="header-mobile__item">
-          <FiSun />
+        <div
+          onClick={() => setIsDarkModeEnabled(!isDarkModeEnabled)}
+          className="header-mobile__item"
+        >
+          {isDarkModeEnabled ? <FiMoon /> : <FiSun />}
         </div>
 
         <span className="header-mobile__title">Instagram</span>

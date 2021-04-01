@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import useTheme from "../../utils/useTheme";
 import "./styles.scss";
 
-const selectTheme = () => {
+export const selectTheme = () => {
   const themeType = localStorage.getItem("themeType");
   if (!themeType) return;
   const theme = JSON.parse(themeType);
