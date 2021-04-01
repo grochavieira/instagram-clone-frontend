@@ -19,7 +19,8 @@
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^3.0.0",
     "jwt-decoder": "^0.0.0",
-    "moment": "^2.18.1",
+    "moment": "2.24.0",
+    "moment-timezone": "^0.5.28",
     "node-sass": "^4.14.1",
     "npm": "^7.7.6",
     "react": "^16.13.1",
@@ -66,6 +67,6 @@
     "@types/socket.io-client": "^1.4.36"
   },
   "resolutions": {
-    "**/moment": ">=2.25.3"
-  }
+    "moment": "2.24.0"
+    }
 }
