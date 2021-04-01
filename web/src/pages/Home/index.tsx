@@ -92,12 +92,10 @@ const Home = () => {
         <div className="home__main">
           {isLoading ? (
             <>
-              <OnlineFriendsLoading />
               <PostLoading />
             </>
           ) : (
             <>
-              <div className="home__main__online-friends"></div>
               {[...posts].reverse().map((post: IPost) => (
                 <Post
                   key={post._id}

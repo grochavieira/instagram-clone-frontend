@@ -224,3 +224,9 @@
     color: var(--color-highlight);
   }
 }
+
+@media (max-width: 700px) {
+  .post {
+    border-radius: 0;
+  }
+}
