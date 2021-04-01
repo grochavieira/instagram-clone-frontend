@@ -14,13 +14,12 @@
     "@types/react-dom": "^16.9.0",
     "@types/react-lottie": "^1.2.5",
     "@types/react-router-dom": "^5.1.5",
+    "@types/react-timeago": "^4.1.2",
     "axios": "^0.20.0",
     "i": "^0.3.6",
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^3.0.0",
     "jwt-decoder": "^0.0.0",
-    "moment": "2.24.0",
-    "moment-timezone": "^0.5.28",
     "node-sass": "^4.14.1",
     "npm": "^7.7.6",
     "react": "^16.13.1",
@@ -32,6 +31,7 @@
     "react-lottie": "^1.2.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+    "react-timeago": "^5.2.0",
     "react-toastify": "^7.0.3",
     "react-video-js-player": "^1.1.1",
     "socket.io-client": "2.3.0",
@@ -62,11 +62,10 @@
   "devDependencies": {
     "@types/axios": "^0.14.0",
     "@types/jsonwebtoken": "^8.5.1",
-    "@types/moment": "^2.13.0",
     "@types/react-toastify": "^4.1.0",
     "@types/socket.io-client": "^1.4.36"
   },
   "resolutions": {
     "moment": "2.24.0"
-    }
+  }
 }

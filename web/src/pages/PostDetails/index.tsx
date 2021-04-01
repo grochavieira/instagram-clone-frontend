@@ -4,11 +4,12 @@ import { AiOutlineMessage } from "react-icons/ai";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { IoMdPaperPlane } from "react-icons/io";
 // import VideoPlayer from "react-video-js-player";
-import moment from "moment";
-// import "moment/min/moment-with-locales";
 import { toast } from "react-toastify";
 import { useHistory, useLocation } from "react-router";
 import ReactLoading from "react-loading";
+import TimeAgo from "react-timeago";
+import brazilianStrings from "react-timeago/lib/language-strings/pt-br";
+import buildFormatter from "react-timeago/lib/formatters/buildFormatter";
 
 import PostComponent from "../../components/Post";
 import { SocketPostProps } from "../../interfaces/Socket";
@@ -28,6 +29,8 @@ const PostDetails = () => {
   const { pathname } = useLocation();
   const postId = pathname.replace("/post/", "");
   const commentInput: any = useRef(null);
+
+  const formatter = buildFormatter(brazilianStrings);
 
   const [isModalActive, setIsModalActive] = useState(false);
   const [isCommentLoading, setIsCommentLoading] = useState(false);
@@ -152,7 +155,7 @@ const PostDetails = () => {
                           "details__container__content__comments__item__owner__hour"
                         }
                       >
-                        {moment(post.createdAt).fromNow(true)}
+                        <TimeAgo date={post.createdAt} formatter={formatter} />
                       </span>
                     </div>
 
@@ -175,7 +178,10 @@ const PostDetails = () => {
                           "details__container__content__comments__item__owner__hour"
                         }
                       >
-                        {moment(comment.createdAt).fromNow(true)}
+                        <TimeAgo
+                          date={comment.createdAt}
+                          formatter={formatter}
+                        />
                       </span>
                     </div>
 
@@ -200,7 +206,9 @@ const PostDetails = () => {
               </div>
               <div className="details__container__content__likes">
                 <strong>{post.likes.length} curtidas</strong>
-                <p>{moment(post.createdAt).fromNow(true)}</p>
+                <p>
+                  <TimeAgo date={post.createdAt} formatter={formatter} />
+                </p>
               </div>
               <div className="details__container__content__publish-comment">
                 <input

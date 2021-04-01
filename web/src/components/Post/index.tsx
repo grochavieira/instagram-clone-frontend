@@ -5,10 +5,11 @@ import { AiOutlineMessage } from "react-icons/ai";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { IoMdPaperPlane } from "react-icons/io";
 import VideoPlayer from "react-video-js-player";
-import moment from "moment";
-// import "moment/min/moment-with-locales";
 import { toast } from "react-toastify";
 import ReactLoading from "react-loading";
+import TimeAgo from "react-timeago";
+import brazilianStrings from "react-timeago/lib/language-strings/pt-br";
+import buildFormatter from "react-timeago/lib/formatters/buildFormatter";
 
 import { useSocket } from "../../contexts/SocketProvider";
 import { SocketPostProps } from "../../interfaces/Socket";
@@ -41,6 +42,8 @@ const Post = ({
   const [comment, setComment] = useState("");
   const [isPostImage, setIsPostImage] = useState(true);
   const [postUser, setPostUser] = useState<any>({});
+
+  const formatter = buildFormatter(brazilianStrings);
 
   useEffect(() => {
     async function getPostUser() {
@@ -154,7 +157,9 @@ const Post = ({
           <p>{post.likes.length} curtidas</p>
         </div>
         <div className="post__hours">
-          <p>{moment(post.createdAt).fromNow(true)}</p>
+          <p>
+            <TimeAgo date={post.createdAt} formatter={formatter} />
+          </p>
         </div>
         {pathname.includes("/post") ? (
           <>
@@ -170,7 +175,7 @@ const Post = ({
                     />
                     <strong>{post.username}</strong>
                     <span className={"post__comments-mobile__item__hour"}>
-                      {moment(post.createdAt).fromNow(true)}
+                      <TimeAgo date={post.createdAt} formatter={formatter} />
                     </span>
                   </div>
 
@@ -186,7 +191,7 @@ const Post = ({
                     <img src={comment.profilePhotoURL} alt={comment.username} />
                     <strong>{comment.username}</strong>
                     <span className={"post__comments-mobile__item__hour"}>
-                      {moment(comment.createdAt).fromNow(true)}
+                      <TimeAgo date={comment.createdAt} formatter={formatter} />
                     </span>
                   </div>
 
@@ -221,7 +226,7 @@ const Post = ({
                   <p key={comment.createdAt}>
                     <strong>{comment.username}</strong> {comment.body}
                     <span className="hour">
-                      {moment(comment.createdAt).fromNow(true)}
+                      <TimeAgo date={comment.createdAt} formatter={formatter} />
                     </span>
                   </p>
                 ))}
