@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import { useHistory, useLocation } from "react-router";
 import ReactLoading from "react-loading";
 
+import PostComponent from "../../components/Post";
 import { SocketPostProps } from "../../interfaces/Socket";
 import { useSocket } from "../../contexts/SocketProvider";
 import PostModal from "../../components/PostModal";
@@ -33,6 +34,14 @@ const PostDetails = () => {
   const [comment, setComment] = useState("");
   const [post, setPost] = useState<Post | any>(null);
   const [postUser, setPostUser] = useState<any>({});
+  const [selectedPost, setSelectedPost] = useState<Post | any>({});
+  const [windowWidth, setWindowWidth]: any = useState(window.innerWidth);
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setWindowWidth(window.innerWidth);
+    });
+  }, []);
 
   useEffect(() => {
     async function getPostData() {
@@ -102,104 +111,122 @@ const PostDetails = () => {
       {isModalActive && (
         <PostModal setIsModalActive={setIsModalActive} post={post} />
       )}
+
       <div className="details">
-        <div className="details__container">
-          <div className="details__container__image">
-            <img src={post.postUrl} alt="post" />
-          </div>
-          <div className="details__container__content">
-            <div className="details__container__content__info">
-              <div
-                onClick={() => history.push(`/profile/${postUser.username}`)}
-                className="details__container__content__info__owner"
-              >
-                <img src={postUser.profilePhoto.url} alt={postUser.username} />
-                <strong>{postUser.username}</strong>
-              </div>
-              <HiDotsHorizontal onClick={() => setIsModalActive(true)} />
+        {windowWidth <= 700 ? (
+          <PostComponent
+            setSelectedPost={setSelectedPost}
+            setIsModalActive={setIsModalActive}
+            post={post}
+          />
+        ) : (
+          <div className="details__container">
+            <div className="details__container__image">
+              <img src={post.postUrl} alt="post" />
             </div>
-            <div className="details__container__content__comments">
-              {post.caption && (
-                <div className="details__container__content__comments__item">
-                  <div className="details__container__content__comments__item__owner">
-                    <img src={postUser.profilePhoto.url} alt={post.username} />
-                    <strong>{post.username}</strong>
-                    <span
-                      className={
-                        "details__container__content__comments__item__owner__hour"
-                      }
-                    >
-                      {moment(post.caption.createdAt).fromNow(true)}
-                    </span>
-                  </div>
-
-                  <p>{post.caption.body}</p>
-                </div>
-              )}
-              {post.comments.map((comment: Comment) => (
+            <div className="details__container__content">
+              <div className="details__container__content__info">
                 <div
-                  key={comment.createdAt}
-                  className="details__container__content__comments__item"
+                  onClick={() => history.push(`/profile/${postUser.username}`)}
+                  className="details__container__content__info__owner"
                 >
-                  <div className="details__container__content__comments__item__owner">
-                    <img src={comment.profilePhotoURL} alt={comment.username} />
-                    <strong>{comment.username}</strong>
-                    <span
-                      className={
-                        "details__container__content__comments__item__owner__hour"
-                      }
-                    >
-                      {moment(comment.createdAt).fromNow(true)}
-                    </span>
-                  </div>
-
-                  <p>{comment.body}</p>
-                </div>
-              ))}
-            </div>
-            <div className="dummy"></div>
-            <div className="details__container__content__like-section">
-              <div className="details__container__content__like-section__main">
-                <LikeButton post={post} />
-                <AiOutlineMessage
-                  onClick={() => commentInput.current.focus()}
-                />
-                <IoMdPaperPlane />
-              </div>
-              <div className="details__container__content__like-section__favorite ">
-                <span>
-                  <BsBookmark />
-                </span>
-              </div>
-            </div>
-            <div className="details__container__content__likes">
-              <strong>{post.likes.length} curtidas</strong>
-              <p>{moment(post.createdAt).fromNow(true)}</p>
-            </div>
-            <div className="details__container__content__publish-comment">
-              <input
-                ref={commentInput}
-                value={comment}
-                onChange={(e) => setComment(e.target.value)}
-                onKeyPress={(e) => e.key === "Enter" && handleComment()}
-                placeholder="Digite um comentário..."
-                type="text"
-              />
-              {isCommentLoading ? (
-                <span>
-                  <ReactLoading
-                    type="spin"
-                    color="#aaa"
-                    height={15}
-                    width={25}
+                  <img
+                    src={postUser.profilePhoto.url}
+                    alt={postUser.username}
                   />
-                </span>
-              ) : (
-                <button onClick={handleComment}>Publicar</button>
-              )}
+                  <strong>{postUser.username}</strong>
+                </div>
+                <HiDotsHorizontal onClick={() => setIsModalActive(true)} />
+              </div>
+              <div className="details__container__content__comments">
+                {post.caption && (
+                  <div className="details__container__content__comments__item">
+                    <div className="details__container__content__comments__item__owner">
+                      <img
+                        src={postUser.profilePhoto.url}
+                        alt={post.username}
+                      />
+                      <strong>{post.username}</strong>
+                      <span
+                        className={
+                          "details__container__content__comments__item__owner__hour"
+                        }
+                      >
+                        {moment(post.createdAt).fromNow(true)}
+                      </span>
+                    </div>
+
+                    <p>{post.caption.body}</p>
+                  </div>
+                )}
+                {post.comments.map((comment: Comment) => (
+                  <div
+                    key={comment.createdAt}
+                    className="details__container__content__comments__item"
+                  >
+                    <div className="details__container__content__comments__item__owner">
+                      <img
+                        src={comment.profilePhotoURL}
+                        alt={comment.username}
+                      />
+                      <strong>{comment.username}</strong>
+                      <span
+                        className={
+                          "details__container__content__comments__item__owner__hour"
+                        }
+                      >
+                        {moment(comment.createdAt).fromNow(true)}
+                      </span>
+                    </div>
+
+                    <p>{comment.body}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="dummy"></div>
+              <div className="details__container__content__like-section">
+                <div className="details__container__content__like-section__main">
+                  <LikeButton post={post} />
+                  <AiOutlineMessage
+                    onClick={() => commentInput.current.focus()}
+                  />
+                  <IoMdPaperPlane />
+                </div>
+                <div className="details__container__content__like-section__favorite ">
+                  <span>
+                    <BsBookmark />
+                  </span>
+                </div>
+              </div>
+              <div className="details__container__content__likes">
+                <strong>{post.likes.length} curtidas</strong>
+                <p>{moment(post.createdAt).fromNow(true)}</p>
+              </div>
+              <div className="details__container__content__publish-comment">
+                <input
+                  ref={commentInput}
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
+                  onKeyPress={(e) => e.key === "Enter" && handleComment()}
+                  placeholder="Digite um comentário..."
+                  type="text"
+                />
+                {isCommentLoading ? (
+                  <span>
+                    <ReactLoading
+                      type="spin"
+                      color="#aaa"
+                      height={15}
+                      width={25}
+                    />
+                  </span>
+                ) : (
+                  <button onClick={handleComment}>Publicar</button>
+                )}
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </>
   );

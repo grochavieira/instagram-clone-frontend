@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { useHistory } from "react-router";
+import { useHistory, useLocation } from "react-router";
 import { BsBookmark } from "react-icons/bs";
 import { AiOutlineMessage } from "react-icons/ai";
 import { HiDotsHorizontal } from "react-icons/hi";
@@ -33,6 +33,7 @@ const Post = ({
   const socket = useSocket();
   const { user, signOut } = useContext<any>(AuthContext);
   const history = useHistory();
+  const { pathname } = useLocation();
   const commentInput: any = useRef(null);
   const [post, setPost] = useState<IPost>(receivedPost);
   const [isCommentLoading, setIsCommentLoading] = useState(false);
@@ -152,38 +153,81 @@ const Post = ({
         <div className="post__likes">
           <p>{post.likes.length} curtidas</p>
         </div>
-        <div className="post__caption">
-          {post.caption && (
-            <p>
-              <strong>{post.username}</strong> {post.caption.body}
-            </p>
-          )}
-        </div>
-        {post.comments.length > 1 ? (
-          <div className="post__show-comments">
-            <button onClick={() => history.push(`/post/${post._id}`)}>
-              Ver todos os {post.comments.length} comentários
-            </button>
-          </div>
-        ) : (
-          ""
-        )}
-
-        <div className="post__comments">
-          {commentsPreview !== null &&
-            commentsPreview.length > 0 &&
-            commentsPreview.map((comment: Comment) => (
-              <p key={comment.createdAt}>
-                <strong>{comment.username}</strong> {comment.body}
-                <span className="hour">
-                  {moment(comment.createdAt).fromNow(true)}
-                </span>
-              </p>
-            ))}
-        </div>
         <div className="post__hours">
           <p>{moment(post.createdAt).fromNow(true)}</p>
         </div>
+        {pathname.includes("/post") ? (
+          <>
+            <div className="post__comments-mobile">
+              {post.caption && (
+                <div className="post__comments-mobile__item">
+                  <div className="post__comments-mobile__item__owner">
+                    <img
+                      src={
+                        postUser.profilePhoto ? postUser.profilePhoto.url : ""
+                      }
+                      alt={post.username}
+                    />
+                    <strong>{post.username}</strong>
+                    <span className={"post__comments-mobile__item__hour"}>
+                      {moment(post.createdAt).fromNow(true)}
+                    </span>
+                  </div>
+
+                  <p>{post.caption.body}</p>
+                </div>
+              )}
+              {post.comments.map((comment: Comment) => (
+                <div
+                  key={comment.createdAt + comment.username}
+                  className="post__comments-mobile__item"
+                >
+                  <div className="post__comments-mobile__item__owner">
+                    <img src={comment.profilePhotoURL} alt={comment.username} />
+                    <strong>{comment.username}</strong>
+                    <span className={"post__comments-mobile__item__hour"}>
+                      {moment(comment.createdAt).fromNow(true)}
+                    </span>
+                  </div>
+
+                  <p>{comment.body}</p>
+                </div>
+              ))}
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="post__caption">
+              {post.caption && (
+                <p>
+                  <strong>{post.username}</strong> {post.caption.body}
+                </p>
+              )}
+            </div>
+            {post.comments.length > 1 ? (
+              <div className="post__show-comments">
+                <button onClick={() => history.push(`/post/${post._id}`)}>
+                  Ver todos os {post.comments.length} comentários
+                </button>
+              </div>
+            ) : (
+              ""
+            )}
+
+            <div className="post__comments">
+              {commentsPreview !== null &&
+                commentsPreview.length > 0 &&
+                commentsPreview.map((comment: Comment) => (
+                  <p key={comment.createdAt}>
+                    <strong>{comment.username}</strong> {comment.body}
+                    <span className="hour">
+                      {moment(comment.createdAt).fromNow(true)}
+                    </span>
+                  </p>
+                ))}
+            </div>
+          </>
+        )}
         <div className="post__comment"></div>
         <div className="post__add-comment">
           <input

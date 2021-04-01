@@ -6,6 +6,51 @@
   max-width: 60rem;
   margin-bottom: 6rem;
 
+  &__comments-mobile {
+    overflow-y: scroll;
+    height: 100%;
+    max-height: 40rem;
+
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+
+    &__item {
+      width: 100%;
+      margin-bottom: 2rem;
+
+      font-size: 1.4rem;
+
+      &__owner {
+        display: flex;
+        align-items: center;
+
+        img {
+          width: 4rem;
+          height: 4rem;
+          border-radius: 50%;
+        }
+
+        strong {
+          align-self: flex-start;
+          margin: 0rem 1rem;
+        }
+      }
+
+      &__hour {
+        align-self: flex-start;
+        opacity: 0.5;
+      }
+
+      p {
+        margin-left: 5rem;
+        margin-top: -1.5rem;
+        margin-bottom: 1rem;
+        word-wrap: break-word;
+      }
+    }
+  }
+
   &__header {
     display: flex;
     align-items: center;
@@ -151,12 +196,17 @@
   }
 
   &__hours p {
-    padding: 0 1.5rem;
-    margin-bottom: 1rem;
     font-size: 1rem;
-    text-transform: uppercase;
-    color: var(--color-text);
     font-weight: 600;
+    text-transform: uppercase;
+
+    padding: 0rem 1.5rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+
+    border-bottom: 1px solid var(--color-border);
+
+    color: var(--color-text);
     cursor: pointer;
   }
 
