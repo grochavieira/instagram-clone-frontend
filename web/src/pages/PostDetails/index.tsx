@@ -109,7 +109,10 @@ const PostDetails = () => {
           </div>
           <div className="details__container__content">
             <div className="details__container__content__info">
-              <div className="details__container__content__info__owner">
+              <div
+                onClick={() => history.push(`/profile/${postUser.username}`)}
+                className="details__container__content__info__owner"
+              >
                 <img src={postUser.profilePhoto.url} alt={postUser.username} />
                 <strong>{postUser.username}</strong>
               </div>

@@ -105,7 +105,7 @@ const Post = ({
       <div className="post">
         <div className="post__header">
           <div
-            onClick={() => history.push(`/profile/${user.username}`)}
+            onClick={() => history.push(`/profile/${post.username}`)}
             className="post__header__user"
           >
             <img

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { AiOutlineSearch } from "react-icons/ai";
 import ReactLoading from "react-loading";
@@ -10,39 +10,59 @@ import "./styles.scss";
 import { useHistory } from "react-router-dom";
 
 const SearchInput = () => {
-  const { user, signOut } = useContext<any>(AuthContext);
+  const { signOut } = useContext<any>(AuthContext);
   const history = useHistory();
+  const divRef: any = useRef(null);
 
   const [isLoading, setIsLoading] = useState(false);
   const [search, setSearch] = useState("");
   const [users, setUsers] = useState<User[]>([]);
+  const [showUsers, setShowUsers] = useState(false);
 
   useEffect(() => {
-    handleSearch();
-  }, [handleSearch, search]);
-
-  async function handleSearch() {
-    setIsLoading(true);
-    try {
-      if (search.length > 0) {
-        const { data } = await api.get(`/users/${search}`);
-        setUsers(data);
-        console.log(data);
+    async function handleSearch() {
+      setIsLoading(true);
+      try {
+        if (search.length > 0) {
+          const { data } = await api.get(`/users/${search}`);
+          setUsers(data);
+        }
+        setIsLoading(false);
+      } catch (err) {
+        console.log(err);
+        if (err.response.data.errors.invalid_token) {
+          signOut();
+          toast.warn("sua sessão acabou!");
+        }
+        setIsLoading(false);
       }
-      setIsLoading(false);
-    } catch (err) {
-      console.log(err);
-      if (err.response.data.errors.invalid_token) {
-        signOut();
-        toast.warn("sua sessão acabou!");
-      }
-      setIsLoading(false);
     }
-  }
+
+    handleSearch();
+  }, [search, signOut]);
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClick);
+    };
+  }, []);
+
+  const handleClick = (e: Event) => {
+    if (divRef.current.contains(e.target)) {
+      setShowUsers(true);
+      setUsers([]);
+      return;
+    }
+
+    setShowUsers(false);
+    setSearch("");
+  };
 
   return (
     <>
-      <div className="search-bar">
+      <div ref={divRef} className="search-bar">
         <AiOutlineSearch />
         <input
           value={search}
@@ -58,7 +78,11 @@ const SearchInput = () => {
           )}
         </span>
       </div>
-      <div className={search !== "" ? "searches" : "searches disabled"}>
+      <div
+        className={
+          showUsers && search !== "" ? "searches" : "searches disabled"
+        }
+      >
         {users.map((user: User) => (
           <div
             onClick={() => {

@@ -1,16 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import {
   AiOutlineHome,
   AiFillHome,
   AiOutlineCamera,
   AiFillCamera,
-  AiOutlineSearch,
 } from "react-icons/ai";
 import { IoMdPaperPlane, IoIosPaperPlane } from "react-icons/io";
 import { BiUserCircle } from "react-icons/bi";
 import { Link, useHistory, useLocation } from "react-router-dom";
-import { toast } from "react-toastify";
 
 import { SocketNotificationProps } from "../../interfaces/Socket";
 import { Notification } from "../../interfaces/Notification";
@@ -24,8 +22,9 @@ import "./styles.scss";
 const Header = () => {
   const { user, signOut } = useContext<any>(AuthContext);
   const socket = useSocket();
-  let { pathname } = useLocation();
   const history = useHistory();
+  const { pathname } = useLocation();
+  const navbarRef: any = useRef(null);
 
   const [showNavbar, setShowNavbar] = useState(false);
   const [notifications, setNotifications] = useState<Notification[]>([]);
@@ -61,6 +60,23 @@ const Header = () => {
     });
     if (pathname === "/activity") setUnreadNotifications(0);
   }, [notifications, pathname, socket, unreadNotifications, user.username]);
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClick);
+    };
+  }, []);
+
+  const handleClick = (e: Event) => {
+    if (navbarRef.current.contains(e.target)) {
+      setShowNavbar(true);
+      return;
+    }
+
+    setShowNavbar(false);
+  };
 
   function handleLogout() {
     signOut();
@@ -128,9 +144,8 @@ const Header = () => {
               ""
             )}
           </li>
-          <li>
+          <li ref={navbarRef}>
             <img
-              onClick={() => setShowNavbar(!showNavbar)}
               src={user.profilePhoto !== null ? user.profilePhoto.url : ""}
               alt="user"
             />

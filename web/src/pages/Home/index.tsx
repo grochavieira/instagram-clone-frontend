@@ -79,7 +79,7 @@ const Home = () => {
     };
   }, [signOut]);
 
-  setInterval(() => {
+  setTimeout(() => {
     setIsLoading(false);
   }, 1500);
 
@@ -120,7 +120,7 @@ const Home = () => {
                     src={
                       user.profilePhoto !== null ? user.profilePhoto.url : ""
                     }
-                    alt="user profile photo"
+                    alt={user.username}
                   />
                 </div>
                 <div className="home__aside__profile__info">
