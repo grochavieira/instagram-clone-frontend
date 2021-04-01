@@ -1,7 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import moment from "moment";
-import "moment/min/moment-with-locales";
+import TimeAgo from "react-timeago";
+import brazilianStrings from "react-timeago/lib/language-strings/pt-br";
+import buildFormatter from "react-timeago/lib/formatters/buildFormatter";
 
 import { Notification } from "../../interfaces/Notification";
 import "./styles.scss";
@@ -12,6 +13,8 @@ interface ActivityCardProps {
 
 const ActivityCard = ({ activity }: ActivityCardProps) => {
   const history = useHistory();
+
+  const formatter = buildFormatter(brazilianStrings);
 
   function handleNotificationRoute() {
     if (activity.notificationType !== "follow") {
@@ -31,7 +34,7 @@ const ActivityCard = ({ activity }: ActivityCardProps) => {
           <p>{activity.body}</p>
         </div>
         <span className="activity-card__hour">
-          {moment(activity.createdAt).fromNow(true)}
+          <TimeAgo date={activity.createdAt} formatter={formatter} />
         </span>
       </div>
     </>
