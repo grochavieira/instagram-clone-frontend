@@ -12,7 +12,8 @@ import { useHistory } from "react-router-dom";
 const SearchInput = () => {
   const { signOut } = useContext<any>(AuthContext);
   const history = useHistory();
-  const divRef: any = useRef(null);
+  const searchRef: any = useRef(null);
+  const searchBoxRef: any = useRef(null);
 
   const [isLoading, setIsLoading] = useState(false);
   const [search, setSearch] = useState("");
@@ -50,19 +51,22 @@ const SearchInput = () => {
   }, []);
 
   const handleClick = (e: Event) => {
-    if (divRef.current.contains(e.target)) {
+    if (
+      searchRef.current.contains(e.target) ||
+      searchBoxRef.current.contains(e.target)
+    ) {
       setShowUsers(true);
-      setUsers([]);
       return;
     }
 
     setShowUsers(false);
     setSearch("");
+    setUsers([]);
   };
 
   return (
     <>
-      <div ref={divRef} className="search-bar">
+      <div ref={searchRef} className="search-bar">
         <AiOutlineSearch />
         <input
           value={search}
@@ -79,6 +83,7 @@ const SearchInput = () => {
         </span>
       </div>
       <div
+        ref={searchBoxRef}
         className={
           showUsers && search !== "" ? "searches" : "searches disabled"
         }

@@ -26,6 +26,11 @@
                 height: 14rem;
                 border-radius: 50%;
             }
+
+            svg {
+                width: 14rem;
+                height: 14rem;
+            }
         }
 
         &__info {
@@ -151,12 +156,6 @@
         &__main {
             &__image {
                 margin-right: 5rem;
-
-                img {
-                    width: 14rem;
-                    height: 14rem;
-                    border-radius: 50%;
-                }
             }
         }
     }
@@ -172,6 +171,11 @@
                     width: 12rem;
                     height: 12rem;
                     border-radius: 50%;
+                }
+
+                svg {
+                    width: 12rem;
+                    height: 12rem;
                 }
             }
 
@@ -223,6 +227,11 @@
                     width: 9rem;
                     height: 9rem;
                     border-radius: 50%;
+                }
+
+                svg {
+                    width: 9rem;
+                    height: 9rem;
                 }
             }
 

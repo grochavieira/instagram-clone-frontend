@@ -7,7 +7,7 @@ import {
   AiFillCamera,
 } from "react-icons/ai";
 import { IoMdPaperPlane, IoIosPaperPlane } from "react-icons/io";
-import { BiUserCircle } from "react-icons/bi";
+import { FaUser, FaUserCircle } from "react-icons/fa";
 import { Link, useHistory, useLocation } from "react-router-dom";
 
 import { SocketNotificationProps } from "../../interfaces/Socket";
@@ -152,7 +152,7 @@ const HeaderDesktop = () => {
             <div className={showNavbar ? "navbar" : "navbar disabled"}>
               <div className="navbar__item">
                 <Link to={`/profile/${user.username}`}>
-                  <BiUserCircle /> Perfil
+                  <FaUserCircle /> Perfil
                 </Link>
               </div>
               <div className="navbar__item">

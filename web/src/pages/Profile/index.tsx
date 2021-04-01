@@ -1,9 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
 import { FiSettings } from "react-icons/fi";
 import { MdGridOn } from "react-icons/md";
+import { FaUserCircle } from "react-icons/fa";
 
 import FollowButton from "../../components/Follow";
-import ProfileLoading from "../../components/Shimmer/ProfileLoading";
 import AuthContext from "../../contexts/AuthProvider";
 import api from "../../services/api";
 import "./styles.scss";
@@ -52,7 +52,11 @@ const Profile = () => {
       <div className="profile">
         <main className="profile__main">
           <div className="profile__main__image">
-            <img src={user.profilePhoto.url} alt="user" />
+            {isLoading ? (
+              <FaUserCircle />
+            ) : (
+              <img src={user.profilePhoto.url} alt="user" />
+            )}
           </div>
           <div className="profile__main__info">
             <div className="profile__main__info__username">

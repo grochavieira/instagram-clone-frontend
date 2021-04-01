@@ -52,7 +52,7 @@ const Activity = () => {
       {isLoading && <Loading />}
       <div className="activity">
         <div className="activity__container">
-          {false ? (
+          {notifications.length > 0 ? (
             notifications
               .slice(0, 10)
               .map((notification: Notification) => (
