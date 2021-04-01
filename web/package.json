@@ -19,7 +19,7 @@
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^3.0.0",
     "jwt-decoder": "^0.0.0",
-    "moment": "2.18.1",
+    "moment": "^2.18.1",
     "node-sass": "^4.14.1",
     "npm": "^7.7.6",
     "react": "^16.13.1",
@@ -64,5 +64,8 @@
     "@types/moment": "^2.13.0",
     "@types/react-toastify": "^4.1.0",
     "@types/socket.io-client": "^1.4.36"
+  },
+  "resolutions": {
+    "**/moment": ">=2.25.3"
   }
 }
