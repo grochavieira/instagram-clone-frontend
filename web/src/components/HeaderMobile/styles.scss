@@ -1,0 +1,24 @@
+.header-mobile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    position: fixed;
+    width: 100vw;
+    padding: 0.5rem 1.5rem;
+
+    background-color: var(--color-primary);
+    border: 0.1rem solid var(--color-border);
+
+    z-index: 1000;
+
+    &__title {
+        font-family: "Grand Hotel", sans-serif;
+        font-size: 3.5rem;
+    }
+
+    svg {
+        font-size: 3rem;
+    }
+}

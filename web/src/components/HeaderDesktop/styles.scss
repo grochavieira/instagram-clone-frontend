@@ -1,0 +1,108 @@
+.header-desktop {
+  position: fixed;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+  background-color: var(--color-primary);
+  border: 0.1rem solid var(--color-border);
+  padding: 0 13%;
+
+  &__logo {
+    &__text {
+      font-family: "Grand Hotel";
+      margin: 0;
+      font-size: 3rem;
+      cursor: pointer;
+    }
+  }
+
+  &__navigation-bar {
+    &__notifications {
+      &__number {
+        position: absolute;
+        top: -0.8rem;
+        right: -1rem;
+
+        background-color: #ff3366;
+        border-radius: 50%;
+        width: 2rem;
+        height: 2rem;
+
+        text-align: center;
+
+        font-size: 1.5rem;
+        color: #fff;
+      }
+    }
+
+    ul {
+      list-style-type: none;
+      display: flex;
+
+      li {
+        position: relative;
+        margin: 1.2rem 1rem;
+        cursor: pointer;
+
+        svg {
+          width: 2.5rem;
+          height: 2.5rem;
+          color: var(--color-highlight);
+        }
+
+        img {
+          width: 2.5rem;
+          height: 2.5rem;
+          border-radius: 50%;
+          background-color: var(--color-border);
+        }
+      }
+    }
+  }
+}
+
+.navbar {
+  width: 20rem;
+  position: absolute;
+  left: 18%;
+  top: 4rem;
+  transform: translateX(-50%);
+  border-radius: 5px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+  background-color: var(--color-primary);
+  transition: all 0.2s;
+  &__item {
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1.5rem 1rem;
+    transition: all 0.2s;
+
+    a {
+      color: var(--color-highlight);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    svg {
+      margin-right: 0.8rem;
+    }
+
+    &:hover {
+      background-color: var(--color-secondary);
+    }
+  }
+
+  &__item + &__item {
+    border-top: 1px solid var(--color-border);
+  }
+
+  &.disabled {
+    display: none;
+  }
+}

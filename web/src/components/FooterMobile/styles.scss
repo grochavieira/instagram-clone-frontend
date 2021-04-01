@@ -1,0 +1,45 @@
+.footer-mobile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    padding: 0.8rem 1.5rem;
+
+    background-color: var(--color-primary);
+    border: 0.1rem solid var(--color-border);
+
+    z-index: 1000;
+
+    svg {
+        font-size: 3rem;
+    }
+
+    &__item {
+        position: relative;
+        img {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+        }
+
+        &__notifications {
+            position: absolute;
+            top: -0.8rem;
+            right: -1rem;
+
+            background-color: #ff3366;
+            border-radius: 50%;
+            width: 2rem;
+            height: 2rem;
+
+            text-align: center;
+
+            font-size: 1.5rem;
+            color: #fff;
+        }
+    }
+}
