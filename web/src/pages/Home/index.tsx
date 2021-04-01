@@ -1,16 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import { toast } from "react-toastify";
-import io from "socket.io-client";
 
-import {
-  SocketPostProps,
-  SocketNotificationProps,
-} from "../../interfaces/Socket";
+import { SocketPostProps } from "../../interfaces/Socket";
 import { Post as IPost } from "../../interfaces/Post";
 import Post from "../../components/Post";
 import PostModal from "../../components/PostModal";
 import PostLoading from "../../components/Shimmer/PostLoading";
-import OnlineFriendsLoading from "../../components/Shimmer/OnlineFriendsLoading";
 import UserProfileLoading from "../../components/Shimmer/UserProfileLoading";
 import { useSocket } from "../../contexts/SocketProvider";
 import AuthContext from "../../contexts/AuthProvider";

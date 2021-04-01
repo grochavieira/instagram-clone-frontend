@@ -6,8 +6,8 @@ import {
   AiOutlineCamera,
   AiFillCamera,
 } from "react-icons/ai";
-import { IoMdPaperPlane, IoIosPaperPlane } from "react-icons/io";
-import { FaUser, FaUserCircle } from "react-icons/fa";
+// import { IoMdPaperPlane, IoIosPaperPlane } from "react-icons/io";
+import { FaUserCircle } from "react-icons/fa";
 import { Link, useHistory, useLocation } from "react-router-dom";
 
 import { SocketNotificationProps } from "../../interfaces/Socket";
@@ -121,7 +121,7 @@ const HeaderDesktop = () => {
               )}
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/message">
               {pathname === "/message" ? (
                 <IoIosPaperPlane />
@@ -129,7 +129,7 @@ const HeaderDesktop = () => {
                 <IoMdPaperPlane />
               )}
             </Link>
-          </li>
+          </li> */}
           <li
             onClick={handleNotifications}
             className="header-desktop__navigation-bar__notifications"

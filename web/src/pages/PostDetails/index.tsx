@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { BsHeart, BsBookmark } from "react-icons/bs";
+import { BsBookmark } from "react-icons/bs";
 import { AiOutlineMessage } from "react-icons/ai";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { IoMdPaperPlane } from "react-icons/io";
-import VideoPlayer from "react-video-js-player";
+// import VideoPlayer from "react-video-js-player";
 import moment from "moment";
 import "moment/min/moment-with-locales";
 import { toast } from "react-toastify";
@@ -161,7 +161,9 @@ const PostDetails = () => {
             <div className="details__container__content__like-section">
               <div className="details__container__content__like-section__main">
                 <LikeButton post={post} />
-                <AiOutlineMessage />
+                <AiOutlineMessage
+                  onClick={() => commentInput.current.focus()}
+                />
                 <IoMdPaperPlane />
               </div>
               <div className="details__container__content__like-section__favorite ">
@@ -176,6 +178,7 @@ const PostDetails = () => {
             </div>
             <div className="details__container__content__publish-comment">
               <input
+                ref={commentInput}
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
                 onKeyPress={(e) => e.key === "Enter" && handleComment()}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { FiCamera } from "react-icons/fi";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -81,7 +81,7 @@ const PostContent = () => {
         <div className="post-content__post">
           <div className="post-content__post__image">
             {isFileImage ? (
-              <img src={previewFile} />
+              <img src={previewFile} alt="file" />
             ) : (
               <video controls preload="auto" width="100%" src={previewFile} />
               // <video src={previewFile} autoPlay />

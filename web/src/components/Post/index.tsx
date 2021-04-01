@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router";
-import { BsHeart, BsBookmark } from "react-icons/bs";
+import { BsBookmark } from "react-icons/bs";
 import { AiOutlineMessage } from "react-icons/ai";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { IoMdPaperPlane } from "react-icons/io";
