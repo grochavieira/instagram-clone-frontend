@@ -81,7 +81,7 @@ const PostContent = () => {
         <div className="post-content__post">
           <div className="post-content__post__image">
             {isFileImage ? (
-              <img src={previewFile} />
+              <img src={previewFile} alt="" />
             ) : (
               <video controls preload="auto" width="100%" src={previewFile} />
               // <video src={previewFile} autoPlay />

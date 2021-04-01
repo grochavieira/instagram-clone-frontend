@@ -1,4 +1,5 @@
 import React from "react";
+import { BsHeartFill } from "react-icons/bs";
 
 import "./styles.scss";
 
@@ -7,7 +8,8 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer__content">
         <p>
-          MADE WITH ❤️ BY <strong> GUILHERME ROCHA VIEIRA </strong>
+          MADE WITH <BsHeartFill color={"#ff3366"} /> BY{" "}
+          <strong> GUILHERME ROCHA VIEIRA </strong>
         </p>
       </div>
     </footer>

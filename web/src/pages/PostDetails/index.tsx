@@ -37,7 +37,7 @@ const PostDetails = () => {
   const [comment, setComment] = useState("");
   const [post, setPost] = useState<Post | any>(null);
   const [postUser, setPostUser] = useState<any>({});
-  const [selectedPost, setSelectedPost] = useState<Post | any>({});
+  const [, setSelectedPost] = useState<Post | any>({});
   const [windowWidth, setWindowWidth]: any = useState(window.innerWidth);
 
   useEffect(() => {
