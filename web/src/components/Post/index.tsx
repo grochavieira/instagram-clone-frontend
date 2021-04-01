@@ -6,7 +6,7 @@ import { HiDotsHorizontal } from "react-icons/hi";
 import { IoMdPaperPlane } from "react-icons/io";
 import VideoPlayer from "react-video-js-player";
 import moment from "moment";
-import "moment/min/moment-with-locales";
+// import "moment/min/moment-with-locales";
 import { toast } from "react-toastify";
 import ReactLoading from "react-loading";
 
