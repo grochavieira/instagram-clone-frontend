@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -38,7 +38,7 @@ const Register = () => {
 
       if (profileImage) data.append("file", profileImage);
 
-      const response = await api.post("/user", data);
+      await api.post("/user", data);
 
       toast.success("usuário cadastrado com sucesso!");
 

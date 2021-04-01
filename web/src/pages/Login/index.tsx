@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 
 import Input from "../../components/Input";
 import Button from "../../components/Button";
@@ -11,7 +11,7 @@ import downloadGoogleIcon from "../../assets/download-google-play.png";
 import "./styles.scss";
 
 const Login = () => {
-  const { signIn, signed } = useContext(AuthContext);
+  const { signIn } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
