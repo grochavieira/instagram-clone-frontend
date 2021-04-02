@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -7,7 +7,6 @@ import Button from "../../components/Button";
 import Footer from "../../components/Footer";
 import PhotoDropzone from "../../components/PhotoDropzone";
 import Loading from "../../components/Loading";
-import AuthContext from "../../contexts/AuthProvider";
 import api from "../../services/api";
 // import downloadAppIcon from "../../assets/download-app-store.png";
 // import downloadGoogleIcon from "../../assets/download-google-play.png";
