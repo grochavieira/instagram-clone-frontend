@@ -103,7 +103,13 @@ const PostContent = () => {
           <label htmlFor="media">
             <FiCamera />
           </label>
-          <input id="media" onChange={getFile} type="file" name="media" />
+          <input
+            id="media"
+            onChange={getFile}
+            type="file"
+            name="media"
+            accept="image/*"
+          />
         </div>
       </div>
     </>
