@@ -217,11 +217,11 @@
 @media (max-width: 520px) {
     .profile {
         &__main {
-            padding-left: 2rem;
-            padding-right: 2rem;
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
             padding-bottom: 2rem;
             &__image {
-                margin-right: 2rem;
+                margin-right: 1.5rem;
 
                 img {
                     width: 9rem;
@@ -237,19 +237,19 @@
 
             &__info {
                 &__username {
-                    font-size: 1.5rem;
+                    font-size: 1.6rem;
 
                     button {
-                        font-size: 1rem;
+                        font-size: 1.2rem;
                     }
                 }
 
                 &__social {
-                    font-size: 1rem;
+                    font-size: 1.2rem;
                 }
 
                 &__name {
-                    font-size: 1.2rem;
+                    font-size: 1.4rem;
                 }
             }
         }
