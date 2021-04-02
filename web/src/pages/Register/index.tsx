@@ -42,9 +42,8 @@ const Register = () => {
 
       toast.success("usuário cadastrado com sucesso!");
 
-      signIn({ username, password });
       setIsLoading(false);
-      history.push("/home");
+      history.push("/login");
     } catch (err) {
       setIsLoading(false);
       console.log(err);

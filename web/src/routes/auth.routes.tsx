@@ -31,8 +31,8 @@ const AuthRoutes = () => {
           <Route exact path="/profile/:username" component={Profile} />
           <Route exact path="/activity" component={Activity} />
           <Route exact path="/search" component={Search} />
-          <Route exact path="/404" component={Page404} />
-          <Redirect to="/404" />
+          {/* <Route exact path="/404" component={Page404} /> */}
+          <Redirect to="/" />
         </Switch>
       </BrowserRouter>
     </SocketProvider>
