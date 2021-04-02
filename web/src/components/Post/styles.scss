@@ -19,7 +19,7 @@
       width: 100%;
       margin-bottom: 2rem;
 
-      font-size: 1.4rem;
+      font-size: 1.6rem;
 
       &__owner {
         display: flex;
@@ -59,7 +59,7 @@
     border-bottom: 1px solid var(--color-border);
 
     p {
-      font-size: 1.2rem;
+      font-size: 1.6rem;
       color: var(--color-text);
       font-weight: 600;
       margin-left: 1rem;
@@ -84,8 +84,8 @@
     }
 
     &__options svg {
-      width: 2.5rem;
-      height: 2.5rem;
+      width: 3rem;
+      height: 3rem;
       padding: 0.5rem;
       cursor: pointer;
     }
@@ -112,8 +112,8 @@
     justify-content: space-between;
 
     &__main-icons span svg {
-      width: 2.5rem;
-      height: 2.5rem;
+      width: 3rem;
+      height: 3rem;
       color: var(--color-highlight);
       margin-right: 0.9rem;
       cursor: pointer;
@@ -129,8 +129,8 @@
 
     &__favorite-icon span svg {
       margin-right: 1.5rem;
-      width: 2.5rem;
-      height: 2.5rem;
+      width: 3rem;
+      height: 3rem;
       color: var(--color-highlight);
       cursor: pointer;
     }
@@ -139,7 +139,7 @@
   &__likes p {
     padding: 0 1.5rem;
     margin-bottom: 1rem;
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     color: var(--color-text);
     font-weight: 600;
     cursor: pointer;
@@ -148,13 +148,13 @@
   &__caption {
     padding: 0 1.5rem;
     margin-bottom: 1rem;
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     color: var(--color-text);
     font-weight: 600;
     cursor: pointer;
 
     strong {
-      font-size: 1.3rem;
+      font-size: 1.6rem;
     }
 
     span {
@@ -165,7 +165,7 @@
   &__show-comments {
     padding: 0 1.5rem;
     margin-bottom: 1rem;
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     color: var(--color-text);
     font-weight: 600;
     padding-bottom: 1rem;
@@ -176,27 +176,28 @@
   &__comments p {
     padding: 0 1.5rem;
     margin-bottom: 1rem;
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     color: var(--color-text);
     font-weight: 600;
     cursor: pointer;
     word-wrap: break-word;
 
     strong {
-      font-size: 1.3rem;
+      font-size: 1.6rem;
     }
 
     span {
-      font-size: 1rem;
+      font-size: 1.4rem;
 
       &.hour {
+        opacity: 0.7;
         margin-left: 1rem;
       }
     }
   }
 
   &__hours p {
-    font-size: 1rem;
+    font-size: 1.6rem;
     font-weight: 600;
     text-transform: uppercase;
 
@@ -207,6 +208,7 @@
     border-bottom: 1px solid var(--color-border);
 
     color: var(--color-text);
+    opacity: 0.7;
     cursor: pointer;
   }
 
@@ -226,7 +228,7 @@
   input {
     width: 100%;
     border: 0;
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     background-color: var(--color-primary);
     color: var(--color-text);
   }
@@ -237,7 +239,7 @@
     background-color: var(--color-primary);
     font-weight: 600;
     color: var(--color-tertiary);
-    font-size: 1.2rem;
+    font-size: 1.6rem;
 
     &:hover {
       color: var(--color-tertiary-dark);
