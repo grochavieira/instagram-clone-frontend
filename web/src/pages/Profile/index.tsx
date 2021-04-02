@@ -2,23 +2,25 @@ import React, { useContext, useState, useEffect } from "react";
 import { FiSettings } from "react-icons/fi";
 import { MdGridOn } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
+import { useLocation } from "react-router";
 
+import { ISocketFollowingProps } from "../../interfaces/ISocket";
+import IUser from "../../interfaces/IUser";
+import Loading from "../../components/Loading";
 import FollowButton from "../../components/Follow";
+import { useSocket } from "../../contexts/SocketProvider";
 import AuthContext from "../../contexts/AuthProvider";
 import api from "../../services/api";
 import "./styles.scss";
-import { useLocation } from "react-router";
-import User from "../../interfaces/User";
-import Loading from "../../components/Loading";
 
 const Profile = () => {
   const { user: currentUser } = useContext<any>(AuthContext);
-
+  const socket = useSocket();
   const { pathname } = useLocation();
   const username = pathname.replace("/profile/", "");
   const [isLoading, setIsLoading] = useState(true);
-  const [userPosts, setUserPosts] = useState<any>([]);
-  const [user, setUser] = useState<User>({
+  const [userPosts, setUserPosts] = useState<IUser[]>([] as IUser[]);
+  const [user, setUser] = useState<IUser>({
     _id: "",
     name: "",
     email: "",
@@ -32,6 +34,20 @@ const Profile = () => {
   });
 
   useEffect(() => {
+    if (socket == null) return;
+    socket.on(
+      "following",
+      ({ user: followingUser, friendUser }: ISocketFollowingProps) => {
+        if (username === followingUser.username) {
+          setUser(followingUser);
+        } else if (username === friendUser.username) {
+          setUser(friendUser);
+        }
+      }
+    );
+  }, [pathname, socket, user, user.username, username]);
+
+  useEffect(() => {
     async function loadUserData() {
       setIsLoading(true);
       const { data: userData } = await api.get(`/user/${username}`);
@@ -42,10 +58,6 @@ const Profile = () => {
     }
     loadUserData();
   }, [username]);
-
-  setInterval(() => {
-    setIsLoading(false);
-  }, 1500);
 
   return (
     <>

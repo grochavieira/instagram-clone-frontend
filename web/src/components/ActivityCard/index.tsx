@@ -4,11 +4,11 @@ import TimeAgo from "react-timeago";
 import brazilianStrings from "react-timeago/lib/language-strings/pt-br";
 import buildFormatter from "react-timeago/lib/formatters/buildFormatter";
 
-import { Notification } from "../../interfaces/Notification";
+import INotification from "../../interfaces/INotification";
 import "./styles.scss";
 
 interface ActivityCardProps {
-  activity: Notification;
+  activity: INotification;
 }
 
 const ActivityCard = ({ activity }: ActivityCardProps) => {

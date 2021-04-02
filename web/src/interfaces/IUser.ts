@@ -1,9 +1,9 @@
-interface Friend {
+export interface IFriend {
   username: string;
   createdAt: string;
 }
 
-export default interface User {
+export default interface IUser {
   _id: string;
   name: string;
   email: string;
@@ -12,6 +12,6 @@ export default interface User {
     url: string;
   };
   username: string;
-  friends: Friend[] | [];
-  followers: Friend[] | [];
+  friends: IFriend[] | [];
+  followers: IFriend[] | [];
 }

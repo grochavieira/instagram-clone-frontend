@@ -12,13 +12,13 @@ import brazilianStrings from "react-timeago/lib/language-strings/pt-br";
 import buildFormatter from "react-timeago/lib/formatters/buildFormatter";
 
 import PostComponent from "../../components/Post";
-import { SocketPostProps } from "../../interfaces/Socket";
+import { ISocketPostProps } from "../../interfaces/ISocket";
 import { useSocket } from "../../contexts/SocketProvider";
 import PostModal from "../../components/PostModal";
 import Loading from "../../components/Loading";
 import LikeButton from "../../components/LikeButton";
 import AuthContext from "../../contexts/AuthProvider";
-import { Post, Comment } from "../../interfaces/Post";
+import IPost, { IComment } from "../../interfaces/IPost";
 import api from "../../services/api";
 import "./styles.scss";
 
@@ -35,9 +35,9 @@ const PostDetails = () => {
   const [isModalActive, setIsModalActive] = useState(false);
   const [isCommentLoading, setIsCommentLoading] = useState(false);
   const [comment, setComment] = useState("");
-  const [post, setPost] = useState<Post | any>(null);
+  const [post, setPost] = useState<IPost | any>(null);
   const [postUser, setPostUser] = useState<any>({});
-  const [, setSelectedPost] = useState<Post | any>({});
+  const [, setSelectedPost] = useState<IPost | any>({});
   const [windowWidth, setWindowWidth]: any = useState(window.innerWidth);
 
   useEffect(() => {
@@ -64,15 +64,15 @@ const PostDetails = () => {
 
   useEffect(() => {
     if (socket == null) return;
-    socket.on("liked-post", ({ post: updatedPost }: SocketPostProps) => {
+    socket.on("liked-post", ({ post: updatedPost }: ISocketPostProps) => {
       if (postId === updatedPost._id) setPost(updatedPost);
     });
 
-    socket.on("commented-post", ({ post: updatedPost }: SocketPostProps) => {
+    socket.on("commented-post", ({ post: updatedPost }: ISocketPostProps) => {
       if (postId === updatedPost._id) setPost(updatedPost);
     });
 
-    socket.on("post-deleted", ({ post: updatedPost }: SocketPostProps) => {
+    socket.on("post-deleted", ({ post: updatedPost }: ISocketPostProps) => {
       if (postId === updatedPost._id) history.push("/");
     });
   }, [history, postId, socket]);
@@ -162,7 +162,7 @@ const PostDetails = () => {
                     <p>{post.caption.body}</p>
                   </div>
                 )}
-                {post.comments.map((comment: Comment) => (
+                {post.comments.map((comment: IComment) => (
                   <div
                     key={comment.createdAt}
                     className="details__container__content__comments__item"

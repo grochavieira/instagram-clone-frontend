@@ -12,8 +12,8 @@ import brazilianStrings from "react-timeago/lib/language-strings/pt-br";
 import buildFormatter from "react-timeago/lib/formatters/buildFormatter";
 
 import { useSocket } from "../../contexts/SocketProvider";
-import { SocketPostProps } from "../../interfaces/Socket";
-import { Comment, Post as IPost } from "../../interfaces/Post";
+import { ISocketPostProps } from "../../interfaces/ISocket";
+import IPost, { IComment } from "../../interfaces/IPost";
 import LikeButton from "../LikeButton";
 import AuthContext from "../../contexts/AuthProvider";
 import api from "../../services/api";
@@ -38,7 +38,7 @@ const Post = ({
   const commentInput: any = useRef(null);
   const [post, setPost] = useState<IPost>(receivedPost);
   const [isCommentLoading, setIsCommentLoading] = useState(false);
-  const [commentsPreview, setCommentsPreview] = useState<Comment[] | any>([]);
+  const [commentsPreview, setCommentsPreview] = useState<IComment[] | any>([]);
   const [comment, setComment] = useState("");
   const [isPostImage, setIsPostImage] = useState(true);
   const [postUser, setPostUser] = useState<any>({});
@@ -67,11 +67,11 @@ const Post = ({
 
   useEffect(() => {
     if (socket == null) return;
-    socket.on("liked-post", ({ post: updatedPost }: SocketPostProps) => {
+    socket.on("liked-post", ({ post: updatedPost }: ISocketPostProps) => {
       if (post._id === updatedPost._id) setPost(updatedPost);
     });
 
-    socket.on("commented-post", ({ post: updatedPost }: SocketPostProps) => {
+    socket.on("commented-post", ({ post: updatedPost }: ISocketPostProps) => {
       if (post._id === updatedPost._id) setPost(updatedPost);
     });
   }, [post._id, socket]);
@@ -184,7 +184,7 @@ const Post = ({
                   <p>{post.caption.body}</p>
                 </div>
               )}
-              {post.comments.map((comment: Comment) => (
+              {post.comments.map((comment: IComment) => (
                 <div
                   key={comment.createdAt + comment.followingUsername}
                   className="post__comments-mobile__item"
@@ -227,7 +227,7 @@ const Post = ({
             <div className="post__comments">
               {commentsPreview !== null &&
                 commentsPreview.length > 0 &&
-                commentsPreview.map((comment: Comment) => (
+                commentsPreview.map((comment: IComment) => (
                   <p key={comment.createdAt}>
                     <strong>{comment.followingUsername}</strong> {comment.body}
                     <span className="hour">

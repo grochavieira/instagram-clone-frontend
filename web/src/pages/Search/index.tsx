@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { AiOutlineSearch } from "react-icons/ai";
 import ReactLoading from "react-loading";
 
-import User from "../../interfaces/User";
+import IUser from "../../interfaces/IUser";
 import AuthContext from "../../contexts/AuthProvider";
 import api from "../../services/api";
 import "./styles.scss";
@@ -15,7 +15,7 @@ const Search = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [search, setSearch] = useState("");
-  const [users, setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState<IUser[]>([]);
 
   useEffect(() => {
     async function handleSearch() {
@@ -59,7 +59,7 @@ const Search = () => {
         </div>
         {users.length > 0 ? (
           <div className="search-page__searches">
-            {users.map((user: User) => (
+            {users.map((user: IUser) => (
               <div
                 onClick={() => {
                   history.push(`/profile/${user.username}`);

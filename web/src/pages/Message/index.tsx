@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import User from "../../interfaces/User";
+import IUser from "../../interfaces/IUser";
 import { HiOutlinePencilAlt } from "react-icons/hi";
 import { RiSendPlaneFill } from "react-icons/ri";
 import Button from "../../components/Button";
@@ -12,7 +12,7 @@ const Message = () => {
   useEffect(() => {
     const json_object = localStorage.getItem("user");
     if (json_object) {
-      const userData: User | null = JSON.parse(json_object);
+      const userData: IUser | null = JSON.parse(json_object);
 
       if (userData) {
         setUser(userData);

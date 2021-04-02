@@ -1,4 +1,4 @@
-export interface Notification {
+export default interface INotification {
   _id: string;
   username: string;
   followingUsername?: string;

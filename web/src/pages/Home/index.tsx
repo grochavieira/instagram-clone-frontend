@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { toast } from "react-toastify";
 
-import { SocketPostProps } from "../../interfaces/Socket";
-import { Post as IPost } from "../../interfaces/Post";
+import { ISocketPostProps } from "../../interfaces/ISocket";
+import IPost from "../../interfaces/IPost";
 import Post from "../../components/Post";
 import PostModal from "../../components/PostModal";
 import PostLoading from "../../components/Shimmer/PostLoading";
@@ -32,7 +32,7 @@ const Home = () => {
   useEffect(() => {
     if (socket == null) return;
 
-    socket.on("post-created", ({ post: updatedPost }: SocketPostProps) => {
+    socket.on("post-created", ({ post: updatedPost }: ISocketPostProps) => {
       if (
         user.friends.find(
           (friend: any) => friend.username === updatedPost.username
@@ -41,7 +41,7 @@ const Home = () => {
         setPosts([...posts, updatedPost]);
     });
 
-    socket.on("post-deleted", ({ post: updatedPost }: SocketPostProps) => {
+    socket.on("post-deleted", ({ post: updatedPost }: ISocketPostProps) => {
       if (
         user.username === updatedPost.username ||
         user.friends.find(

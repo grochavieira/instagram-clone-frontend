@@ -2,13 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 
-import { Post } from "../../interfaces/Post";
+import IPost from "../../interfaces/IPost";
 import AuthContext from "../../contexts/AuthProvider";
 import api from "../../services/api";
 import "./styles.scss";
 
 interface PostModalProps {
-  post?: Post;
+  post?: IPost;
   setIsModalActive(value: boolean): void;
 }
 

@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import jwt from "jsonwebtoken";
 
-import User from "../interfaces/User";
+import IUser from "../interfaces/IUser";
 import api from "../services/api";
 
 interface AuthContextData {
@@ -16,7 +16,7 @@ interface AuthContextData {
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<IUser | null>(null);
   const [, setToken] = useState<string | null>(null);
 
   useEffect(() => {

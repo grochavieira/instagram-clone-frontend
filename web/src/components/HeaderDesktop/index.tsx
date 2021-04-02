@@ -11,8 +11,8 @@ import { FiLogOut } from "react-icons/fi";
 import { FaUserCircle } from "react-icons/fa";
 import { Link, useHistory, useLocation } from "react-router-dom";
 
-import { SocketNotificationProps } from "../../interfaces/Socket";
-import { Notification } from "../../interfaces/Notification";
+import { ISocketNotificationProps } from "../../interfaces/ISocket";
+import INotification from "../../interfaces/INotification";
 import SearchInput from "../SearchInput";
 import ThemeSwitcher from "../ThemeSwitcher";
 import { useSocket } from "../../contexts/SocketProvider";
@@ -28,7 +28,9 @@ const HeaderDesktop = () => {
   const navbarRef: any = useRef(null);
 
   const [showNavbar, setShowNavbar] = useState(false);
-  const [notifications, setNotifications] = useState<Notification[]>([]);
+  const [notifications, setNotifications] = useState<INotification[]>(
+    [] as INotification[]
+  );
   const [unreadNotifications, setUnreadNotifications] = useState(0);
 
   useEffect(() => {
@@ -53,7 +55,7 @@ const HeaderDesktop = () => {
 
   useEffect(() => {
     if (socket == null) return;
-    socket.on("notification", ({ notification }: SocketNotificationProps) => {
+    socket.on("notification", ({ notification }: ISocketNotificationProps) => {
       if (user.username === notification.username) {
         setNotifications([...notifications, notification]);
         setUnreadNotifications(unreadNotifications + 1);
@@ -86,7 +88,7 @@ const HeaderDesktop = () => {
 
   async function handleNotifications() {
     try {
-      notifications.forEach(async (notification: Notification) => {
+      notifications.forEach(async (notification: INotification) => {
         if (!notification.wasRead) {
           await api.put(`/notifications/${notification._id}`);
         }
@@ -151,10 +153,11 @@ const HeaderDesktop = () => {
               alt="user"
             />
             <div className={showNavbar ? "navbar" : "navbar disabled"}>
-              <div className="navbar__item">
-                <Link to={`/profile/${user.username}`}>
-                  <FaUserCircle /> Perfil
-                </Link>
+              <div
+                onClick={() => history.push(`/profile/${user.username}`)}
+                className="navbar__item"
+              >
+                <FaUserCircle /> Perfil
               </div>
               <div className="navbar__item">
                 <ThemeSwitcher /> Trocar de Tema

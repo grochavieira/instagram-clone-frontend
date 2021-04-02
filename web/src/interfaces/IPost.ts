@@ -1,9 +1,9 @@
-export interface Caption {
+export interface ICaption {
   body: string;
   createdAt: string;
 }
 
-export interface Comment {
+export interface IComment {
   body: string;
   username: string;
   followingUsername: string;
@@ -11,19 +11,19 @@ export interface Comment {
   createdAt: string;
 }
 
-export interface Like {
+export interface ILike {
   username: string;
   createdAt: string;
 }
 
-export interface Post {
+export default interface IPost {
   _id: string;
   postUrl: string;
   publicId: string;
   user: string;
   username: string;
   createdAt: string;
-  caption: Caption;
-  comments: Comment[];
-  likes: Like[];
+  caption: ICaption;
+  comments: IComment[];
+  likes: ILike[];
 }

@@ -2,12 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../contexts/AuthProvider";
 
 import { toast } from "react-toastify";
-import User from "../../interfaces/User";
+import IUser from "../../interfaces/IUser";
 import api from "../../services/api";
 import "./styles.scss";
 
 interface FollowButtonProps {
-  user: User;
+  user: IUser;
 }
 
 const FollowButton = ({ user }: FollowButtonProps) => {

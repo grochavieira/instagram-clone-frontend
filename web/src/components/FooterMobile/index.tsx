@@ -9,8 +9,8 @@ import {
   AiFillCamera,
 } from "react-icons/ai";
 
-import { SocketNotificationProps } from "../../interfaces/Socket";
-import { Notification } from "../../interfaces/Notification";
+import { ISocketNotificationProps } from "../../interfaces/ISocket";
+import INotification from "../../interfaces/INotification";
 import { useSocket } from "../../contexts/SocketProvider";
 import AuthContext from "../../contexts/AuthProvider";
 import api from "../../services/api";
@@ -22,7 +22,7 @@ const FooterMobile = () => {
   const { pathname } = useLocation();
   const history = useHistory();
 
-  const [notifications, setNotifications] = useState<Notification[]>([]);
+  const [notifications, setNotifications] = useState<INotification[]>([]);
   const [unreadNotifications, setUnreadNotifications] = useState(0);
 
   useEffect(() => {
@@ -47,7 +47,7 @@ const FooterMobile = () => {
 
   useEffect(() => {
     if (socket == null) return;
-    socket.on("notification", ({ notification }: SocketNotificationProps) => {
+    socket.on("notification", ({ notification }: ISocketNotificationProps) => {
       if (user.username === notification.username) {
         setNotifications([...notifications, notification]);
         setUnreadNotifications(unreadNotifications + 1);
@@ -58,7 +58,7 @@ const FooterMobile = () => {
 
   async function handleNotifications() {
     try {
-      notifications.forEach(async (notification: Notification) => {
+      notifications.forEach(async (notification: INotification) => {
         if (!notification.wasRead) {
           await api.put(`/notifications/${notification._id}`);
         }
