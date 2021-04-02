@@ -85,15 +85,12 @@
         font-weight: bold;
 
         border: 0;
-        border: 1px solid var(--color-tertiary);
 
         transition: all 0.2s;
         cursor: pointer;
 
         &:hover {
-          background-color: var(--color-primary);
-          border: 1px solid var(--color-tertiary);
-          color: var(--color-tertiary);
+          opacity: 0.8;
         }
       }
     }
