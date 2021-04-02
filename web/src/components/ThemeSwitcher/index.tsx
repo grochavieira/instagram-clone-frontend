@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FiLogOut, FiSun, FiMoon } from "react-icons/fi";
 
 import useTheme from "../../utils/useTheme";
 import "./styles.scss";
@@ -11,18 +12,17 @@ export const selectTheme = () => {
 };
 
 export const ThemeSwitcher = () => {
-  const [darkModeEnabled, setDarkModeEnabled] = useState(selectTheme());
-  useTheme(darkModeEnabled ? "dark" : "light");
+  const [isDarkModeEnabled, setIsDarkModeEnabled] = useState(selectTheme());
+  useTheme(isDarkModeEnabled ? "dark" : "light");
 
   return (
     <>
-      <input
-        id="switch"
-        type="checkbox"
-        checked={darkModeEnabled}
-        onChange={(e) => setDarkModeEnabled(e.target.checked)}
-      />
-      <label className="toggler" htmlFor="switch"></label>
+      <div
+        onClick={() => setIsDarkModeEnabled(!isDarkModeEnabled)}
+        className="theme"
+      >
+        {isDarkModeEnabled ? <FiMoon /> : <FiSun />}
+      </div>
     </>
   );
 };

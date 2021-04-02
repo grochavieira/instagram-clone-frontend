@@ -28,6 +28,7 @@ const Profile = () => {
     },
     username: "",
     friends: [],
+    followers: [],
   });
 
   useEffect(() => {
@@ -74,7 +75,7 @@ const Profile = () => {
                 <strong>{userPosts.length}</strong> publicações
               </div>
               <div className="profile__main__info__social__item">
-                <strong> 0 </strong>
+                <strong> {user.followers.length} </strong>
                 seguidores
               </div>
               <div className="profile__main__info__social__item">

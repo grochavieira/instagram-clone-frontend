@@ -6,6 +6,7 @@ import {
   AiOutlineCamera,
   AiFillCamera,
 } from "react-icons/ai";
+import { FiLogOut, FiSun, FiMoon } from "react-icons/fi";
 // import { IoMdPaperPlane, IoIosPaperPlane } from "react-icons/io";
 import { FaUserCircle } from "react-icons/fa";
 import { Link, useHistory, useLocation } from "react-router-dom";
@@ -103,7 +104,7 @@ const HeaderDesktop = () => {
         <p className="header-desktop__logo__text">Instagram</p>
       </div>
 
-      {pathname === "/" ? <SearchInput /> : ""}
+      <SearchInput />
 
       <div className="header-desktop__navigation-bar">
         <ul>
@@ -156,9 +157,10 @@ const HeaderDesktop = () => {
                 </Link>
               </div>
               <div className="navbar__item">
-                <ThemeSwitcher />
+                <ThemeSwitcher /> Trocar de Tema
               </div>
               <div onClick={handleLogout} className="navbar__item">
+                <FiLogOut />
                 Sair
               </div>
             </div>

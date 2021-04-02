@@ -13,4 +13,5 @@ export default interface User {
   };
   username: string;
   friends: Friend[] | [];
+  followers: Friend[] | [];
 }

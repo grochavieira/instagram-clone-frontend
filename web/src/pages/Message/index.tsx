@@ -7,17 +7,7 @@ import Button from "../../components/Button";
 import "./styles.scss";
 
 const Message = () => {
-  const [user, setUser] = useState<User>({
-    _id: "",
-    name: "",
-    email: "",
-    profilePhoto: {
-      url: "",
-      publicId: "",
-    },
-    username: "",
-    friends: [],
-  });
+  const [user, setUser]: any = useState({});
 
   useEffect(() => {
     const json_object = localStorage.getItem("user");
