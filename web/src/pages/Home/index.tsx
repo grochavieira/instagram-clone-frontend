@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { toast } from "react-toastify";
+import { BsCheckCircle } from "react-icons/bs";
 
 import { ISocketPostProps } from "../../interfaces/ISocket";
 import IPost from "../../interfaces/IPost";
@@ -99,6 +100,10 @@ const Home = () => {
                   post={post}
                 />
               ))}
+              <div className="home__main__end">
+                <BsCheckCircle />
+                <p>Siga outras pessoas para ver suas postagens!</p>
+              </div>
             </>
           )}
         </div>
