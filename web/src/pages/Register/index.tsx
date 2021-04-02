@@ -9,8 +9,8 @@ import PhotoDropzone from "../../components/PhotoDropzone";
 import Loading from "../../components/Loading";
 import AuthContext from "../../contexts/AuthProvider";
 import api from "../../services/api";
-import downloadAppIcon from "../../assets/download-app-store.png";
-import downloadGoogleIcon from "../../assets/download-google-play.png";
+// import downloadAppIcon from "../../assets/download-app-store.png";
+// import downloadGoogleIcon from "../../assets/download-google-play.png";
 import "./styles.scss";
 
 const Register = () => {
@@ -136,12 +136,12 @@ const Register = () => {
           </p>
         </div>
 
-        <p className="register__app-text">Obtenha o aplicativo.</p>
+        {/* <p className="register__app-text">Obtenha o aplicativo.</p>
 
         <div className="register__download-stores">
           <img src={downloadAppIcon} alt="Download on app store" />
           <img src={downloadGoogleIcon} alt="Download on google store" />
-        </div>
+        </div> */}
 
         <Footer />
       </div>
