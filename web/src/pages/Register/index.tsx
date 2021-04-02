@@ -132,7 +132,7 @@ const Register = () => {
         <div className="register__login">
           <p>
             Tem uma conta?
-            <Link to="/"> Conecte-se</Link>
+            <Link to="/home"> Conecte-se</Link>
           </p>
         </div>
 

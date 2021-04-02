@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useHistory, useLocation } from "react-router";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import {
   AiOutlineHome,
@@ -14,7 +15,6 @@ import { useSocket } from "../../contexts/SocketProvider";
 import AuthContext from "../../contexts/AuthProvider";
 import api from "../../services/api";
 import "./styles.scss";
-import { useHistory, useLocation } from "react-router";
 
 const FooterMobile = () => {
   const { user } = useContext<any>(AuthContext);
@@ -74,7 +74,7 @@ const FooterMobile = () => {
     <>
       <div className="footer-mobile">
         <span onClick={() => history.push("/")} className="footer-mobile__item">
-          {pathname !== "/" ? <AiOutlineHome /> : <AiFillHome />}
+          {pathname !== "/home" ? <AiOutlineHome /> : <AiFillHome />}
         </span>
         <span
           onClick={() => history.push("/search")}

@@ -80,7 +80,7 @@ const HeaderDesktop = () => {
 
   function handleLogout() {
     signOut();
-    history.push("/");
+    history.push("/home");
   }
 
   async function handleNotifications() {
@@ -108,8 +108,8 @@ const HeaderDesktop = () => {
       <div className="header-desktop__navigation-bar">
         <ul>
           <li>
-            <Link to="/">
-              {pathname === "/" ? <AiFillHome /> : <AiOutlineHome />}{" "}
+            <Link to="/home">
+              {pathname === "/home" ? <AiFillHome /> : <AiOutlineHome />}{" "}
             </Link>
           </li>
           <li>

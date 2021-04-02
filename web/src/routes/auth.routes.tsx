@@ -13,6 +13,7 @@ import Page404 from "../pages/Page404";
 import PostDetails from "../pages/PostDetails";
 import Activity from "../pages/Activity";
 import Search from "../pages/Search";
+import Splash from "../pages/Splash";
 
 const AuthRoutes = () => {
   const { user } = useContext<any>(AuthContext);
@@ -21,7 +22,8 @@ const AuthRoutes = () => {
       <BrowserRouter>
         <Header />
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" component={Splash} />
+          <Route exact path="/home" component={Home} />
           <Route exact path="/register" component={Register} />
           {/* <Route exact path="/message" component={Message} /> */}
           <Route exact path="/post-content" component={PostContent} />
