@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 import NavigationMobile from "../NavigationMobile";
 import HeaderDesktop from "../HeaderDesktop";
-import "./styles.scss";
 
 const Header = () => {
   const [windowWidth, setWindowWidth]: any = useState(window.innerWidth);

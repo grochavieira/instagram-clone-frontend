@@ -69,6 +69,7 @@ const PostDetails = () => {
     });
 
     socket.on("commented-post", ({ post: updatedPost }: ISocketPostProps) => {
+      console.log(updatedPost);
       if (postId === updatedPost._id) setPost(updatedPost);
     });
 
@@ -85,8 +86,11 @@ const PostDetails = () => {
         body: comment,
         profilePhotoURL: user.profilePhoto.url,
         username: postUser.username,
+        followingUsername: user.username,
         createdAt: String(new Date()),
       };
+
+      console.log({ newComment });
 
       post.comments.unshift(newComment);
       setPost(post);
