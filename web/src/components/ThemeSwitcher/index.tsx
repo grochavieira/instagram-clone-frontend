@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FiLogOut, FiSun, FiMoon } from "react-icons/fi";
+import { FiSun, FiMoon } from "react-icons/fi";
 
 import useTheme from "../../utils/useTheme";
 import "./styles.scss";

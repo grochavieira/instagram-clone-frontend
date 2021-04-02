@@ -14,7 +14,6 @@ import api from "../../services/api";
 import "./styles.scss";
 
 const Register = () => {
-  const { signIn } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const [profileImage, setProfileImage] = useState<File>();
   const [name, setName] = useState("");

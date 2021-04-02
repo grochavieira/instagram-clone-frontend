@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { FiLogOut, FiSun, FiMoon } from "react-icons/fi";
+import React, { useContext } from "react";
+import { FiLogOut } from "react-icons/fi";
 
 import ThemeSwitcher from "../ThemeSwitcher";
 import AuthContext from "../../contexts/AuthProvider";

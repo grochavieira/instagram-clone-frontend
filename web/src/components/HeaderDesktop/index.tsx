@@ -6,7 +6,7 @@ import {
   AiOutlineCamera,
   AiFillCamera,
 } from "react-icons/ai";
-import { FiLogOut, FiSun, FiMoon } from "react-icons/fi";
+import { FiLogOut } from "react-icons/fi";
 // import { IoMdPaperPlane, IoIosPaperPlane } from "react-icons/io";
 import { FaUserCircle } from "react-icons/fa";
 import { Link, useHistory, useLocation } from "react-router-dom";

@@ -9,7 +9,7 @@ import PostContent from "../pages/PostContent";
 import Profile from "../pages/Profile";
 import Register from "../pages/Register";
 // import Message from "../pages/Message";
-import Page404 from "../pages/Page404";
+// import Page404 from "../pages/Page404";
 import PostDetails from "../pages/PostDetails";
 import Activity from "../pages/Activity";
 import Search from "../pages/Search";
