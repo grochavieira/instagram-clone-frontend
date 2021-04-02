@@ -8,8 +8,8 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer__content">
         <p>
-          MADE WITH <BsHeartFill color={"#ff3366"} /> BY{" "}
-          <strong> GUILHERME ROCHA VIEIRA </strong>
+          Made with <BsHeartFill color={"#EA2B1F"} /> by{" "}
+          <strong> Guilherme Rocha Vieira </strong>
         </p>
       </div>
     </footer>

@@ -56,9 +56,9 @@ const Login = () => {
               </ul>
             </div>
           )}
-          <div className="or-block">
-            <p className="or-block__line">{/* <span>OU</span> */}</p>
-          </div>
+          {/* <div className="or-block">
+          <p className="or-block__line"><span>OU</span></p>
+          </div> */}
           {/* 
         <div className="login__container__facebook">
           <img
@@ -69,9 +69,9 @@ const Login = () => {
           <p>Entrar com o Facebook</p>
         </div> */}
 
-          <div className="login__container__forgot">
+          {/* <div className="login__container__forgot">
             <p>Esqueceu a senha?</p>
-          </div>
+          </div> */}
         </div>
 
         <div className="login__register">
@@ -81,12 +81,12 @@ const Login = () => {
           </p>
         </div>
 
-        <p className="login__app-text">Obtenha o aplicativo.</p>
+        {/* <p className="login__app-text">Obtenha o aplicativo.</p>
 
         <div className="login__download-stores">
           <img src={downloadAppIcon} alt="Download on app store" />
           <img src={downloadGoogleIcon} alt="Download on google store" />
-        </div>
+        </div> */}
 
         <Footer />
       </div>
