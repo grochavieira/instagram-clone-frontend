@@ -38,7 +38,7 @@ Um clone do site do Instagram, na qual você pode logar/registrar, criar novos p
 O site pode ser acessado no link abaixo:
 
 <a align="center" href="https://grochavieira-instagram-clone-frontend.vercel.app/">
-    <img alt="clone do instagram" src="https://img.shields.io/static/v1?label=site&message=clone-instagram&color=00D0E2&style=flat&logo=vercel">
+    <img alt="clone do instagram" src="https://img.shields.io/static/v1?label=site&message=clone-instagram&color=F75F50&style=flat&logo=vercel">
 </a>
 
 ---
