@@ -56,11 +56,9 @@ O site pode ser acessado no link abaixo:
 - [x] Usuário pode visualizar o perfil de outros usuários;
 - [x] Usuário pode ver um feed global de imagens (de acordo com os usuários que ele segue);
 - [x] Usuário tem uma página de notificações (sempre que alguém comenta/curte um post seu ou passa a te seguir);
-- [x] O feed é atualizado sempre que um novo post é adicionado (Web Sockets);
-- [x] O feed é atualizado sempre que um novo post é deletado (Web Sockets);
-- [x] O post sempre é atualizado em tempo real quando alguém curte (Web Sockets);
-- [x] O post sempre é atualizado em tempo real quando alguém comenta (Web Sockets);
-- [x] Página de perfil dos usuários é atualizada em tempo real (Web Sockets);
+- [x] O feed é atualizado sempre que um novo post é adicionado/deletado (Web Sockets);
+- [x] O post é sempre atualizado em tempo real quando alguém curte/comenta (Web Sockets);
+- [x] Página de perfil dos usuários é atualizada em tempo real p/ seguidores/seguindo (Web Sockets);
 - [x] As notificações (coração) no header do site é atualizado em tempo real (Web Sockets);
 - [x] Layout único e responsivo para mobile.
 
