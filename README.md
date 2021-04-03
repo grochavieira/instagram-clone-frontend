@@ -11,7 +11,7 @@
 
 </p>
 <h1 align="center">
-    <img src="./assets/logo_frontend.png" />
+    <img src="./.github/logo_frontend.png" />
 </h1>
 
 <h4 align="center"> 
@@ -33,7 +33,13 @@
 
 ## 💻 Sobre o projeto
 
-Um clone do site do Instagram do Facebook, na qual você pode logar/registrar, criar novos posts(imagens/videos), seguir outros usuários e ver os posts dos usuários que você segue.
+Um clone do site do Instagram, na qual você pode logar/registrar, criar novos posts(imagens/videos), seguir outros usuários, ver os posts dos usuários que você segue, comentar e curtir as postagens e receber notificações relacionadas ás suas postagens e quem te segue.
+
+O site pode ser acessado no link abaixo:
+
+<a align="center" href="https://grochavieira-instagram-clone-frontend.vercel.app/">
+    <img alt="clone do instagram" src="https://img.shields.io/static/v1?label=site&message=clone-instagram&color=00D0E2&style=flat&logo=vercel">
+</a>
 
 ---
 
@@ -41,20 +47,22 @@ Um clone do site do Instagram do Facebook, na qual você pode logar/registrar, c
 
 ## ⚙️ Funcionalidades
 
-## User Stories
-
-- [x] Usuário pode se registrar criando uma conta com seu nome, email, nome de usuário, senha e foto de perfil e então pode se logar utilizando suas credenciais.
-- [x] Usuário pode criar um post e armazenar as images/vídeos em um servidor
-- [x] Usuário pode seguir outros usuários
-- [x] Usuário pode ver o post de outros usuários (pessoas que o usuário segue)
-- [x] Usuário tem um perfil que mostra todas as imagens/videos que ele postou.
-
-## Bonus features
-
-- [x] Usuário pode ver um feed global de imagens/vídeos
-- [ ] O feed recarrega sempre que um novo post é adicionado (Web Sockets)
-- [ ] Usuário pode mandar mensagem para outros usuários
-- [ ] Usuário pode criar um story para outros usuários visualizarem
+- [x] Usuário pode se registrar criando uma conta com seu nome, email, nome de usuário, senha e foto de perfil;
+- [x] Usuário pode se logar utilizando suas credenciais;
+- [x] Usuário pode criar um post e armazenar as imagens no cloudinary;
+- [x] Usuário pode seguir outros usuários;
+- [x] Usuário pode ver o post de outros usuários (pessoas que o usuário segue);
+- [x] Usuário tem um perfil que mostra todas as suas postagens;
+- [x] Usuário pode visualizar o perfil de outros usuários;
+- [x] Usuário pode ver um feed global de imagens (de acordo com os usuários que ele segue);
+- [x] Usuário tem uma página de notificações (sempre que alguém comenta/curte um post seu ou passa a te seguir);
+- [x] O feed é atualizado sempre que um novo post é adicionado (Web Sockets);
+- [x] O feed é atualizado sempre que um novo post é deletado (Web Sockets);
+- [x] O post sempre é atualizado em tempo real quando alguém curte (Web Sockets);
+- [x] O post sempre é atualizado em tempo real quando alguém comenta (Web Sockets);
+- [x] Página de perfil dos usuários é atualizada em tempo real (Web Sockets);
+- [x] As notificações (coração) no header do site é atualizado em tempo real (Web Sockets);
+- [x] Layout único e responsivo para mobile.
 
 ---
 
@@ -71,6 +79,10 @@ Um clone do site do Instagram do Facebook, na qual você pode logar/registrar, c
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/), [Yarn](https://classic.yarnpkg.com/en/docs/install).d
 Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
+
+### Váriaveis de Ambiente
+
+> Veja o arquivo [.env.sample](https://github.com/grochavieira/instagram-clone-frontend/blob/master/web/.env.sample)
 
 #### 🧭 Rodando a aplicação web (Frontend)
 
@@ -103,10 +115,17 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 #### **Website** ([React](https://reactjs.org/) + [TypeScript](https://www.typescriptlang.org/))
 
-- **[React Router Dom](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom)**
-- **[React Icons](https://react-icons.github.io/react-icons/)**
-- **[Axios](https://github.com/axios/axios)**
-- **[SCSS](https://sass-lang.com/)**
+- **[react router dom](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom)**
+- **[react icons](https://react-icons.github.io/react-icons/)**
+- **[axios](https://github.com/axios/axios)**
+- **[scss](https://sass-lang.com/)**
+- **[react-lottie](https://airbnb.io/lottie/)**
+- **[react-loading](https://www.npmjs.com/package/react-loading)**
+- **[react-dropzone](https://github.com/react-dropzone/react-dropzone)**
+- **[react-timeago](https://www.npmjs.com/package/react-timeago)**
+- **[react-toastify](https://www.npmjs.com/package/react-toastify)**
+- **[react-video-js-player](https://www.npmjs.com/package/react-video-js-player)**
+- **[socket.io-client](https://www.npmjs.com/package/socket.io-client)**
 
 > Veja o arquivo [package.json](https://github.com/grochavieira/instagram-clone-frontend/blob/master/web/package.json)
 
