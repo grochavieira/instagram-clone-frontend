@@ -1,5 +1,5 @@
 import React from "react";
-import { BsHeartFill } from "react-icons/bs";
+import { FiCamera } from "react-icons/fi";
 
 import "./styles.scss";
 
@@ -8,7 +8,7 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer__content">
         <p>
-          Made with <BsHeartFill color={"#EA2B1F"} /> by{" "}
+          <FiCamera /> Made by
           <strong> Guilherme Rocha Vieira </strong>
         </p>
       </div>

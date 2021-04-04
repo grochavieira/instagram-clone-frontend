@@ -15,7 +15,7 @@
 </h1>
 
 <h4 align="center"> 
-	🚧  Aplicação em desenvolvimento... 🚧
+	🚧  Aplicação Finalizada! 🚧
 </h4>
 
 ## 🏁 Tópicos
