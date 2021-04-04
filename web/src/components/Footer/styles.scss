@@ -21,5 +21,9 @@
 
     background-color: var(--color-secondary);
     color: var(--color-text);
+
+    svg {
+      color: var(--color-tertiary);
+    }
   }
 }
