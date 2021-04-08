@@ -64,9 +64,7 @@ O site pode ser acessado no link abaixo:
 
 ---
 
-## 🎨 Layout
-
-Demonstração do projeto no meu linkedin:
+## 🕹️ Demonstração
 
 <a align="center" href="https://www.linkedin.com/feed/update/urn:li:activity:6784468288920543232/">
     <img alt="clone do instagram demonstração" src="https://img.shields.io/static/v1?label=post&message=clone-instagram&color=0072B1&style=flat&logo=linkedin">
