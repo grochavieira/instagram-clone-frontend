@@ -23,7 +23,7 @@
 <p>
  👉<a href="#-sobre-o-projeto" style="text-decoration: none; "> Sobre</a> <br/>
 👉<a href="#-funcionalidades" style="text-decoration: none; "> Funcionalidades</a> <br/>
-👉<a href="#-layout" style="text-decoration: none"> Layout</a> <br/>
+👉<a href="#-demonstracao" style="text-decoration: none"> Demonstração</a> <br/>
 👉<a href="#-como-executar-o-projeto" style="text-decoration: none"> Como executar</a> <br/>
 👉<a href="#-tecnologias" style="text-decoration: none"> Tecnologias</a> <br/>
 👉<a href="#-autor" style="text-decoration: none"> Autor</a> <br/>
@@ -65,6 +65,8 @@ O site pode ser acessado no link abaixo:
 ---
 
 ## 🕹️ Demonstração
+
+<a name="-demonstracao"></a>
 
 <a align="center" href="https://www.linkedin.com/feed/update/urn:li:activity:6784468288920543232/">
     <img alt="clone do instagram demonstração" src="https://img.shields.io/static/v1?label=post&message=clone-instagram&color=0072B1&style=flat&logo=linkedin">
