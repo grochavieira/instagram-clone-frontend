@@ -60,7 +60,7 @@ O site pode ser acessado no link abaixo:
 - [x] O post é sempre atualizado em tempo real quando alguém curte/comenta (Web Sockets);
 - [x] Página de perfil dos usuários é atualizada em tempo real p/ seguidores/seguindo (Web Sockets);
 - [x] As notificações (coração) no header do site é atualizado em tempo real (Web Sockets);
-- [x] Layout único e responsivo para mobile.
+- [x] Layout responsivo para mobile.
 
 ---
 
